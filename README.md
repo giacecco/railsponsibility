@@ -11,7 +11,7 @@ As much as we accept that not all incidents can be avoided, we believe that the 
 
 [Some are fighting this using policy](http://www.thetimes.co.uk/tto/business/industries/transport/article3986840.ece). We believe there is one more channel we can use, that is supporting passengers to do what is in their rights and claim compensation down to the last penny.
 
-##About *delay-repay*
+##About *Railsponsibility*
 
 The *delay-repay* project is aimed at building a system to monitor all train services being cancelled or delayed that match the criteria for compensation, to then remind the passengers who were affected of the disservice they were affected by and support them in filing the claim, automating as much as possible the process.
 
