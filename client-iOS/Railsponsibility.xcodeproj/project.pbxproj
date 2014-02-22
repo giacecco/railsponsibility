@@ -21,6 +21,8 @@
 		5F5CF18018B8D9AE00EABA36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5CF16218B8D9AE00EABA36 /* UIKit.framework */; };
 		5F5CF18818B8D9AE00EABA36 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5F5CF18618B8D9AE00EABA36 /* InfoPlist.strings */; };
 		5F5CF18A18B8D9AE00EABA36 /* RailsponsibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5CF18918B8D9AE00EABA36 /* RailsponsibilityTests.m */; };
+		5F5CF19618B8E27000EABA36 /* RLSClaim.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5CF19518B8E27000EABA36 /* RLSClaim.m */; };
+		5F5CF19918B8E32500EABA36 /* RLSJourney.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5CF19818B8E32500EABA36 /* RLSJourney.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		5F5CF18518B8D9AE00EABA36 /* RailsponsibilityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RailsponsibilityTests-Info.plist"; sourceTree = "<group>"; };
 		5F5CF18718B8D9AE00EABA36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5F5CF18918B8D9AE00EABA36 /* RailsponsibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RailsponsibilityTests.m; sourceTree = "<group>"; };
+		5F5CF19418B8E27000EABA36 /* RLSClaim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLSClaim.h; sourceTree = "<group>"; };
+		5F5CF19518B8E27000EABA36 /* RLSClaim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLSClaim.m; sourceTree = "<group>"; };
+		5F5CF19718B8E32500EABA36 /* RLSJourney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLSJourney.h; sourceTree = "<group>"; };
+		5F5CF19818B8E32500EABA36 /* RLSJourney.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RLSJourney.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 		5F5CF16418B8D9AE00EABA36 /* Railsponsibility */ = {
 			isa = PBXGroup;
 			children = (
+				5F5CF19318B8E02200EABA36 /* Model */,
 				5F5CF16D18B8D9AE00EABA36 /* RLSAppDelegate.h */,
 				5F5CF16E18B8D9AE00EABA36 /* RLSAppDelegate.m */,
 				5F5CF17018B8D9AE00EABA36 /* Main.storyboard */,
@@ -150,6 +157,17 @@
 				5F5CF18618B8D9AE00EABA36 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F5CF19318B8E02200EABA36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F5CF19418B8E27000EABA36 /* RLSClaim.h */,
+				5F5CF19518B8E27000EABA36 /* RLSClaim.m */,
+				5F5CF19718B8E32500EABA36 /* RLSJourney.h */,
+				5F5CF19818B8E32500EABA36 /* RLSJourney.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F5CF19618B8E27000EABA36 /* RLSClaim.m in Sources */,
 				5F5CF17518B8D9AE00EABA36 /* RLSViewController.m in Sources */,
 				5F5CF16F18B8D9AE00EABA36 /* RLSAppDelegate.m in Sources */,
 				5F5CF16B18B8D9AE00EABA36 /* main.m in Sources */,
+				5F5CF19918B8E32500EABA36 /* RLSJourney.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +481,7 @@
 				5F5CF18F18B8D9AE00EABA36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F5CF19018B8D9AE00EABA36 /* Build configuration list for PBXNativeTarget "RailsponsibilityTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +490,7 @@
 				5F5CF19218B8D9AE00EABA36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
