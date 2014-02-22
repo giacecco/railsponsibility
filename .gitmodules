@@ -1,0 +1,3 @@
+[submodule "client-iOS/External/JSONModel"]
+	path = client-iOS/External/JSONModel
+	url = git@github.com:icanzilb/JSONModel.git

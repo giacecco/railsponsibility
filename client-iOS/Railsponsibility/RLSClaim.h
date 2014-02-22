@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RLSClaim : NSObject
+#import "JSONModel.h"
+
+@interface RLSClaim : JSONModel
 
 #pragma mark - Name
 

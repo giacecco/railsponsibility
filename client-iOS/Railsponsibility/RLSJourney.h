@@ -10,6 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JSONModel.h"
+
 typedef NS_ENUM(NSUInteger, RLSTicketType)
 {
     RLSTicketTypeUndefined = 0,
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSUInteger, RLSTicketType)
     RLSTicketTypeReturn = 3
 };
 
-@interface RLSJourney : NSObject
+@interface RLSJourney : JSONModel
 
 @property (readwrite) NSString *origin;
 @property (readwrite) NSString *destination;
