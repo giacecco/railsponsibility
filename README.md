@@ -13,9 +13,11 @@ As much as we accept that not all incidents can be avoided, we believe that the 
 
 ##About *Railsponsibility*
 
-The *delay-repay* project is aimed at building a system to monitor all train services being cancelled or delayed that match the criteria for compensation, to then remind the passengers who were affected of the disservice they were affected by and support them in filing the claim, automating as much as possible the process.
+The *Railsponsibility* project is aimed at building a system to monitor all train services being cancelled or delayed that match the criteria for compensation, to then remind the passengers who were affected of the disservice they were affected by and support them in filing the claim, automating as much as possible the process.
 
 ##International Open Data Day 2014
+
+![Team photo by @raimondiand](International-Open-Data-Day-2014/images/raimondiand_photo.jpg)
 
 The first brainstorming and prototyping work was developed for the London Open Data Dat 2014 hackfest. You can read the [team's original notes](https://docs.google.com/document/d/1frKRTsy6c4qe-JpwDcY0vNHjUoS9ebc_eZT5LfzJDmM/edit?usp=sharing) and [view the outcome](International-Open-Data-Day-2014/).
 
@@ -26,8 +28,10 @@ Among the contributors were:
 - Matias Piipari ([mz2](https://github.com/mz2))
 - Thomas Down ([dasmoth](https://github.com/dasmoth))
 
-... and others who did not leave their contacts! :-(
+... and others who did not leave their contacts! :-( In the picture are, from left to right, giacecco, andylolz, mz2 and, standing, dasmoth.
 
 ##Licence
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *delay-repay* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
+
+The team picture was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840) and enhanced a little by giacecco. 
