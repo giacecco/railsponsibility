@@ -28,7 +28,7 @@ Among the contributors were:
 - Matias Piipari ([mz2](https://github.com/mz2))
 - Thomas Down ([dasmoth](https://github.com/dasmoth))
 
-... and others who did not leave their contacts! :-( In the picture are, from left to right, giacecco, andylolz, mz2 and, standing, dasmoth.
+... and others who did not leave their contacts! :-( In the picture are, from left to right, giacecco, andylolz, mz2 and, standing, dasmoth. Sorry we don't have a better one.
 
 ##Licence
 
