@@ -34,12 +34,12 @@ Among the contributors were:
 
 ![Team photo](images/joint_open_data_hackathon.jpg)
 
-Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/government/organisations/cabinet-office), [Stride IoT](http://www.stride-project.com/) and [Network Rail](http://www.networkrail.co.uk/)'s "Joint Open Data hackathon" on 18 March 2014, as the best smart transport applications using data available from the sponsors' open data sources.
+Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/government/organisations/cabinet-office), [Stride](http://www.stride-project.com/) and [Network Rail](http://www.networkrail.co.uk/)'s "Joint Open Data hackathon" on 18 March 2014, as the best smart transport applications using data available from the sponsors' open data sources.
 
 ##Licence
 
-The *station_codes.csv* is public domain and available from the National Rail website at [this URL](http://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+The information in the *station_codes.csv* file is public domain. The file is available from the National Rail website at [this URL](http://www.nationalrail.co.uk/stations_destinations/48541.aspx).
 
-![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *delay-repay* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
+![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *Railsponsibility* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 
 The team picture at the International Open Data Day was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840), the one at the Joint Open Data Hackathon was taken by [@eehcnas](https://twitter.com/eehcnas/status/445972723614117888). Both were enhanced a little by giacecco. 
