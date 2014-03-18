@@ -21,7 +21,7 @@ var async = require("async"),
     stride = require("./stride"),
     twitter = require("./twitter"),
     stations = null,
-    delayRequests = [ ],
+    delayRequests = { },
     delayMemory = { };
 
 function findStation (searchString) {
@@ -40,25 +40,40 @@ function findStation (searchString) {
 function delayRequestsInitialise (callback) {
 	var check = function () {
 		// {"user":"giacecco","networks":["Fake Midland"],"originStation":"EUS","originTime":"2014-03-18T17:05:22.776Z","toStation":"BKM","toTime":"2014-03-18T18:27:22.777Z","createdAt":"2014-03-18T13:12:23.000Z"}
-
-		// identify the train if not did it already
-		async.each(delayRequests.filter(function (request) {
-			return !request.trainUid;
-		}), function (request, callback) {
-			stride.getDepartures(request.originStation, function (err, results) {
-				results = results.departures.all.filter(function (arrival) {
-					return arrival.expected_departure_time === (request.originTime.getHours() < 10 ? '0' : '') + request.originTime.getHours() + ":" + (request.originTime.getMinutes() < 10 ? '0' : '') + request.originTime.getMinutes()
+		async.series([
+			function (callback) {
+				// identify the train if not did it already
+				async.each(Object.keys(delayRequests).filter(function (user) {
+					return !delayRequests[user].trainUid;
+				}), function (user, callback) {
+					stride.getDepartures(delayRequests[user].originStation, function (err, results) {
+						results = results.departures.all.filter(function (arrival) {
+							return arrival.expected_departure_time === (delayRequests[user].originTime.getHours() < 10 ? '0' : '') + delayRequests[user].originTime.getHours() + ":" + (delayRequests[user].originTime.getMinutes() < 10 ? '0' : '') + delayRequests[user].originTime.getMinutes();
+						});
+						if (results.length > 0) {
+							delayRequests[user].trainUid = results[0].train_uid;
+						} else {
+							console.log("*** Error, train departure not found");
+						}
+						callback(null);
+					});
 				});
-				if (results.length > 0) {
-					console.log("*** Found");
-					results[0].trainUid = results[0].train_uid;
-				} else {
-					console.log("*** Error, train departure not found");
-				}
-				callback(null);
-			});
-		});
-
+			},
+			function (callback) {
+				// if the train has arrived, tell them
+				async.each(Object.keys(delayRequests).filter(function (user) {
+					return delayRequests[user].trainUid;
+				}), function (user, callback) {
+					if (delayMemory[trainUid]) {
+						if (delayMemory[trainUid].status === "arrived") {
+							twitter.send("@" + user + " your train has arrived with a delay of " + parseInt(Math.floor((delayMemory.stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory.stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + " minutes", function (err) {
+								delete delayRequests[user];
+							});
+						}
+					}
+				});
+			}
+		]);
 	};
 	check(); setInterval(check, 60000);
 	if (callback) callback(null);
@@ -158,7 +173,7 @@ function startSearch (err) {
 		if (findStation(delayData.toStation)) delayData.toStation = findStation(delayData.toStation);
 
 		console.log("*** Received tweet: " + JSON.stringify(delayData));
-    	delayRequests.push(delayData);
+    	delayRequests[delayData.user] = delayData;
     });
 }
 
