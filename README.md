@@ -32,6 +32,8 @@ Among the contributors were:
 
 ##Licence
 
+The *station_codes.csv* is public domain and available from the National Rail website at [this URL](http://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *delay-repay* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 
 The team picture was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840) and enhanced a little by giacecco. 
