@@ -3,7 +3,8 @@ var RAIL_NETWORKS = [
 	  	  twitterHandle: "@londonmidland" },
 		{ fullName: "Fake Midland",
 	  	  twitterHandle: "@fakemidland" },
-	];
+	],
+	MONITORED_STATIONS = [ 'EUS' ];
 
 var async = require("async"),
 	argv = require("optimist")
@@ -20,7 +21,8 @@ var async = require("async"),
     stride = require("./stride"),
     twitter = require("./twitter"),
     stations = null,
-    delayRecords = [ ];
+    delayRecords = [ ],
+    delayMemory = { };
 
 function findStation (searchString) {
 	searchString = searchString.toLowerCase();
@@ -35,9 +37,32 @@ function findStation (searchString) {
 	return found;
 }
 
-function checkDelay (originStation, originTime, toStation, toTime, callback) {
-
-}
+function delayMemoryInitialise (callback) {
+	// TODO: garbage collection
+	var check = function () {
+		async.each(MONITORED_STATIONS, function (stationCode, callback) {
+			if (!delayMemory.stationCode) delayMemory.stationCode = { };
+			stride.getArrivals(stationCode, function (err, results) {
+				results.arrivals.all.filter(function (arrival) {
+	    			return arrival["aimed_arrival_time"] !== arrival["expected_arrival_time"];
+	    		}).forEach(function (arrival) {
+	    			console.log("*** Updating delayed train " + arrival["origin_name"] + " to " + arrival["destination_name"] + " with ETA " + arrival["expected_arrival_time"]);
+	    			var entryDate = new Date();
+	    			delayMemory.stationCode[arrival["train_uid"]] = { 
+	    				time: results["request_time"],
+						aimedArrivalTime: new Date(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + arrival["aimed_arrival_time"]),
+						expectedArrivalTime: new Date(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + arrival["expected_arrival_time"]),
+	    				arrivalRecord: arrival
+	    			};		
+	    			console.log(delayMemory.stationCode[arrival["train_uid"]]);
+	    		});
+				callback(err);
+			});
+		}, function (err) { });
+	}
+	check(); setInterval(check, 60000);
+	if (callback) callback(null);
+};
 
 function startSearch (err) {
     twitter.listen(function (err, tweet) {
@@ -54,6 +79,7 @@ function startSearch (err) {
 			}, 
 			temp;
 		tweet.message = tweet.message.toLowerCase() + " ";
+
 		namedHandles = tweet.message
 			.match(/@\w+/g)
 			.filter(function (handle) { return handle != "@railspon"; });
@@ -120,6 +146,8 @@ async.series([
 	// all initialisation
 	function (callback) { stride.getStations(function (err, s) { stations = s; callback(null); }); },
     twitter.initialise,
+    delayMemoryInitialise
+    /*
     function (callback) {
     	stride.getArrivals("EUS", function (err, results) {
     		console.log(JSON.stringify(results.arrivals.all.filter(function (arrival) {
@@ -128,6 +156,7 @@ async.series([
     		callback(err);
     	})
     }
+    */
 ], function (err) {
 	if (!err) {
 		// all operations
