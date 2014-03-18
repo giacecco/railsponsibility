@@ -17,7 +17,7 @@ The *Railsponsibility* project is aimed at building a system to monitor all trai
 
 ##International Open Data Day 2014
 
-![Team photo by @raimondiand](International-Open-Data-Day-2014/images/raimondiand_photo.jpg)
+![Team photo by @raimondiand](images/raimondiand_photo.jpg)
 
 The first brainstorming and prototyping work was developed for the London Open Data Dat 2014 hackfest. You can read the [team's original notes](https://docs.google.com/document/d/1frKRTsy6c4qe-JpwDcY0vNHjUoS9ebc_eZT5LfzJDmM/edit?usp=sharing) and [view the outcome](International-Open-Data-Day-2014/).
 
@@ -30,10 +30,16 @@ Among the contributors were:
 
 ... and others who did not leave their contacts! :-( In the picture are, from left to right, giacecco, andylolz, mz2 and, standing, dasmoth. Sorry we don't have a better one.
 
+##Joint Open Data Hackathon
+
+![Team photo](images/joint_open_data_hackathon.jpg)
+
+Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/government/organisations/cabinet-office), [Stride IoT](http://www.stride-project.com/) and [Network Rail](http://www.networkrail.co.uk/)'s "Joint Open Data hackathon" on 18 March 2014, as the best smart transport applications using data available from the sponsors' open data sources.
+
 ##Licence
 
 The *station_codes.csv* is public domain and available from the National Rail website at [this URL](http://www.nationalrail.co.uk/stations_destinations/48541.aspx).
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *delay-repay* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 
-The team picture was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840) and enhanced a little by giacecco. 
+The team picture at the International Open Data Day was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840), the one at the Joint Open Data Hackathon was taken by [@eehcnas](https://twitter.com/eehcnas/status/445972723614117888). Both were enhanced a little by giacecco. 

@@ -46,36 +46,45 @@ function delayRequestsInitialise (callback) {
 				async.each(Object.keys(delayRequests).filter(function (user) {
 					return !delayRequests[user].trainUid;
 				}), function (user, callback) {
-					stride.getDepartures(delayRequests[user].originStation, function (err, results) {
-						results = results.departures.all.filter(function (arrival) {
-							return arrival.expected_departure_time === (delayRequests[user].originTime.getHours() < 10 ? '0' : '') + delayRequests[user].originTime.getHours() + ":" + (delayRequests[user].originTime.getMinutes() < 10 ? '0' : '') + delayRequests[user].originTime.getMinutes();
+					stride.getArrivals(delayRequests[user].toStation, function (err, results) {
+						results = results.arrivals.all.filter(function (arrival) {
+							return arrival.aimed_arrival_time === (delayRequests[user].toTime.getHours() < 10 ? '0' : '') + delayRequests[user].toTime.getHours() + ":" + (delayRequests[user].toTime.getMinutes() < 10 ? '0' : '') + delayRequests[user].toTime.getMinutes();
 						});
 						if (results.length > 0) {
+							console.log("Found train " + results[0].train_uid);
 							delayRequests[user].trainUid = results[0].train_uid;
 						} else {
-							console.log("*** Error, train departure not found");
+							console.log("*** Error, train arrival not found, perhaps it is not late?");
 						}
 						callback(null);
 					});
-				});
+				}, callback);
 			},
 			function (callback) {
 				// if the train has arrived, tell them
 				async.each(Object.keys(delayRequests).filter(function (user) {
 					return delayRequests[user].trainUid;
 				}), function (user, callback) {
-					if (delayMemory[trainUid]) {
-						if (delayMemory[trainUid].status === "arrived") {
-							twitter.send("@" + user + " your train has arrived with a delay of " + parseInt(Math.floor((delayMemory.stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory.stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + " minutes", function (err) {
+					console.log("*** checking user " + user);
+					if (delayMemory[delayRequests[user].toStation]) {
+						console.log("*** checking train " + delayRequests[user].trainUid + " for user " + user);
+						if (delayMemory[delayRequests[user].trainUid].status === "arrived") {
+							console.log("*** train " + delayRequests[user].trainUid + " for user " + user + " has arrived");
+							twitter.send("@" + user + " your train has arrived with a delay of " + parseInt(Math.floor((delayMemory[delayRequests[user].trainUid].stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory[delayRequests[user].trainUid].stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + " minutes " + delayRequests[user].namedHandles.map(function (handle) { return "@" + handle; }).join(" "), function (err) {
 								delete delayRequests[user];
+								callback(null);
 							});
+						} else {
+							callback(null);
 						}
+					} else {
+						callback(null);
 					}
-				});
+				}, callback);
 			}
 		]);
 	};
-	check(); setInterval(check, 60000);
+	check(); setInterval(check, 30000);
 	if (callback) callback(null);
 }
 
@@ -98,6 +107,7 @@ function delayMemoryInitialise (callback) {
 					});
 
 				// updating live trains
+				console.log("*** New round of delayed trains monitoring...")
 				results.arrivals.all.filter(function (arrival) {
 	    			return (arrival.status === "LATE") && (arrival["aimed_arrival_time"] !== arrival["expected_arrival_time"]);
 	    		}).forEach(function (arrival) {
@@ -111,7 +121,7 @@ function delayMemoryInitialise (callback) {
 						expectedArrivalTime: new Date(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + arrival["expected_arrival_time"]),
 	    				arrivalRecord: arrival
 	    			};		
-	    			console.log("*** Updating delayed train " + arrival["train_uid"] +  " from " + delayMemory.stationCode[arrival["train_uid"]].originStation + " to " + delayMemory.stationCode[arrival["train_uid"]].toStation + " with ETA " + arrival["expected_arrival_time"] + " (" + parseInt(Math.floor((delayMemory.stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory.stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + ")");
+	    			console.log("*** Updating train " + arrival["train_uid"] + " from " + delayMemory.stationCode[arrival["train_uid"]].originStation + " to " + delayMemory.stationCode[arrival["train_uid"]].toStation + " with ETA " + arrival["expected_arrival_time"] + " instead of " + arrival["aimed_arrival_time"] + " (" + parseInt(Math.floor((delayMemory.stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory.stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + ")");
 	    		});
 
 				callback(err);
@@ -141,13 +151,16 @@ function startSearch (err) {
 		namedHandles = tweet.message
 			.match(/@\w+/g)
 			.filter(function (handle) { return handle != "@railspon"; });
+		delayData.networks = namedHandles;
+		/*
 		namedHandles.forEach(function (namedNetwork) {
 			RAIL_NETWORKS.forEach(function (railNetwork) {
 				if (railNetwork.twitterHandle === namedNetwork) {
-					delayData.networks.push(railNetwork.fullName);
+					delayData.networks.push(railNetwork.twitterHandle);
 				}
 			});
 		});
+    	*/
 
 		delayData.createdAt = tweet.created_at;
 		delayData.user = tweet.from.toLowerCase();
@@ -207,7 +220,7 @@ async.series([
 	function (callback) { stride.getStations(function (err, s) { stations = s; callback(null); }); },
     twitter.initialise,
     delayMemoryInitialise,
-    delayRequestsInitialise
+    // delayRequestsInitialise
 ], function (err) {
 	if (!err) {
 		// all operations
