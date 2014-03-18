@@ -26,3 +26,7 @@ exports.listen = function (callback) {
         });
     });
 }
+
+exports.send = function (status, callback) {
+    twitterClient.updateStatus('@giacecco Can you read me?', callback);
+}

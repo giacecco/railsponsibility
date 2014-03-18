@@ -43,7 +43,28 @@ exports.getStations = function (callback) {
 exports.getArrivals = function (stationCode, callback) {
 	init(function (err) {
 		request.get(
-			'http://api.stride-project.com/transportapi/7c60e7f4-20ff-11e3-857c-fcfb53959281/train/station/' + stationCode + '/live_arrivals?[limit=]', 
+			'http://api.stride-project.com/transportapi/7c60e7f4-20ff-11e3-857c-fcfb53959281/train/station/' + stationCode + '/live_arrivals?[limit=]',
+			{
+				'json': true,
+				'auth': {
+				    'user': SECRET.username,
+				    'pass': SECRET.password
+				},
+				'headers': {
+			        'x-api-key': SECRET.api_key
+	    		}
+			},
+			function (error, response, body) {
+				callback(error, body);
+			}
+		);
+	});
+}
+
+exports.getDepartures = function (stationCode, callback) {
+	init(function (err) {
+		request.get(
+			'http://api.stride-project.com/transportapi/7c60e7f4-20ff-11e3-857c-fcfb53959281/train/station/' + stationCode + '/live?[limit=]', 
 			{
 				'json': true,
 				'auth': {

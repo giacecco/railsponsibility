@@ -21,7 +21,7 @@ var async = require("async"),
     stride = require("./stride"),
     twitter = require("./twitter"),
     stations = null,
-    delayRecords = [ ],
+    delayRequests = [ ],
     delayMemory = { };
 
 function findStation (searchString) {
@@ -37,6 +37,33 @@ function findStation (searchString) {
 	return found;
 }
 
+function delayRequestsInitialise (callback) {
+	var check = function () {
+		// {"user":"giacecco","networks":["Fake Midland"],"originStation":"EUS","originTime":"2014-03-18T17:05:22.776Z","toStation":"BKM","toTime":"2014-03-18T18:27:22.777Z","createdAt":"2014-03-18T13:12:23.000Z"}
+
+		// identify the train if not did it already
+		async.each(delayRequests.filter(function (request) {
+			return !request.trainUid;
+		}), function (request, callback) {
+			stride.getDepartures(request.originStation, function (err, results) {
+				results = results.departures.all.filter(function (arrival) {
+					return arrival.expected_departure_time === (request.originTime.getHours() < 10 ? '0' : '') + request.originTime.getHours() + ":" + (request.originTime.getMinutes() < 10 ? '0' : '') + request.originTime.getMinutes()
+				});
+				if (results.length > 0) {
+					console.log("*** Found");
+					results[0].trainUid = results[0].train_uid;
+				} else {
+					console.log("*** Error, train departure not found");
+				}
+				callback(null);
+			});
+		});
+
+	};
+	check(); setInterval(check, 60000);
+	if (callback) callback(null);
+}
+
 function delayMemoryInitialise (callback) {
 	// TODO: garbage collection
 	var check = function () {
@@ -44,7 +71,7 @@ function delayMemoryInitialise (callback) {
 			if (!delayMemory.stationCode) delayMemory.stationCode = { };
 			stride.getArrivals(stationCode, function (err, results) {
 
-				// checking what trains have arrived
+				// checking which trains have arrived
 				Object.keys(delayMemory.stationCode)
 					.filter(function (trainUid) { return delayMemory.stationCode[trainUid].status === "live"; })
 					.forEach(function (trainUid) {
@@ -83,7 +110,7 @@ function delayMemoryInitialise (callback) {
 function startSearch (err) {
     twitter.listen(function (err, tweet) {
 		// @railspon [network twitter handle] from [station] [time] to [station] [time]
-		// @railspon @fakemidland from euston 1705 to berko 1827 #justtesting
+		// @railspon @fakemidland from euston 1424 to berko 1827 #justtesting
 		var namedHandles = [ ],
 			delayData = { 
 				user: null,
@@ -117,19 +144,21 @@ function startSearch (err) {
 		temp = new Date();
 		temp.setHours(Math.floor(delayData.originTime / 100));
 		temp.setMinutes(delayData.originTime - Math.floor(delayData.originTime / 100) * 100);
+		temp.setSeconds(0);
 		delayData.originTime = temp;
 
 		delayData.toTime = tweet.message.split(delayData.toStation)[1].replace(/^\s\s*/, '').replace(/\s\s*$/, '').split(" ")[0].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 		temp = new Date();
 		temp.setHours(Math.floor(delayData.toTime / 100));
 		temp.setMinutes(delayData.toTime - Math.floor(delayData.toTime / 100) * 100);
+		temp.setSeconds(0);
 		delayData.toTime = temp;
 
 		if (findStation(delayData.originStation)) delayData.originStation = findStation(delayData.originStation);
 		if (findStation(delayData.toStation)) delayData.toStation = findStation(delayData.toStation);
 
 		console.log("*** Received tweet: " + JSON.stringify(delayData));
-    	delayRecords.push(delayData);
+    	delayRequests.push(delayData);
     });
 }
 
@@ -162,17 +191,8 @@ async.series([
 	// all initialisation
 	function (callback) { stride.getStations(function (err, s) { stations = s; callback(null); }); },
     twitter.initialise,
-    delayMemoryInitialise
-    /*
-    function (callback) {
-    	stride.getArrivals("EUS", function (err, results) {
-    		console.log(JSON.stringify(results.arrivals.all.filter(function (arrival) {
-    			return arrival["aimed_arrival_time"] !== arrival["expected_arrival_time"];
-    		})));
-    		callback(err);
-    	})
-    }
-    */
+    delayMemoryInitialise,
+    delayRequestsInitialise
 ], function (err) {
 	if (!err) {
 		// all operations
