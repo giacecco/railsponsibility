@@ -24,7 +24,7 @@ function init (callback) {
 exports.getStations = function (callback) {
 	var STATIONS_SYNONYMS = {
 		"BKM": [ "berko", "berkhampstead" ],
-		"EUS": [ "euston", "londoneuston", "eus" ]
+		"EUS": [ "euston", "londoneuston" ]
 	};
 	init(function (err) {
 		callback(

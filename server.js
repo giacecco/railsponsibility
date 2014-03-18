@@ -28,7 +28,7 @@ function findStation (searchString) {
 	searchString = searchString.toLowerCase();
 	var found = null;
 	stations.forEach(function (station) {
-		station.synonyms.concat(station.fullName).forEach(function (synonym) {
+		station.synonyms.concat(station.fullName.toLowerCase()).concat(station.code.toLowerCase()).forEach(function (synonym) {
 			if (synonym === searchString) {
 				found = station.code;
 			}
@@ -43,19 +43,35 @@ function delayMemoryInitialise (callback) {
 		async.each(MONITORED_STATIONS, function (stationCode, callback) {
 			if (!delayMemory.stationCode) delayMemory.stationCode = { };
 			stride.getArrivals(stationCode, function (err, results) {
+
+				// checking what trains have arrived
+				Object.keys(delayMemory.stationCode)
+					.filter(function (trainUid) { return delayMemory.stationCode[trainUid].status === "live"; })
+					.forEach(function (trainUid) {
+						var liveTrains = results.arrivals.all.map(function (arrival) { return arrival["train_uid"]; });
+						if (liveTrains.indexOf(trainUid) === -1) {
+							delayMemory.stationCode[trainUid].status = "arrived";
+							console.log("*** Delayed train " + trainUid + " has arrived.");
+						}
+					});
+
+				// updating live trains
 				results.arrivals.all.filter(function (arrival) {
-	    			return arrival["aimed_arrival_time"] !== arrival["expected_arrival_time"];
+	    			return (arrival.status === "LATE") && (arrival["aimed_arrival_time"] !== arrival["expected_arrival_time"]);
 	    		}).forEach(function (arrival) {
-	    			console.log("*** Updating delayed train " + arrival["origin_name"] + " to " + arrival["destination_name"] + " with ETA " + arrival["expected_arrival_time"]);
 	    			var entryDate = new Date();
 	    			delayMemory.stationCode[arrival["train_uid"]] = { 
+	    				status: "live",
 	    				time: results["request_time"],
+	    				originStation: findStation(arrival["origin_name"]),
+	    				toStation: findStation(arrival["destination_name"]),
 						aimedArrivalTime: new Date(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + arrival["aimed_arrival_time"]),
 						expectedArrivalTime: new Date(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + arrival["expected_arrival_time"]),
 	    				arrivalRecord: arrival
 	    			};		
-	    			console.log(delayMemory.stationCode[arrival["train_uid"]]);
+	    			console.log("*** Updating delayed train " + arrival["train_uid"] +  " from " + delayMemory.stationCode[arrival["train_uid"]].originStation + " to " + delayMemory.stationCode[arrival["train_uid"]].toStation + " with ETA " + arrival["expected_arrival_time"] + " (" + parseInt(Math.floor((delayMemory.stationCode[arrival["train_uid"]].expectedArrivalTime - delayMemory.stationCode[arrival["train_uid"]].aimedArrivalTime) / 60000)) + ")");
 	    		});
+
 				callback(err);
 			});
 		}, function (err) { });
