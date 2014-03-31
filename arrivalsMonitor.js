@@ -22,7 +22,7 @@ module.exports = function (stationCode, dataFolder) {
 	// returns all trains arriving at the station that are currently live and
 	// are or have been delayed some time in their journey
 	var getDelayedTrains = function (callback) {
-		transportapi.getArrivals(_stationCode, function (err, results) {
+		transportapi.getLiveArrivals(_stationCode, function (err, results) {
 			// TODO: what should I do about cancelled trains here?
 			callback(err, _.filter(results.arrivals.all, function (arrival) {
 				return (
@@ -78,7 +78,7 @@ module.exports = function (stationCode, dataFolder) {
 	};
 
 	var cycle = function (callback) {
-		log(_stationCode + ": Checking...");
+		// log(_stationCode + ": Checking...");
 		var timeStart = new Date();
 		getDelayedTrains(function (err, results) {
 			// ### DEBUG ONLY
@@ -100,7 +100,7 @@ module.exports = function (stationCode, dataFolder) {
 				_.each(results, function (delayedTrain) {
 					delayedTrains[delayedTrain.train_uid] = delayedTrain;
 				});
-				log(_stationCode + ": Finished checking.");
+				// log(_stationCode + ": Finished checking.");
 				setTimeout(cycle, Math.max(0, POLL_FREQUENCY * 1000 - ((new Date()) - timeStart)));
 			});
 		});
