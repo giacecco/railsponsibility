@@ -24,6 +24,7 @@ module.exports = function (stationCode, dataFolder) {
 	var getDelayedTrains = function (callback) {
 		transportapi.getLiveArrivals(_stationCode, function (err, results) {
 			// TODO: what should I do about cancelled trains here?
+			// TODO: the script should not crash if results is empty / err is something
 			callback(err, _.filter(results.arrivals.all, function (arrival) {
 				return (
 					(arrival.status === 'LATE') || 
