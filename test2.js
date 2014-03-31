@@ -8,8 +8,7 @@ transportapi.getScheduledDepartures('BKM', 'EUS', new Date(), function (err, res
 	var dateTime = new Date();
 	transportapi.getScheduledService(
 		result.service, 
-		result.origin_name,
-		"BKM", 
+		"BKM",
 		dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
 		result.aimed_departure_time, 
 		function (err, results) {

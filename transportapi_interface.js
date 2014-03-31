@@ -3,7 +3,9 @@
    apis we are using
    ************************************************************************** */
 
-var cheerio = require('cheerio'),
+var async = require('async'),
+	cheerio = require('cheerio'),
+	csv = require('csv'),
 	fs = require('fs'),
 	path = require('path'),
 	request = require('request');
@@ -15,8 +17,28 @@ var initialise = function (callback) {
 	if (SECRET) {
 		callback(null);
 	} else {
-		SECRET = fs.readFile(SECRET_FILENAME, function (err, contents) {
-			SECRET = JSON.parse(contents);
+		async.parallel([
+			// read the 'secret' to call the Transport API
+			function (callback) {
+				fs.readFile(SECRET_FILENAME, function (err, contents) {
+					SECRET = JSON.parse(contents);
+					callback(err);
+				});
+			},
+			// fetches from Network Rail the latest list of stations and codes
+			function (callback) {
+				request.get('http://www.nationalrail.co.uk/static/documents/content/station_codes.csv', function (err, response, body) {
+					csv()
+						.from.string(body, {
+							columns: true
+						})
+						.to.array(function (stationCodes) {
+							STATION_CODES = stationCodes;
+							callback(err);
+						});
+				});
+			},
+		], function (err) {
 			callback(err);
 		});
 	}
@@ -28,14 +50,11 @@ exports.getScheduledService = function (service, stationCode, date, time, callba
 			'http://transportapi.com/v3/uk/train/service/' + service + '/' + stationCode + '/' + date + '/' + time + '/timetable',
 			{
 				'qs': {
-					'station_code': stationCode,
 					'api_key': SECRET.api_key,
 					'app_id': SECRET.application_id,
 				},
-				'json': true,
 			},
 			function (err, response, body) {
-				fs.writeFileSync("foo.html", body);
 				var results = {
 						'service': service,
 						'calling_at': [ ],
