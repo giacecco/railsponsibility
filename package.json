@@ -1,0 +1,38 @@
+{
+  "name": "railsponsibility",
+  "version": "0.3.0",
+  "description": "",
+  "author": {
+    "name": "Gianfranco Cecconi",
+    "email": "gianfranco.cecconi@digitalcontraptionsimaginarium.co.uk",
+    "url": "http://www.digitalcontraptionsimaginarium.co.uk"
+  },
+  "contributors": [ 
+    {
+      "name": "Gianfranco Cecconi",
+      "email": "gianfranco.cecconi@digitalcontraptionsimaginarium.co.uk"
+    } 
+  ],
+  "homepage": "https://github.com/giacecco/twitter-word-trends",
+  "repository": { 
+    "type": "git", 
+    "url": "git://github.com/giacecco/twitter-word-trends.git"
+  },
+  "bugs": { 
+    "url": "https://github.com/giacecco/twitter-word-trends/issues" 
+  },
+  "keywords": [
+    "twitter"
+  ],
+  "dependencies" : {
+    "async": ">=0.2.10",
+    "csv": ">=0.3.7",
+    "ntwitter": ">=0.5.0",
+    "optimist": ">=0.6.1",
+    "request": ">=2.34.0"
+  },
+  "license": "CC-BY 4.0",
+  "engines": {
+    "node": ">=0.10.26"
+  }
+}
