@@ -22,31 +22,20 @@ var initialise = function (callback) {
 	}
 };
 
-exports.getScheduledService = function (service, callback) {
+exports.getScheduledService = function (service, originStationCode, date, time, callback) {
 	initialise(function (err) {
 		request.get(
-			'http://transportapi.com/v3/uk/train/service/' + service + '/timetable.html',
+			'http://transportapi.com/v3/uk/train/service/' + service + '/' + originStationCode + '/' + date + '/' + time + '/timetable.json',
 			{
 				'qs': {
+					'station_code': originStationCode,
 					'api_key': SECRET.api_key,
 					'app_id': SECRET.application_id,
 				},
 				'json': true,
 			},
 			function (err, response, body) {
-				var results = {
-						'service': service,
-						'calling_at': [ ],
-					},
-					$ = cheerio.load(body);
-				$('body table:nth-of-type(1) tr:not(:first-child)').each(function (i, element) {
-					results.calling_at.push({
-						'station_name': $('td:nth-of-type(1)', this).text(),
-						'aimed_arrival_time': ($('td:nth-of-type(2)', this).text() === '-' ? null : $('td:nth-of-type(2)', this).text()),
-						'aimed_departure_time': ($('td:nth-of-type(3)', this).text() === '-' ? null : $('td:nth-of-type(3)', this).text()),
-					});
-				});
-				callback(err, results);
+				callback(err, body);
 			}
 		);
 	});
