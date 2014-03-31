@@ -51,7 +51,7 @@ var initialise = function (callback) {
 };
 
 var stationCodeFromName = _.memoize(function (name) {
-	code = _.filter(STATION_CODES, function (couple) { return couple['Station name'].toLowerCase() === name.toLowerCase(); });
+	var code = _.filter(STATION_CODES, function (couple) { return couple['Station name'].toLowerCase() === name.toLowerCase(); });
 	if (code.length === 0) {
 		log("*** FAILED TO LOOK-UP THE CODE FOR STATION " + name);
 		return name;
@@ -61,7 +61,7 @@ var stationCodeFromName = _.memoize(function (name) {
 });
 
 var stationNameFromCode = _.memoize(function (code) {
-	name = _.filter(STATION_CODES, function (couple) { return couple['Code'].toLowerCase() === code.toLowerCase(); });
+	var name = _.filter(STATION_CODES, function (couple) { return couple['Code'].toLowerCase() === code.toLowerCase(); });
 	if (name.length === 0) {
 		log("*** FAILED TO LOOK-UP THE NAME FOR CODE " + code);
 		return code;
