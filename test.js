@@ -1,5 +1,5 @@
-var test = new require("./transportapi_interface").arrivalsMonitor('EUS');
+var euston = new require('./arrivalsMonitor')('EUS');
 
-test.getArrivals(function (err, results) {
-	console.log(results);
+euston.getArrivals(function (err, results) {
+	console.log(JSON.stringify(results));
 });
