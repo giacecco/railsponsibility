@@ -1,6 +1,10 @@
 /* **************************************************************************
    transportapi_interface.js is a simple Node.js proxy to the Transport API
-   apis we are using
+   apis we are using. It tends not to change the results of the underlying 
+   APIs but to address its oddities, e.g. 
+   - the way station codes (e.g. EUS) are required as input but station full
+     names (e.g. London Euston) are returned in the results
+   - the "scheduled service" endpoint not supporting JSON as an output
    ************************************************************************** */
 
 var async = require('async'),
