@@ -1,5 +1,12 @@
-var euston = new require('./arrivalsMonitor')('EUS');
+var argv = require("optimist")
+		.usage("Usage: $0 [--out <output data folder if not the script's location>]")
+		.alias("out", "o")
+		.default("out", __dirname)	
+		.argv,
+	_ = require('underscore');
 
-euston.getArrivals(function (err, results) {
-	console.log(JSON.stringify(results));
+var monitors = { };
+
+_.each([ 'EUS', 'BKM' ], function (stationCode) {
+	monitors[stationCode] = new require('./arrivalsMonitor')(stationCode, argv.out);	
 });
