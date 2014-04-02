@@ -14,9 +14,12 @@ module.exports = function (stationCode, dataFolder) {
 		_stationCode = stationCode,
 		_dataFolder = dataFolder;
 
+	var dateToCSVDate (d) {
+		return d.getFullYear() + "/" + (d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) + "/" + (d.getDate() < 10 ? '0' : '') + d.getDate() + " " + (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes() + ":" + (d.getSeconds() < 10 ? '0' : '') + d.getSeconds();
+	}
+
 	var log = function (s) {
-		var entryDate = new Date();
-		console.log(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + (entryDate.getHours() < 10 ? '0' : '') + entryDate.getHours() + ":" + (entryDate.getMinutes() < 10 ? '0' : '') + entryDate.getMinutes() + ":" + (entryDate.getSeconds() < 10 ? '0' : '') + entryDate.getSeconds() + " - " + s);
+		console.log(dateToCSVDate(new Date()) + " - " + s);
 	}
 
 	// returns all trains arriving at the station that are currently live and
@@ -52,6 +55,12 @@ module.exports = function (stationCode, dataFolder) {
 						})
 						.to.array(function (previouslyArrivedTrains) { 
 							callback(null, previouslyArrivedTrains);
+						})
+						.transform(function (row) {
+							_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time' ], function (columnName) {
+								if (row[columnName] !== "") row[columnName] = new Date(row[columnName]);
+							});
+  							return row;
 						});
 				}
 			});
@@ -69,6 +78,12 @@ module.exports = function (stationCode, dataFolder) {
 						})
 					.on('close', function (count) {
 						callback(null);
+					})
+					.transform(function (row) {
+						_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time' ], function (columnName) {
+							if (row[columnName]) row[columnName] = dateToCSVDate(row[columnName]);
+						});
+						return row;
 					});
 			}
 		}
