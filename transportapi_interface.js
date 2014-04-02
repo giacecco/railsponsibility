@@ -161,7 +161,6 @@ exports.getLiveArrivals = function (stationCode, callback) {
 						}
 					});
 				});
-				fs.writeFileSync("foo.json", JSON.stringify(results));
 				callback(err, results);
 			}
 		);
