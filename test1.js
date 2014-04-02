@@ -1,7 +1,7 @@
 var argv = require("optimist")
-		.usage("Usage: $0 [--out <output data folder if not the script's location>]")
-		.alias("out", "o")
-		.default("out", __dirname)	
+		.usage("Usage: $0 --out <output data folder if not the script's location>")
+		.demand([ 'out' ])
+		.alias('out', 'o')
 		.argv,
 	_ = require('underscore');
 
