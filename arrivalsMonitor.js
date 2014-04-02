@@ -37,7 +37,7 @@ module.exports = function (stationCode, dataFolder) {
 		});
 	}
 
-	// adds arrivedServices to the current CSV of arrived services that 
+	// adds arrivedTrains to the current CSV of arrived services that 
 	// were late at some point in their journey
 	var saveArrivedTrains = function (arrivedTrains, callback) {
 
@@ -54,43 +54,52 @@ module.exports = function (stationCode, dataFolder) {
 							columns: true
 						})
 						.to.array(function (previouslyArrivedTrains) { 
-							callback(null, previouslyArrivedTrains);
+							callback(null, _.reduce(previouslyArrivedTrains, function (memo, arrival) {
+								memo[arrival.train_uid] = arrival;
+								return memo;
+							}, { }));
 						})
 						.transform(function (row) {
 							_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time' ], function (columnName) {
-								if (row[columnName] !== "") row[columnName] = new Date(row[columnName]);
+								row[columnName] = (row[columnName] === "") ? null : new Date(row[columnName]);
 							});
   							return row;
+						})
+						.on('error', function (err) {
+  							log(err.message);
 						});
 				}
 			});
 		}
 
 		function save(arrivedTrains, callback) {
-			if (_.keys(arrivedTrains).length === 0) {
-				callback(null);
-			} else {
-				csv()
-					.from.array(_.values(arrivedTrains))
-					.to.stream(fs.createWriteStream(path.join(_dataFolder, filename)), {
-							header: true,
-							columns: _.keys(_.values(arrivedTrains)[0]),
-						})
-					.on('close', function (count) {
-						callback(null);
+			csv()
+				.from.array(_.values(arrivedTrains))
+				.to.stream(fs.createWriteStream(path.join(_dataFolder, filename)), {
+						header: true,
+						columns: _.keys(_.values(arrivedTrains)[0]),
 					})
-					.transform(function (row) {
-						_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time' ], function (columnName) {
-							if (row[columnName]) row[columnName] = dateToCSVDate(row[columnName]);
-						});
-						return row;
+				.transform(function (row) {
+					_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time' ], function (columnName) {
+						if (row[columnName]) row[columnName] = dateToCSVDate(row[columnName]);
 					});
-			}
+					return row;
+				})
+				.on('close', function (count) {
+					callback(null);
+				})
+				.on('error', function (err) {
+					log(err.message);
+				});
 		}
 
-		load(function (err, previouslyArrivedTrains) {
-			save(_.extend(previouslyArrivedTrains, arrivedTrains), callback);
-		});
+		if (_.keys(arrivedTrains).length === 0) {
+			callback(null);			
+		} else {
+			load(function (err, previouslyArrivedTrains) {
+				save(_.extend(previouslyArrivedTrains, arrivedTrains), callback);
+			});
+		}
 	};
 
 	var cycle = function (callback) {
@@ -105,7 +114,7 @@ module.exports = function (stationCode, dataFolder) {
 				return memo;
 			}, { });
 			if (_.keys(arrivedTrains).length > 0) log(_stationCode + ": " + _.keys(arrivedTrains).length + " monitored services have arrived (" + _.keys(arrivedTrains).join(", ") + ").");
-			// I save arrived services to disk
+			// I save arrived services to disk (if any)
 			saveArrivedTrains(arrivedTrains, function (err) {
 				// I remove arrived services from memory
 				_.each(_.keys(arrivedTrains), function (arrivedTrainKey) {
