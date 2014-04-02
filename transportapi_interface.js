@@ -4,6 +4,8 @@
    APIs but to address its oddities, e.g. 
    - the way station codes (e.g. EUS) are required as input but station full
      names (e.g. London Euston) are returned in the results
+   - actual dates and times, e.g. the arrival of a live train, not being
+     provided as JSON dates
    - the "scheduled service" endpoint not supporting JSON as an output
    ************************************************************************** */
 
@@ -141,14 +143,26 @@ exports.getLiveArrivals = function (stationCode, callback) {
 				},
 				'json': true,
 			},
-			function (err, response, body) {
-				_.each(body.arrivals.all, function (arrival) {
+			function (err, response, results) {
+				results = results.arrivals.all;
+				var entryDate = new Date(),
+					entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
+				_.each(results, function (arrival) {
 					arrival.origin_code = stationCodeFromName(arrival.origin_name);
 					delete arrival.origin_name;
 					arrival.destination_code = stationCodeFromName(arrival.destination_name);
 					delete arrival.destination_name;
+					_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
+						if (arrival[propertyName]) {
+							arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
+							if (arrival[propertyName] < entryDate) {
+								arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
+							}
+						}
+					});
 				});
-				callback(err, body);
+				fs.writeFileSync("foo.json", JSON.stringify(results));
+				callback(err, results);
 			}
 		);
 	});
