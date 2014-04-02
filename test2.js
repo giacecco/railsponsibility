@@ -10,6 +10,8 @@ transportapi.getScheduledDepartures('BKM', 'EUS', new Date(), function (err, res
 });
 */
 
+/*
 transportapi.getLiveArrivals('EUS', function (err, results) {
 	console.log(JSON.stringify(results));
 });
+*/
