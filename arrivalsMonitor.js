@@ -1,4 +1,4 @@
-var POLL_FREQUENCY = Math.ceil(24 * 60 * 60 / 1000 * 2); // seconds
+var DEFAULT_POLL_FREQUENCY = 1; // minutes
 
 var csv = require('csv'),
 	fs = require('fs'),
@@ -79,7 +79,6 @@ module.exports = function (stationCode, dataFolder) {
 	};
 
 	var cycle = function (callback) {
-		// log(_stationCode + ": Checking...");
 		var timeStart = new Date();
 		getDelayedTrains(function (err, results) {
 			// ### DEBUG ONLY
@@ -101,8 +100,15 @@ module.exports = function (stationCode, dataFolder) {
 				_.each(results, function (delayedTrain) {
 					delayedTrains[delayedTrain.train_uid] = delayedTrain;
 				});
-				// log(_stationCode + ": Finished checking.");
-				setTimeout(cycle, Math.max(0, POLL_FREQUENCY * 1000 - ((new Date()) - timeStart)));
+				// I schedule the cycle to run again one minute before the 
+				// sooner of aimed_arrival_times and expected_arrival_times
+				var nextRun = _.map(results, function (arrival) { return arrival.aimed_arrival_time; })
+					.concat(_.map(results, function (arrival) { return arrival.expected_arrival_time; }))
+					.sort(function (a, b) { return a.valueOf() - b.valueOf(); })[0];
+				nextRun.setMinutes(nextRun.getMinutes() - 1);
+				nextRun = Math.max(0, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
+				log(_stationCode + ": checking again in " + parseInt(nextRun / 1000) + " seconds...");
+				setTimeout(cycle, nextRun);
 			});
 		});
 	};

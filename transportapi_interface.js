@@ -155,12 +155,16 @@ exports.getLiveArrivals = function (stationCode, callback) {
 					_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
 						if (arrival[propertyName]) {
 							arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
-							if (arrival[propertyName] < entryDate) {
+							// TODO: the line below is to detect arrivals in the 
+							// early hours of the following day, but it is not
+							// ideal 
+							if ((entryDate.getHours() > 18) && (arrival[propertyName].getHours() < 4)) {
 								arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
 							}
 						}
 					});
 				});
+				results.sort(function (a, b) { return a.aimed_arrival_time.valueOf() - b.aimed_arrival_time.valueOf(); });
 				callback(err, results);
 			}
 		);
