@@ -38,7 +38,7 @@ Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/gover
 
 ##Licence
 
-The information in the *station_codes.csv* file is public domain. The file is available from the National Rail website at [this URL](http://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+The *RailReferences.csv* file is part of the "National Public Transport Access Nodes (NaPTAN)" dataset and is published under [OGL](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/) at [http://data.gov.uk/dataset/naptan](http://data.gov.uk/dataset/naptan). It was last downloaded on 2 April 2014.
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *Railsponsibility* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 

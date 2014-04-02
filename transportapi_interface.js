@@ -15,7 +15,9 @@ var async = require('async'),
 	fs = require('fs'),
 	path = require('path'),
 	request = require('request'),
-	_ = require('underscore');
+	_ = require('underscore'),
+	_str = require('underscore.string');
+_.mixin(_str.exports());
 
 var SECRET_FILENAME = path.join(__dirname, "TRANSPORTAPI_SECRET.json"),
 	SECRET = null;
@@ -37,18 +39,20 @@ var initialise = function (callback) {
 					callback(err);
 				});
 			},
-			// fetches from Network Rail the latest list of stations and codes
+			// loads the RailReferences.csv file
 			function (callback) {
-				request.get('http://www.nationalrail.co.uk/static/documents/content/station_codes.csv', function (err, response, body) {
-					csv()
-						.from.string(body, {
-							columns: true
-						})
-						.to.array(function (stationCodes) {
-							STATION_CODES = stationCodes;
-							callback(err);
-						});
-				});
+				csv()
+					.from.path(path.join(__dirname, "RailReferences.csv"), {
+						columns: true
+					})	
+					.to.array(function (stationCodes) {
+						STATION_CODES = stationCodes;
+						callback(null);
+					}, { columns: [ 'CrsCode', 'StationName' ] })
+					.transform(function (row) {
+						row.StationName = row.StationName.replace(' Rail Station', '');
+						return row;
+					});
 			},
 		], function (err) {
 			callback(err);
@@ -57,23 +61,15 @@ var initialise = function (callback) {
 };
 
 var stationCodeFromName = _.memoize(function (name) {
-	var code = _.filter(STATION_CODES, function (couple) { return couple['Station name'].toLowerCase() === name.toLowerCase(); });
-	if (code.length === 0) {
-		log("*** FAILED TO LOOK-UP THE CODE FOR STATION " + name);
-		return name;
-	} else {
-		return code[0]['Code'];
-	}
+	return _.map(STATION_CODES, function (couple) {
+		return { 'CrsCode': couple.CrsCode, 'levenshtein': _.levenshtein(name, couple.StationName) }
+	}).sort(function (a, b) { return a.levenshtein - b.levenshtein; })[0].CrsCode;
 });
 
 var stationNameFromCode = _.memoize(function (code) {
-	var name = _.filter(STATION_CODES, function (couple) { return couple['Code'].toLowerCase() === code.toLowerCase(); });
-	if (name.length === 0) {
-		log("*** FAILED TO LOOK-UP THE NAME FOR CODE " + code);
-		return code;
-	} else {
-		return name[0]['Station name'];
-	}
+	return _.map(STATION_CODES, function (couple) {
+		return { 'StationName': couple.StationName, 'levenshtein': _.levenshtein(code, couple.CrsCode) }
+	}).sort(function (a, b) { return a.levenshtein - b.levenshtein; })[0].StationName;
 });
 
 exports.getScheduledService = function (service, stationCode, date, time, callback) {
