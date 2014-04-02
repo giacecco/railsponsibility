@@ -7,6 +7,6 @@ var argv = require("optimist")
 
 var monitors = { };
 
-_.each([ 'EUS', 'BKM' ], function (stationCode) {
+_.each([ 'EUS' ], function (stationCode) {
 	monitors[stationCode] = new require('./arrivalsMonitor')(stationCode, argv.out);	
 });
