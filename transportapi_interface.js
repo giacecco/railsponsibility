@@ -141,6 +141,13 @@ exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateT
 					delete departure.origin_name;
 					departure.destination_code = stationCodeFromName(departure.destination_name);
 					delete departure.destination_name;
+					departure.aimed_departure_time = new Date(date + ' ' + departure.aimed_departure_time);
+					// TODO: the line below is to detect arrivals in the 
+					// early hours of the following day, but it is not
+					// ideal 
+					if (((new Date()).getHours() > 18) && (departure.aimed_departure_time.getHours() < 4)) {
+						departure.aimed_departure_time.setDate(departure.aimed_departure_time.getDate() + 1);
+					}
 				});
 				callback(err, results);
 			}
