@@ -116,10 +116,10 @@ exports.getScheduledService = function (service, stationCode, dateTime, callback
 					'app_id': SECRET.application_id,
 					'stationcode': stationCode,
 				},
+				'json': true,
 			},
 			function (err, response, body) {
-				var results = body;
-				callback(err, results);
+				callback(err, body.stops);
 			}
 		);
 	});
