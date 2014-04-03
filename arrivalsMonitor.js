@@ -28,12 +28,17 @@ module.exports = function (stationCode, dataFolder) {
 		transportapi.getLiveArrivals(_stationCode, function (err, results) {
 			// TODO: what should I do about cancelled trains here?
 			// TODO: the script should not crash if results is empty / err is something
-			callback(err, _.filter(results, function (arrival) {
-				return (
-					(arrival.status === 'LATE') || 
-					_.contains(_.keys(delayedTrains), arrival.train_uid)
-				);
-			}));
+			if (err) {
+				log("*** ERROR in getDelayedTrains() - " + err.message);
+				callback(err, [ ]);
+			} else {
+				callback(err, _.filter(results, function (arrival) {
+					return (
+						(arrival.status === 'LATE') || 
+						_.contains(_.keys(delayedTrains), arrival.train_uid)
+					);
+				}));
+			}
 		});
 	}
 
@@ -105,35 +110,41 @@ module.exports = function (stationCode, dataFolder) {
 	var cycle = function (callback) {
 		var timeStart = new Date();
 		getDelayedTrains(function (err, results) {
-			// ### DEBUG ONLY
-			fs.writeFileSync(path.join(_dataFolder, _stationCode + '_debug.json'), JSON.stringify(results));
-			log(_stationCode + ": There are currently " + results.length + " live delayed trains (" + _.map(results, function (result) { return result.train_uid; }).join(", ") + ").");
-			// I identify all services that I was monitoring and have arrived 
-			var arrivedTrains = _.reduce(_.difference(_.keys(delayedTrains), _.map(results, function (result) { return result.train_uid; })), function (memo, arrivedTrainKey) {
-				memo[arrivedTrainKey] = delayedTrains[arrivedTrainKey];
-				return memo;
-			}, { });
-			if (_.keys(arrivedTrains).length > 0) log(_stationCode + ": " + _.keys(arrivedTrains).length + " monitored services have arrived (" + _.keys(arrivedTrains).join(", ") + ").");
-			// I save arrived services to disk (if any)
-			saveArrivedTrains(arrivedTrains, function (err) {
-				// I remove arrived services from memory
-				_.each(_.keys(arrivedTrains), function (arrivedTrainKey) {
-					delete delayedTrains[arrivedTrainKey];
+			if (err) {
+				// I don't need to care too much here, I can cope with 
+				// occasionally fails of getDelayedTrains() 
+				setTimeout(cycle, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()));
+			} else {
+				// ### DEBUG ONLY
+				fs.writeFileSync(path.join(_dataFolder, _stationCode + '_debug.json'), JSON.stringify(results));
+				log(_stationCode + ": There are currently " + results.length + " live delayed trains (" + _.map(results, function (result) { return result.train_uid; }).join(", ") + ").");
+				// I identify all services that I was monitoring and have arrived 
+				var arrivedTrains = _.reduce(_.difference(_.keys(delayedTrains), _.map(results, function (result) { return result.train_uid; })), function (memo, arrivedTrainKey) {
+					memo[arrivedTrainKey] = delayedTrains[arrivedTrainKey];
+					return memo;
+				}, { });
+				if (_.keys(arrivedTrains).length > 0) log(_stationCode + ": " + _.keys(arrivedTrains).length + " monitored services have arrived (" + _.keys(arrivedTrains).join(", ") + ").");
+				// I save arrived services to disk (if any)
+				saveArrivedTrains(arrivedTrains, function (err) {
+					// I remove arrived services from memory
+					_.each(_.keys(arrivedTrains), function (arrivedTrainKey) {
+						delete delayedTrains[arrivedTrainKey];
+					});
+					// and I update the ones that are still going
+					_.each(results, function (delayedTrain) {
+						delayedTrains[delayedTrain.train_uid] = delayedTrain;
+					});
+					// I schedule the cycle to run again one minute before the 
+					// sooner of aimed_arrival_times and expected_arrival_times
+					var nextRun = (_.map(results, function (arrival) { return arrival.aimed_arrival_time; })
+						.concat(_.map(results, function (arrival) { return arrival.expected_arrival_time; }))
+						.sort(function (a, b) { return a.valueOf() - b.valueOf(); }) || [ new Date() ])[0];
+					nextRun.setMinutes(nextRun.getMinutes() - 1);
+					nextRun = Math.max(0, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
+					log(_stationCode + ": checking again in " + parseInt(nextRun / 1000) + " seconds...");
+					setTimeout(cycle, nextRun);
 				});
-				// and I update the ones that are still going
-				_.each(results, function (delayedTrain) {
-					delayedTrains[delayedTrain.train_uid] = delayedTrain;
-				});
-				// I schedule the cycle to run again one minute before the 
-				// sooner of aimed_arrival_times and expected_arrival_times
-				var nextRun = _.map(results, function (arrival) { return arrival.aimed_arrival_time; })
-					.concat(_.map(results, function (arrival) { return arrival.expected_arrival_time; }))
-					.sort(function (a, b) { return a.valueOf() - b.valueOf(); })[0];
-				nextRun.setMinutes(nextRun.getMinutes() - 1);
-				nextRun = Math.max(0, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
-				log(_stationCode + ": checking again in " + parseInt(nextRun / 1000) + " seconds...");
-				setTimeout(cycle, nextRun);
-			});
+			}
 		});
 	};
 
