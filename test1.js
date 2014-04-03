@@ -9,4 +9,7 @@ var monitors = { };
 
 _.each([ 'EUS' ], function (stationCode) {
 	monitors[stationCode] = new require('./arrivalsMonitor')(stationCode, argv.out);	
+	monitors[stationCode].onArrival(function (train) {
+		console.log("Arrival!!! " + JSON.stringify(train));
+	})
 });
