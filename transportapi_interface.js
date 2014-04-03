@@ -72,7 +72,7 @@ var stationNameFromCode = _.memoize(function (code) {
 	}).sort(function (a, b) { return a.levenshtein - b.levenshtein; })[0].StationName;
 });
 
-exports.getScheduledService = function (service, stationCode, date, time, callback) {
+exports.getScheduledService_BAK = function (service, stationCode, date, time, callback) {
 	initialise(function (err) {
 		request.get(
 			'http://transportapi.com/v3/uk/train/service/' + service + '/' + stationCode + '/' + date + '/' + time + '/timetable',
@@ -101,6 +101,25 @@ exports.getScheduledService = function (service, stationCode, date, time, callba
 	});
 };
 
+exports.getScheduledService = function (service, stationCode, date, time, callback) {
+	initialise(function (err) {
+		request.get(
+			'http://transportapi.com/v3/uk/train/service/' + service + '/' + stationCode + '/' + date + '/' + time + '/timetable.json',
+			{
+				'qs': {
+					'api_key': SECRET.api_key,
+					'app_id': SECRET.application_id,
+					'stationcode': stationCode,
+				},
+			},
+			function (err, response, body) {
+				var results = body;
+				callback(err, results);
+			}
+		);
+	});
+};
+
 exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateTime, callback) {
 	initialise(function (err) {
 		var date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
@@ -116,13 +135,14 @@ exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateT
 				'json': true,
 			},
 			function (err, response, body) {
-				_.each(body.departures.all, function (departure) {
+				var results = body.departures.all; 
+				_.each(results, function (departure) {
 					departure.origin_code = stationCodeFromName(departure.origin_name);
 					delete departure.origin_name;
 					departure.destination_code = stationCodeFromName(departure.destination_name);
 					delete departure.destination_name;
 				});
-				callback(err, body);
+				callback(err, results);
 			}
 		);
 	});
