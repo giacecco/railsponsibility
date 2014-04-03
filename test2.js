@@ -5,7 +5,10 @@ var fs = require('fs'),
 
 transportapi.getScheduledDepartures('BKM', 'EUS', new Date(), function (err, results) {
 	var result = _.first(results);
-	console.log(JSON.stringify(result));
+	console.log("Next train BKM to EUS is " + JSON.stringify(result));
+	transportapi.getScheduledService(result.service, 'BKM', result.aimed_departure_time, function (err, results) {
+		console.log(JSON.stringify(results));
+	});
 });
 
 /*

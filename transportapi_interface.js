@@ -101,10 +101,15 @@ exports.getScheduledService_BAK = function (service, stationCode, date, time, ca
 	});
 };
 
-exports.getScheduledService = function (service, stationCode, date, time, callback) {
+// Lots of doubts here about the behaviour of Transport API's 'Scheduled 
+// Service' endpoint here. At the moment, assuming you know the service, this
+// function returns the first train calling at stationCode on or after dateTime
+exports.getScheduledService = function (service, stationCode, dateTime, callback) {
 	initialise(function (err) {
+		var date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
+			time = (dateTime.getHours() < 10 ? '0' : '') + dateTime.getHours() + ":" + (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes();
 		request.get(
-			'http://transportapi.com/v3/uk/train/service/' + service + '/' + stationCode + '/' + date + '/' + time + '/timetable.json',
+			'http://transportapi.com/v3/uk/train/service/' + service + '/' + date + '/' + time + '/timetable.json',
 			{
 				'qs': {
 					'api_key': SECRET.api_key,
