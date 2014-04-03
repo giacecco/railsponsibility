@@ -72,35 +72,6 @@ var stationNameFromCode = _.memoize(function (code) {
 	}).sort(function (a, b) { return a.levenshtein - b.levenshtein; })[0].StationName;
 });
 
-exports.getScheduledService_BAK = function (service, stationCode, date, time, callback) {
-	initialise(function (err) {
-		request.get(
-			'http://transportapi.com/v3/uk/train/service/' + service + '/' + stationCode + '/' + date + '/' + time + '/timetable',
-			{
-				'qs': {
-					'api_key': SECRET.api_key,
-					'app_id': SECRET.application_id,
-				},
-			},
-			function (err, response, body) {
-				var results = {
-						'service': service,
-						'calling_at': [ ],
-					},
-					$ = cheerio.load(body);
-				$('body table:nth-of-type(1) tr:not(:first-child)').each(function (i, element) {
-					results.calling_at.push({
-						'station_code': stationCodeFromName($('td:nth-of-type(1)', this).text()),
-						'aimed_arrival_time': ($('td:nth-of-type(2)', this).text() === '-' ? null : $('td:nth-of-type(2)', this).text()),
-						'aimed_departure_time': ($('td:nth-of-type(3)', this).text() === '-' ? null : $('td:nth-of-type(3)', this).text()),
-					});
-				});
-				callback(err, results);
-			}
-		);
-	});
-};
-
 // Lots of doubts here about the behaviour of Transport API's 'Scheduled 
 // Service' endpoint here. At the moment, assuming you know the service, this
 // function returns the first train calling at stationCode on or after dateTime
@@ -183,6 +154,9 @@ exports.getLiveArrivals = function (stationCode, callback) {
 				'json': true,
 			},
 			function (err, response, results) {
+				// TODO: manage situation in which there is no 
+				// results.arrivals.all : does that happen when I run out of
+				// API allowance? 
 				results = results.arrivals.all;
 				var entryDate = new Date(),
 					entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";

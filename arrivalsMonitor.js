@@ -11,10 +11,15 @@ module.exports = function (stationCode, dataFolder) {
 	var liveArrivalsCache = { },
 		_stationCode = stationCode,
 		_dataFolder = dataFolder,
-		_arrivalCallbackFunction = null;
+		_arrivalCallbackFunction = null,
+		_markedForDeletion = false;
 
 	var onArrival = function (arrivalCallbackFunction) {
 		_arrivalCallbackFunction = arrivalCallbackFunction;	
+	}
+
+	var shutdown = function () {
+		_markedForDeletion = true;
 	}
 
 	var dateToCSVDate = function (d) {
@@ -90,53 +95,56 @@ module.exports = function (stationCode, dataFolder) {
 		}
 	};
 
-	var cycle = function (callback) {
-		var timeStart = new Date();
-		transportapi.getLiveArrivals(_stationCode, function (err, liveArrivals) {
-			if (err) {
-				// I don't need to care too much here, I can cope with 
-				// occasionally fails of getDelayedTrains() 
-				setTimeout(cycle, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()));
-			} else {
-				// ### DEBUG ONLY
-				fs.writeFileSync(path.join(_dataFolder, _stationCode + '_arrivals_debug.json'), JSON.stringify(liveArrivals));
-				// I identify all services that I was monitoring and have arrived 
-				var newlyArrivedTrains = _.reduce(_.difference(_.keys(liveArrivalsCache), _.map(liveArrivals, function (liveArrival) { return liveArrival.train_uid; })), function (memo, arrivedTrainKey) {
-					if (_arrivalCallbackFunction) _arrivalCallbackFunction(liveArrivalsCache[arrivedTrainKey]);  
-					memo[arrivedTrainKey] = liveArrivalsCache[arrivedTrainKey];
-					return memo;
-				}, { });
-				// I save newly arrived services to disk (if any)
-				saveArrivedTrains(newlyArrivedTrains, function (err) {
-					// I remove newly arrived services from memory
-					_.each(_.keys(newlyArrivedTrains), function (arrivedTrainKey) {
-						delete liveArrivalsCache[arrivedTrainKey];
+	var cycle = function () {
+		if (!_markedForDeletion) {
+			var timeStart = new Date();
+			transportapi.getLiveArrivals(_stationCode, function (err, liveArrivals) {
+				if (err) {
+					// I don't need to care too much here, I can cope with 
+					// occasionally fails of getDelayedTrains() 
+					setTimeout(cycle, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()));
+				} else {
+					// ### DEBUG ONLY
+					fs.writeFileSync(path.join(_dataFolder, _stationCode + '_arrivals_debug.json'), JSON.stringify(liveArrivals));
+					// I identify all services that I was monitoring and have arrived 
+					var newlyArrivedTrains = _.reduce(_.difference(_.keys(liveArrivalsCache), _.map(liveArrivals, function (liveArrival) { return liveArrival.train_uid; })), function (memo, arrivedTrainKey) {
+						if (_arrivalCallbackFunction) _arrivalCallbackFunction(liveArrivalsCache[arrivedTrainKey]);  
+						memo[arrivedTrainKey] = liveArrivalsCache[arrivedTrainKey];
+						return memo;
+					}, { });
+					// I save newly arrived services to disk (if any)
+					saveArrivedTrains(newlyArrivedTrains, function (err) {
+						// I remove newly arrived services from memory
+						_.each(_.keys(newlyArrivedTrains), function (arrivedTrainKey) {
+							delete liveArrivalsCache[arrivedTrainKey];
+						});
+						// and I update the ones that are still going
+						_.each(liveArrivals, function (liveArrival) {
+							liveArrivalsCache[liveArrival.train_uid] = liveArrival;
+						});
+						// I schedule the cycle to run again one minute before the 
+						// sooner of aimed_arrival_times and expected_arrival_times
+						// Note: some arriving trains can have null arrival times, 
+						// this is odd!
+						var nextRun = _.reduce(_.values(liveArrivalsCache), function (memo, arrival) {
+							return arrival.aimed_arrival_time ? memo.concat(arrival.aimed_arrival_time) : memo;
+						}, [ ]).concat(_.reduce(_.values(liveArrivalsCache), function (memo, arrival) {
+							return arrival.expected_arrival_time ? memo.concat(arrival.expected_arrival_time) : memo;
+						}, [ ])).sort(function (a, b) { return a.valueOf() - b.valueOf(); })[0];
+						nextRun.setMinutes(nextRun.getMinutes() - 1);
+						nextRun = Math.max(0, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
+						log(_stationCode + ": checking again in " + parseInt(nextRun / 1000) + " seconds...");
+						setTimeout(cycle, nextRun);
 					});
-					// and I update the ones that are still going
-					_.each(liveArrivals, function (liveArrival) {
-						liveArrivalsCache[liveArrival.train_uid] = liveArrival;
-					});
-					// I schedule the cycle to run again one minute before the 
-					// sooner of aimed_arrival_times and expected_arrival_times
-					// Note: some arriving trains can have null arrival times, 
-					// this is odd!
-					var nextRun = _.reduce(_.values(liveArrivalsCache), function (memo, arrival) {
-						return arrival.aimed_arrival_time ? memo.concat(arrival.aimed_arrival_time) : memo;
-					}, [ ]).concat(_.reduce(_.values(liveArrivalsCache), function (memo, arrival) {
-						return arrival.expected_arrival_time ? memo.concat(arrival.expected_arrival_time) : memo;
-					}, [ ])).sort(function (a, b) { return a.valueOf() - b.valueOf(); })[0];
-					nextRun.setMinutes(nextRun.getMinutes() - 1);
-					nextRun = Math.max(0, (new Date(timeStart.valueOf() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
-					log(_stationCode + ": checking again in " + parseInt(nextRun / 1000) + " seconds...");
-					setTimeout(cycle, nextRun);
-				});
-			}
-		});
+				}
+			});
+		}
 	};
 
 	cycle();
 	return { 
 		onArrival: onArrival,
+		shutdown: shutdown,
 	};
 
 }

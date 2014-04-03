@@ -36,6 +36,12 @@ Among the contributors were:
 
 Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/government/organisations/cabinet-office), [Stride](http://www.stride-project.com/) and [Network Rail](http://www.networkrail.co.uk/)'s "Joint Open Data hackathon" on 18 March 2014, as the best smart transport applications using data available from the sponsors' open data sources.
 
+##Today
+
+The project awoke again on 31/3/14 for additional development by Giacecco focusing exclusively on gathering train arrival data (not only delayed trains). The software has been re-written from the ground-up to be production- rather than hackathon-quality. He also migrated from Stride to [Transport API](http://transportapi.com/), as there is no reason to add one more point of failure in the already long chain between the source data and the software. You should be able to find some sample data in the [data](data/) folder. 
+
+Note that although the scripts allow to capture all trains arrival data at any station, what we actually capture is only those stations where trains that are declared as delayed by some 'triggering event' stop, e.g. one passenger tweeting to @railspon something like "@railspon from berkhamsted to euston 1846" will capture all arrivals from any origin in Berkhamsted, Hemel Hempstead, Watford Junction and London Euston until the 18:46 train has arrived in London Euston. 
+
 ##Licence
 
 The *RailReferences.csv* file is part of the "National Public Transport Access Nodes (NaPTAN)" dataset and is published under [OGL](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/) at [http://data.gov.uk/dataset/naptan](http://data.gov.uk/dataset/naptan). It was last downloaded on 2 April 2014.
