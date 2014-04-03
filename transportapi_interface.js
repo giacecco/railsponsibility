@@ -119,6 +119,17 @@ exports.getScheduledService = function (service, stationCode, dateTime, callback
 				'json': true,
 			},
 			function (err, response, body) {
+				_.each(body.stops, function (stop) {
+					_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
+						stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
+						// TODO: the line below is to detect arrivals in the 
+						// early hours of the following day, but it is not
+						// ideal 
+						if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
+							stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+						}
+					});
+				});
 				callback(err, body.stops);
 			}
 		);

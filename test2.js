@@ -2,8 +2,12 @@ var fs = require('fs'),
 	transportapi = require('./transportapi_interface'),
 	_ = require('underscore');
 
-function foo (fromStationCode, toStationCode, aimedDepartureTime, callback) {
-	transportapi.getScheduledDepartures(fromStationCode, toStationCode, new Date(), function (err, results) {
+var monitors = { };
+
+// gets the list of calling stations from fromStationCode to destination for the
+// first service calling at fromStationCode on or after dateTime
+function getCallingStations (fromStationCode, toStationCode, dateTime, callback) {
+	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
 		if (err) {
 			callback(err, [ ]);
 		} else {
@@ -20,9 +24,15 @@ function foo (fromStationCode, toStationCode, aimedDepartureTime, callback) {
 			});
 		}
 	});
-
 }
 
-foo('BKM', 'EUS', new Date(), function (err, results) {
+function declareDelay (fromStationCode, toStationCode, dateTime, callback) {
+	getCallingStations(fromStationCode, toStationCode, dateTime, function (err, call) {
+
+
+	});
+}
+
+getCallingStations('BKM', 'EUS', new Date(), function (err, results) {
 	console.log(JSON.stringify(results));
 });
