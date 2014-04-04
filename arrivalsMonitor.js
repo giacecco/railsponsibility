@@ -108,7 +108,7 @@ module.exports = function (stationCode, dataFolder) {
 				} else {
 					// I identify all services that I was monitoring and have arrived 
 					var newlyArrivedTrains = _.reduce(_.difference(_.keys(liveArrivalsCache), _.map(liveArrivals, function (liveArrival) { return liveArrival.train_uid; })), function (memo, arrivedTrainKey) {
-						if (_arrivalCallbackFunction) _arrivalCallbackFunction(liveArrivalsCache[arrivedTrainKey]);  
+						if (_arrivalCallbackFunction) _arrivalCallbackFunction(_stationCode, liveArrivalsCache[arrivedTrainKey]);  
 						memo[arrivedTrainKey] = liveArrivalsCache[arrivedTrainKey];
 						return memo;
 					}, { });

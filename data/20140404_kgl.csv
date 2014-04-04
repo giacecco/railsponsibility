@@ -1,0 +1,4 @@
+mode,service,train_uid,platform,operator,aimed_departure_time,expected_departure_time,best_departure_estimate_mins,aimed_arrival_time,expected_arrival_time,best_arrival_estimate_mins,status,source,origin_code,destination_code
+train,22209000,G25190,,LM,2014/04/04 13:11:00,2014/04/04 13:12:00,1,2014/04/04 13:10:00,2014/04/04 13:12:00,1,LATE,Network Rail,TRI,EUS
+train,22209000,G25236,,LM,2014/04/04 13:31:00,2014/04/04 13:32:00,0,2014/04/04 13:30:00,2014/04/04 13:32:00,0,LATE,Network Rail,EUS,TRI
+train,22209000,G25192,,LM,2014/04/04 13:41:00,2014/04/04 13:42:00,0,2014/04/04 13:40:00,2014/04/04 13:42:00,0,LATE,Network Rail,TRI,EUS
