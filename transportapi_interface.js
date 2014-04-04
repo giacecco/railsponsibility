@@ -13,6 +13,7 @@ var async = require('async'),
 	cheerio = require('cheerio'),
 	csv = require('csv'),
 	fs = require('fs'),
+	log = require('./utils').log,
 	path = require('path'),
 	request = require('request'),
 	_ = require('underscore'),
@@ -21,11 +22,6 @@ _.mixin(_str.exports());
 
 var SECRET_FILENAME = path.join(__dirname, "TRANSPORTAPI_SECRET.json"),
 	SECRET = null;
-
-var log = function (s) {
-	var entryDate = new Date();
-	console.log(entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " " + (entryDate.getHours() < 10 ? '0' : '') + entryDate.getHours() + ":" + (entryDate.getMinutes() < 10 ? '0' : '') + entryDate.getMinutes() + ":" + (entryDate.getSeconds() < 10 ? '0' : '') + entryDate.getSeconds() + " - " + s);
-}
 
 var initialise = function (callback) {
 	if (SECRET) {
