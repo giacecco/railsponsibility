@@ -89,8 +89,9 @@ exports.getScheduledService = function (service, stationCode, dateTime, callback
 				},
 				'json': true,
 			},
-			function (err, response, body) {
-				_.each(body.stops, function (stop) {
+			function (err, response, results) {
+				results = results.stops || [ ];
+				_.each(results, function (stop) {
 					_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
 						stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
 						// TODO: the line below is to detect arrivals in the 
@@ -101,7 +102,7 @@ exports.getScheduledService = function (service, stationCode, dateTime, callback
 						}
 					});
 				});
-				callback(err, body.stops);
+				callback(err, results);
 			}
 		);
 	});
@@ -121,8 +122,8 @@ exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateT
 				},
 				'json': true,
 			},
-			function (err, response, body) {
-				var results = body.departures.all; 
+			function (err, response, results) {
+				results = (results.departures || { all: [ ] }).all; 
 				_.each(results, function (departure) {
 					departure.origin_code = stationCodeFromName(departure.origin_name);
 					delete departure.origin_name;
@@ -157,7 +158,7 @@ exports.getLiveArrivals = function (stationCode, callback) {
 				// TODO: manage situation in which there is no 
 				// results.arrivals.all : does that happen when I run out of
 				// API allowance? 
-				results = results.arrivals.all;
+				results = (results.arrivals || { all: [ ] }).all;
 				var entryDate = new Date(),
 					entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
 				_.each(results, function (arrival) {

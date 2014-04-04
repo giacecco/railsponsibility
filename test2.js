@@ -7,6 +7,8 @@ var argv = require("optimist")
 	transportapi = require('./transportapi_interface'),
 	_ = require('underscore');
 
+var ADVANCE_MONITOR_CREATION = 5; // minutes
+
 var arrivalMonitors = { };
 
 var dateToCSVDate = function (d) {
@@ -46,7 +48,8 @@ function getNextStops (fromStationCode, toStationCode, dateTime, callback) {
 				if (err) {
 					callback(err, [ ]);
 				} else {
-					while (_.first(stops).station_code !== fromStationCode) {
+					while ((_.first(stops).station_code !== fromStationCode) ||
+						   (_.first(stops).aimed_arrival_time < dateTime)) {
 						stops = _.rest(stops);
 					}
 					callback(null, { service: result.service, stops: stops });
@@ -57,28 +60,36 @@ function getNextStops (fromStationCode, toStationCode, dateTime, callback) {
 }
 
 function declareDelay (fromStationCode, toStationCode, dateTime, callback) {
+
+	function addTrainToMonitor (stationCode, trainMonitorKey) {
+		if (!arrivalMonitors[stationCode]) {
+			// the stop was not being monitored
+			log(stationCode + ": creating monitor");
+			arrivalMonitors[stationCode] = { 
+				monitor: new require('./arrivalsMonitor')(stationCode, argv.out), 
+				trains: [ ],
+			};
+			arrivalMonitors[stationCode].monitor.onArrival(function (train) {
+				manageArrival(stationCode, train);
+			});
+		}
+		// I add the train
+		log(stationCode + ": adding monitoring of train " + trainMonitorKey);
+		if (!_.contains(arrivalMonitors[stationCode].trains, trainMonitorKey)) arrivalMonitors[stationCode].trains.push(trainMonitorKey);
+	}
+
 	getNextStops(fromStationCode, toStationCode, dateTime, function (err, result) {
 		var trainMonitorKey = _.last(result.stops).station_code + '_' + result.service + '_' + _.last(result.stops).aimed_arrival_time.valueOf();
 		_.each(result.stops, function (stop) {
-			if (!arrivalMonitors[stop.station_code]) {
-				// the stop was not being monitored
-				log(stop.station_code + ": creating monitor");
-				arrivalMonitors[stop.station_code] = { 
-					monitor: new require('./arrivalsMonitor')(stop.station_code, argv.out), 
-					trains: [ ],
-				};
-				arrivalMonitors[stop.station_code].monitor.onArrival(function (train) {
-					manageArrival(stop.station_code, train);
-				});
-			}
-			// I add the train
-			log(stop.station_code + ": adding monitoring of train " + trainMonitorKey);
-			if (!_.contains(arrivalMonitors[stop.station_code].trains, trainMonitorKey)) arrivalMonitors[stop.station_code].trains.push(trainMonitorKey);
+			// I delay the creation of the monitor for intermediate stops, but
+			// create immediately the monitor for the destination
+			// console.log("*** ", stop.station_code, _.last(result.stops).station_code, stop.aimed_arrival_time, stop.aimed_arrival_time - ADVANCE_MONITOR_CREATION * 60000 - (new Date()));
+			setTimeout(function () { addTrainToMonitor(stop.station_code, trainMonitorKey) }, (stop.station_code !== _.last(result.stops).station_code) ? Math.max(0, stop.aimed_arrival_time - ADVANCE_MONITOR_CREATION * 60000 - (new Date())) : 0);
 		});
 		callback(null);
 	});
 }
 
-declareDelay('BKM', 'EUS', new Date(), function (err) {
+declareDelay('BKM', 'EUS', new Date("2014-04-04 07:16"), function (err) {
 
 });
