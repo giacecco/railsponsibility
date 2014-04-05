@@ -1,0 +1,2 @@
+mode,service,train_uid,platform,operator,aimed_departure_time,expected_departure_time,best_departure_estimate_mins,aimed_arrival_time,expected_arrival_time,best_arrival_estimate_mins,status,source,origin_code,destination_code
+train,12259320,G25562,8,LM,,,,2014/04/05 17:16:00,2014/04/05 17:22:00,0,LATE,Network Rail,BHM,EUS

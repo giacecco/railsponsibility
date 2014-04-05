@@ -63,6 +63,7 @@ var stationCodeFromName = _.memoize(function (name) {
 });
 
 var stationNameFromCode = _.memoize(function (code) {
+	code = code.toUpperCase();
 	return _.map(STATION_CODES, function (couple) {
 		return { 'StationName': couple.StationName, 'levenshtein': _.levenshtein(code, couple.CrsCode) }
 	}).sort(function (a, b) { return a.levenshtein - b.levenshtein; })[0].StationName;

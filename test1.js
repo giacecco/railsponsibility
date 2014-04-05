@@ -15,5 +15,18 @@ _.each([ 'EUS' ], function (stationCode) {
 });
 */
 
+/*
 var trainsMonitor = require('./trainsMonitor')(argv.out);
 trainsMonitor.add('BSH', 'EUS', new Date(), function (err) { });	
+*/
+
+function manageArrival (stationCode, trainInfo) {
+	console.log('*** ', stationCode, JSON.stringify(trainInfo));
+} 
+
+var arrivalsMonitor = new require('./arrivalsMonitor')('EUS', {
+	'dataFolder': argv.out,
+	'arrivalCallback': _.bind(manageArrival, { }, 'EUS'),
+	'delayedOnly': true,
+});
+setTimeout(function () { console.log("*** Shutdown!"); arrivalsMonitor.shutdown(); }, 60000 * 5);
