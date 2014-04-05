@@ -32,6 +32,9 @@ module.exports = function (stationCode, options) {
 	if (!_.isUndefined(options.delayedOnly) && !_.isBoolean(options.delayedOnly))
 		throw new Error('options.delayedOnly must be either true or false.')
 	options.delayedOnly = (options.delayedOnly === true); 
+	if (!_.isUndefined(options.duration) && !_.isNumber(options.duration)) 
+		throw new Error('options.duration must be a number of minutes.')
+	if (options.duration) setTimeout(function () { shutdown(); }, options.duration * 60000);
 
 	var liveArrivalsCache = { },
 		_stationCode = stationCode,

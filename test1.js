@@ -27,6 +27,7 @@ function manageArrival (stationCode, trainInfo) {
 var arrivalsMonitor = new require('./arrivalsMonitor')('EUS', {
 	'dataFolder': argv.out,
 	'arrivalCallback': _.bind(manageArrival, { }, 'EUS'),
-	'delayedOnly': true,
+	'delayedOnly': false,
+	'duration': 20, // minutes
 });
-setTimeout(function () { console.log("*** Shutdown!"); arrivalsMonitor.shutdown(); }, 60000 * 5);
+// setTimeout(function () { console.log("*** Shutdown!"); arrivalsMonitor.shutdown(); }, 60000 * 20);
