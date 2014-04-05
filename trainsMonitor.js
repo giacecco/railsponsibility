@@ -1,72 +1,72 @@
-var dateToCSVDate = require('./utils').dateToCSVDate,
-	fs = require('fs'),
+var ArrivalsMonitor = require('./arrivalsMonitor'),
+	dateToCSVDate = require('./utils').dateToCSVDate,
 	log = require('./utils').log,
 	transportapi = require('./transportapi_interface'),
 	_ = require('underscore');
 
 var ADVANCE_MONITOR_CREATION = 5; // minutes
 
+// gets the list of calling stations from fromStationCode to destination for the
+// first service calling at fromStationCode on or after dateTime
+var getNextStops = function (fromStationCode, toStationCode, dateTime, callback) {
+	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
+		if (err) {
+			callback(err, [ ]);
+		} else {
+			var result = _.first(results);
+			transportapi.getScheduledService(result.service, fromStationCode, result.aimed_departure_time, function (err, stops) {
+				if (err) {
+					callback(err, [ ]);
+				} else {
+					while ((_.first(stops).station_code !== fromStationCode) ||
+						   (_.first(stops).aimed_arrival_time < dateTime)) {
+						stops = _.rest(stops);
+					}
+					callback(null, { service: result.service, stops: stops });
+				}				
+			});
+		}
+	});
+}
+
 module.exports = function (dataFolder) {
 
 	var _dataFolder,
-		arrivalMonitors = { };
+		arrivalsMonitors = { };
 
 	// this is being called when the train arrival described in 'arrival' arrives at 
 	// stationCode
 	var manageArrival = function (stationCode, arrival) {
 		var trainMonitorKey = arrival.destination_code + '_' + arrival.service + '_' + arrival.aimed_arrival_time.valueOf();
-		if (_.contains((arrivalMonitors[stationCode] || { trains: [ ] }).trains, trainMonitorKey)) {
+		if (_.contains((arrivalsMonitors[stationCode] || { trains: [ ] }).trains, trainMonitorKey)) {
 			// if the train was being monitored for the arriving station...
 			log(stationCode + ': arrival of ' + trainMonitorKey);
 			// remove the train from the monitor
-			arrivalMonitors[stationCode].trains = _.without(arrivalMonitors[stationCode].trains, trainMonitorKey);
+			arrivalsMonitors[stationCode].trains = _.without(arrivalsMonitors[stationCode].trains, trainMonitorKey);
 			// if the monitor has no trains, remove the monitor, too
-			if (arrivalMonitors[stationCode].trains.length === 0) {
+			if (arrivalsMonitors[stationCode].trains.length === 0) {
 				log(stationCode + ": deleting monitor");
-				arrivalMonitors[stationCode].monitor.shutdown();
-				delete arrivalMonitors[stationCode];
+				arrivalsMonitors[stationCode].monitor.shutdown();
+				delete arrivalsMonitors[stationCode];
 			}
 		}
-	}
-
-	// gets the list of calling stations from fromStationCode to destination for the
-	// first service calling at fromStationCode on or after dateTime
-	var getNextStops = function (fromStationCode, toStationCode, dateTime, callback) {
-		transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
-			if (err) {
-				callback(err, [ ]);
-			} else {
-				var result = _.first(results);
-				transportapi.getScheduledService(result.service, fromStationCode, result.aimed_departure_time, function (err, stops) {
-					if (err) {
-						callback(err, [ ]);
-					} else {
-						while ((_.first(stops).station_code !== fromStationCode) ||
-							   (_.first(stops).aimed_arrival_time < dateTime)) {
-							stops = _.rest(stops);
-						}
-						callback(null, { service: result.service, stops: stops });
-					}				
-				});
-			}
-		});
 	}
 
 	var add = function (fromStationCode, toStationCode, dateTime, callback) {
 
 		function addTrainToMonitor (stationCode, trainMonitorKey) {
-			if (!arrivalMonitors[stationCode]) {
+			if (!arrivalsMonitors[stationCode]) {
 				// the stop was not being monitored
 				log(stationCode + ": creating monitor");
-				arrivalMonitors[stationCode] = { 
-					monitor: new require('./arrivalsMonitor')(stationCode, _dataFolder), 
+				arrivalsMonitors[stationCode] = { 
+					monitor: new ArrivalsMonitor(stationCode, _dataFolder), 
 					trains: [ ],
 				};
-				arrivalMonitors[stationCode].monitor.onArrival(manageArrival);
+				arrivalsMonitors[stationCode].monitor.onArrival(manageArrival);
 			}
 			// I add the train
 			log(stationCode + ": adding monitoring of train " + trainMonitorKey);
-			if (!_.contains(arrivalMonitors[stationCode].trains, trainMonitorKey)) arrivalMonitors[stationCode].trains.push(trainMonitorKey);
+			if (!_.contains(arrivalsMonitors[stationCode].trains, trainMonitorKey)) arrivalsMonitors[stationCode].trains.push(trainMonitorKey);
 		}
 
 		getNextStops(fromStationCode, toStationCode, dateTime, function (err, result) {
