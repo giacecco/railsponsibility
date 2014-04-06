@@ -3,6 +3,7 @@ var argv = require("optimist")
 		.demand([ 'out' ])
 		.alias('out', 'o')
 		.argv,
+	transportapi = require('./transportapi_interface'),
 	_ = require('underscore');
 
 /*
@@ -20,14 +21,37 @@ var trainsMonitor = require('./trainsMonitor')(argv.out);
 trainsMonitor.add('BSH', 'EUS', new Date(), function (err) { });	
 */
 
+// gets the list of calling stations from fromStationCode to destination for the
+// first service calling at fromStationCode on or after dateTime
+var getNextStops = function (fromStationCode, toStationCode, dateTime, callback) {
+	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
+		if (err) {
+			callback(err, [ ]);
+		} else {
+			var result = _.first(results);
+			transportapi.getScheduledService(result.service, fromStationCode, result.aimed_departure_time, function (err, stops) {
+				if (err) {
+					callback(err, [ ]);
+				} else {
+					while ((_.first(stops).station_code !== fromStationCode) ||
+						   (_.first(stops).aimed_arrival_time < dateTime)) {
+						stops = _.rest(stops);
+					}
+					callback(null, { service: result.service, stops: stops });
+				}				
+			});
+		}
+	});
+}
+
 function manageArrival (stationCode, trainInfo) {
 	console.log('*** ', stationCode, JSON.stringify(trainInfo));
 } 
 
-var arrivalsMonitor = new require('./arrivalsMonitor')('EUS', {
-	'dataFolder': argv.out,
-	'arrivalCallback': _.bind(manageArrival, { }, 'EUS'),
-	'delayedOnly': false,
-	'duration': 20, // minutes
+getNextStops('HRW', 'EUS', new Date("2014-04-06 14:17"), function (err, result) {
+	var arrivalsMonitor = new require('./arrivalsMonitor')('EUS', {
+		'dataFolder': argv.out,
+		'arrivalCallback': _.bind(manageArrival, { }, 'EUS'),
+		'limitTo': [ { 'service': result.service, 'aimedArrivalTime': _.last(result.stops).aimed_arrival_time } ],
+	});
 });
-// setTimeout(function () { console.log("*** Shutdown!"); arrivalsMonitor.shutdown(); }, 60000 * 20);
