@@ -47,7 +47,6 @@ module.exports = function (stationCode, options) {
 		}, { });
 		options.delayedOnly = false;
 	}
-	console.log('*** options.limitTo is ' + JSON.stringify(options.limitTo));
 
 	var liveArrivalsCache = { },
 		_stationCode = stationCode,
@@ -56,7 +55,12 @@ module.exports = function (stationCode, options) {
 
 	var limitTo = function (service, aimedArrivalTime) {
 		options.delayedOnly = false;
+		if (!options.limitTo) options.limitTo = { };
 		options.limitTo[service + '_' + aimedArrivalTime.getTime()] = { 'service': service, 'aimedArrivalTime': aimedArrivalTime };
+		// adding one train to be monitored required all previous assumptions
+		// on how long the monitor can sleep null
+		if (nextCycleTimeout) clearTimeout(nextCycleTimeout);
+		scheduleNextAwakening(new Date(0));
 	}
 
 	var shutdown = function () {
@@ -75,8 +79,12 @@ module.exports = function (stationCode, options) {
 			}, [ ])).concat(!options.limitTo ? [ ] : _.map(_.values(options.limitTo), function (arrival) {
 				return arrival.aimedArrivalTime;
 			})).sort(function (a, b) { return a.getTime() - b.getTime(); })[0];
-			if (nextRun) nextRun.setMinutes(nextRun.getMinutes() - ADVANCE_MONITOR_AWAKENING);
-			nextRun = Math.max(0, (new Date(timeStart.getTime() + DEFAULT_POLL_FREQUENCY * 60000)) - (new Date()), nextRun - (new Date()));
+			if (!nextRun) {
+				nextRun = Math.max(0, DEFAULT_POLL_FREQUENCY * 60000 - ((new Date()) - timeStart));
+			} else {
+				nextRun.setMinutes(nextRun.getMinutes() - ADVANCE_MONITOR_AWAKENING);
+				nextRun = Math.max(0, DEFAULT_POLL_FREQUENCY * 60000 - ((new Date()) - timeStart), nextRun - (new Date()));
+			}
 			log(_stationCode + ": next check at " + (new Date((new Date()).getTime() + nextRun)) + " ...");
 			nextCycleTimeout = setTimeout(cycle, nextRun);
 		}
@@ -156,7 +164,7 @@ module.exports = function (stationCode, options) {
 	};
 
 	var cycle = function () {
-		if (!markedForShutdown) {
+		if (!markedForShutdown && (_.isNull(options.limitTo) || (_.keys(options.limitTo).length > 0))) {
 			var timeStart = new Date();
 			transportapi.getLiveArrivals(_stationCode, function (err, liveArrivals) {
 				// ### DEBUG ONLY
@@ -204,7 +212,7 @@ module.exports = function (stationCode, options) {
 		}
 	};
 
-	scheduleNextAwakening(new Date());
+	scheduleNextAwakening(new Date(0));
 	return { 
 		'limitTo': limitTo,
 		'shutdown': shutdown,
