@@ -10,7 +10,6 @@
    ************************************************************************** */
 
 var async = require('async'),
-	cheerio = require('cheerio'),
 	csv = require('csv'),
 	fs = require('fs'),
 	log = require('./utils').log,

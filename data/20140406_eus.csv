@@ -1,3 +1,0 @@
-mode,service,train_uid,platform,operator,aimed_departure_time,expected_departure_time,best_departure_estimate_mins,aimed_arrival_time,expected_arrival_time,best_arrival_estimate_mins,status,source,origin_code,destination_code
-train,22216000,L36142,9,LO,,,,2014/04/06 23:40:00,2014/04/06 23:41:00,-1,LATE,Network Rail,WFJ,EUS
-train,12259320,G25516,8,LM,,,,2014/04/06 23:43:00,2014/04/06 23:43:00,0,EARLY,Network Rail,BHM,EUS

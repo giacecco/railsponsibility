@@ -1,2 +1,5 @@
 mode,service,train_uid,platform,operator,aimed_departure_time,expected_departure_time,best_departure_estimate_mins,aimed_arrival_time,expected_arrival_time,best_arrival_estimate_mins,status,source,origin_code,destination_code
 train,22216000,L36009,9,LO,,,,2014/04/07 07:52:00,2014/04/07 07:52:00,0,EARLY,Network Rail,WFJ,EUS
+train,22216000,L36051,9,LO,,,,2014/04/07 12:30:00,2014/04/07 12:30:00,-1,NO REPORT,Network Rail,WFJ,EUS
+train,22209000,G25179,11,LM,,,,2014/04/07 12:38:00,2014/04/07 12:46:00,-1,LATE,Network Rail,TRI,EUS
+train,22209000,G25209,11,LM,,,,2014/04/07 16:08:00,2014/04/07 16:08:00,-1,EARLY,Network Rail,TRI,EUS

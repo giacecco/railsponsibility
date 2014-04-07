@@ -58,7 +58,7 @@ module.exports = function (stationCodeFrom, stationCodeTo, aimedDepartureTime, o
 				'dataFolder': options.dataFolder,
 				'arrivalCallback': manageArrival,
 			});
-		};			
+		};		
 		callbackFunctions[result.service + '_' + _.last(result.stops).aimed_arrival_time.getDate()] = (callbackFunctions[result.service + '_' + _.last(result.stops).aimed_arrival_time.getDate()] || [ ]).concat(options.arrivalCallback);
 		arrivalsMonitors[stationCodeTo].limitTo(result.service, _.last(result.stops).aimed_arrival_time);
 	});
