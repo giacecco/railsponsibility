@@ -6,8 +6,8 @@ var argv = require("optimist")
 	TrainMonitor = require('./trainMonitor'),
 	_ = require('underscore');
 
-var manageArrival = function (from, to, aimedDepartureTime) {
-	console.log("*** arrived " + aimedDepartureTime + " from " + from + " to " + to + ".");
+var manageArrival = function (from, to, aimedDepartureTime, fullArrivalInfo) {
+	console.log("*** arrived " + aimedDepartureTime + " from " + from + " to " + to + " " + JSON.stringify(fullArrivalInfo));
 }
 
 function addMonitor (from, to, aimedDepartureTime) {
@@ -17,5 +17,5 @@ function addMonitor (from, to, aimedDepartureTime) {
 	});
 }
 
-addMonitor('HRW', 'EUS', new Date('2014-04-06 23:07'));
-addMonitor('HRW', 'EUS', new Date('2014-04-06 23:29'));
+addMonitor('HRW', 'EUS', new Date('2014-04-07 07:16'));
+// addMonitor('HRW', 'EUS', new Date('2014-04-06 23:29'));
