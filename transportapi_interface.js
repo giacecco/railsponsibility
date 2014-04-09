@@ -9,7 +9,8 @@
    - the "scheduled service" endpoint not supporting JSON as an output
    ************************************************************************** */
 
-var async = require('async'),
+var AsyncCache = require('async-cache'),
+	async = require('async'),
 	csv = require('csv'),
 	fs = require('fs'),
 	log = require('./utils').log,
@@ -89,12 +90,17 @@ exports.getScheduledService = function (service, stationCode, dateTime, callback
 				results = results.stops || [ ];
 				_.each(results, function (stop) {
 					_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
-						stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
-						// TODO: the line below is to detect arrivals in the 
-						// early hours of the following day, but it is not
-						// ideal 
-						if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
-							stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+						// TODO: the line below should not be necessary, see 
+						// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
+						stop.station_code = stationCodeFromName(stop.station_name);
+						if (stop[propertyName]) {
+							stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
+							// TODO: the line below is to detect arrivals in the 
+							// early hours of the following day, but it is not
+							// ideal 
+							if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
+								stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+							}
 						}
 					});
 				});
@@ -139,44 +145,51 @@ exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateT
 	});
 };
 
+var getLiveArrivalsCached = new AsyncCache({
+	'maxAge': 60000,
+	'load': function (stationCode, callback) {
+			initialise(function (err) {
+				request.get(
+					'http://transportapi.com/v3/uk/train/station/' + stationCode + '/live_arrivals.json',
+					{
+						'qs': {
+							'api_key': SECRET.api_key,
+							'app_id': SECRET.application_id,
+						},
+						'json': true,
+					},
+					function (err, response, results) {
+						// TODO: manage situation in which there is no 
+						// results.arrivals.all : does that happen when I run out of
+						// API allowance? 
+						results = (results.arrivals || { all: [ ] }).all;
+						var entryDate = new Date(),
+							entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
+						_.each(results, function (arrival) {
+							arrival.origin_code = stationCodeFromName(arrival.origin_name);
+							delete arrival.origin_name;
+							arrival.destination_code = stationCodeFromName(arrival.destination_name);
+							delete arrival.destination_name;
+							_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
+								if (arrival[propertyName]) {
+									arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
+									// TODO: the line below is to detect arrivals in the 
+									// early hours of the following day, but it is not
+									// ideal 
+									if ((entryDate.getHours() > 18) && (arrival[propertyName].getHours() < 4)) {
+										arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
+									}
+								}
+							});
+						});
+						results.sort(function (a, b) { return a.aimed_arrival_time.valueOf() - b.aimed_arrival_time.valueOf(); });
+							callback(err, results);
+					}
+				);
+		});
+	},
+});
+
 exports.getLiveArrivals = function (stationCode, callback) {
-	initialise(function (err) {
-		request.get(
-			'http://transportapi.com/v3/uk/train/station/' + stationCode + '/live_arrivals.json',
-			{
-				'qs': {
-					'api_key': SECRET.api_key,
-					'app_id': SECRET.application_id,
-				},
-				'json': true,
-			},
-			function (err, response, results) {
-				// TODO: manage situation in which there is no 
-				// results.arrivals.all : does that happen when I run out of
-				// API allowance? 
-				results = (results.arrivals || { all: [ ] }).all;
-				var entryDate = new Date(),
-					entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
-				_.each(results, function (arrival) {
-					arrival.origin_code = stationCodeFromName(arrival.origin_name);
-					delete arrival.origin_name;
-					arrival.destination_code = stationCodeFromName(arrival.destination_name);
-					delete arrival.destination_name;
-					_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
-						if (arrival[propertyName]) {
-							arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
-							// TODO: the line below is to detect arrivals in the 
-							// early hours of the following day, but it is not
-							// ideal 
-							if ((entryDate.getHours() > 18) && (arrival[propertyName].getHours() < 4)) {
-								arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
-							}
-						}
-					});
-				});
-				results.sort(function (a, b) { return a.aimed_arrival_time.valueOf() - b.aimed_arrival_time.valueOf(); });
-				callback(err, results);
-			}
-		);
-	});
+	getLiveArrivalsCached.get(stationCode, callback);
 };
