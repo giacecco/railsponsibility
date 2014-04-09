@@ -72,78 +72,98 @@ var stationNameFromCode = _.memoize(function (code) {
 // Lots of doubts here about the behaviour of Transport API's 'Scheduled 
 // Service' endpoint here. At the moment, assuming you know the service, this
 // function returns the first train calling at stationCode on or after dateTime
+var getScheduledServiceCached = new AsyncCache({
+	'max': 1000, // TODO: does this number make sense?
+	'load': function (key, callback) {
+			initialise(function (err) {
+				var service = key.split('_')[0],
+					stationCode = key.split('_')[1],
+					dateTime = new Date(parseInt(key.split('_')[2])),
+					date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
+					time = (dateTime.getHours() < 10 ? '0' : '') + dateTime.getHours() + ":" + (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes();
+				request.get(
+					'http://transportapi.com/v3/uk/train/service/' + service + '/' + date + '/' + time + '/timetable.json',
+					{
+						'qs': {
+							'api_key': SECRET.api_key,
+							'app_id': SECRET.application_id,
+							'stationcode': stationCode,
+						},
+						'json': true,
+					},
+					function (err, response, results) {
+						results = results.stops || [ ];
+						_.each(results, function (stop) {
+							_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
+								// TODO: the line below should not be necessary, see 
+								// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
+								stop.station_code = stationCodeFromName(stop.station_name);
+								if (stop[propertyName]) {
+									stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
+									// TODO: the line below is to detect arrivals in the 
+									// early hours of the following day, but it is not
+									// ideal 
+									if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
+										stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+									}
+								}
+							});
+						});
+						callback(err, results);
+					}
+				);
+			});
+		},
+});
+
 exports.getScheduledService = function (service, stationCode, dateTime, callback) {
-	initialise(function (err) {
-		var date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
-			time = (dateTime.getHours() < 10 ? '0' : '') + dateTime.getHours() + ":" + (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes();
-		request.get(
-			'http://transportapi.com/v3/uk/train/service/' + service + '/' + date + '/' + time + '/timetable.json',
-			{
-				'qs': {
-					'api_key': SECRET.api_key,
-					'app_id': SECRET.application_id,
-					'stationcode': stationCode,
-				},
-				'json': true,
-			},
-			function (err, response, results) {
-				results = results.stops || [ ];
-				_.each(results, function (stop) {
-					_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
-						// TODO: the line below should not be necessary, see 
-						// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
-						stop.station_code = stationCodeFromName(stop.station_name);
-						if (stop[propertyName]) {
-							stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
+	getScheduledServiceCached.get(service + '_' + stationCode + '_' + dateTime.getTime(), callback);
+}
+
+var getScheduledDeparturesCached = new AsyncCache({
+	'max': 1000, // TODO: does this number make sense?
+	'load': function (key, callback) {
+			initialise(function (err) {
+				var fromStationCode = key.split('_')[0],
+					toStationCode = key.split('_')[1],
+					dateTime = new Date(parseInt(key.split('_')[2])),
+					date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
+					time = (dateTime.getHours() < 10 ? '0' : '') + dateTime.getHours() + ":" + (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes();
+				request.get(
+					'http://transportapi.com/v3/uk/train/station/' + fromStationCode + '/' + date + '/' + time + '/timetable.json',
+					{
+						'qs': {
+							'calling_at': toStationCode,
+							'api_key': SECRET.api_key,
+							'app_id': SECRET.application_id,
+						},
+						'json': true,
+					},
+					function (err, response, results) {
+						results = (results.departures || { all: [ ] }).all; 
+						_.each(results, function (departure) {
+							departure.origin_code = stationCodeFromName(departure.origin_name);
+							delete departure.origin_name;
+							departure.destination_code = stationCodeFromName(departure.destination_name);
+							delete departure.destination_name;
+							departure.aimed_departure_time = new Date(date + ' ' + departure.aimed_departure_time);
 							// TODO: the line below is to detect arrivals in the 
 							// early hours of the following day, but it is not
 							// ideal 
-							if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
-								stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+							if (((new Date()).getHours() > 18) && (departure.aimed_departure_time.getHours() < 4)) {
+								departure.aimed_departure_time.setDate(departure.aimed_departure_time.getDate() + 1);
 							}
-						}
-					});
-				});
-				callback(err, results);
-			}
-		);
-	});
-};
+						});
+						callback(err, results);
+					}
+				);
+			});
+		},
+});
 
 exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateTime, callback) {
-	initialise(function (err) {
-		var date = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
-			time = (dateTime.getHours() < 10 ? '0' : '') + dateTime.getHours() + ":" + (dateTime.getMinutes() < 10 ? '0' : '') + dateTime.getMinutes();
-		request.get(
-			'http://transportapi.com/v3/uk/train/station/' + fromStationCode + '/' + date + '/' + time + '/timetable.json',
-			{
-				'qs': {
-					'calling_at': toStationCode,
-					'api_key': SECRET.api_key,
-					'app_id': SECRET.application_id,
-				},
-				'json': true,
-			},
-			function (err, response, results) {
-				results = (results.departures || { all: [ ] }).all; 
-				_.each(results, function (departure) {
-					departure.origin_code = stationCodeFromName(departure.origin_name);
-					delete departure.origin_name;
-					departure.destination_code = stationCodeFromName(departure.destination_name);
-					delete departure.destination_name;
-					departure.aimed_departure_time = new Date(date + ' ' + departure.aimed_departure_time);
-					// TODO: the line below is to detect arrivals in the 
-					// early hours of the following day, but it is not
-					// ideal 
-					if (((new Date()).getHours() > 18) && (departure.aimed_departure_time.getHours() < 4)) {
-						departure.aimed_departure_time.setDate(departure.aimed_departure_time.getDate() + 1);
-					}
-				});
-				callback(err, results);
-			}
-		);
-	});
-};
+	getScheduledDeparturesCached.get(fromStationCode + '_' + toStationCode + '_' + dateTime.getTime(), callback);
+}
 
 var getLiveArrivalsCached = new AsyncCache({
 	'maxAge': 60000,
