@@ -46,6 +46,7 @@ var TrainMonitor = function (fromStationCode, toStationCode, aimedDepartureTime,
 		transportapi.getLiveArrivals(toStationCode, function (err, arrival) {
 			fs.writeFileSync("foo.json", JSON.stringify(arrival));
 			arrival = _.filter(arrival, function (a) {
+				if (a.service === service) console.log(a.aimed_arrival_time.getTime() + ' vs ' + aimedArrivalTime.getTime() + (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime() ? " FOUND" : ""));
 				return (a.service === service) && (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime());
 			})[0];
 			var oneMinuteFromNow = new Date(dateStart.getTime());
