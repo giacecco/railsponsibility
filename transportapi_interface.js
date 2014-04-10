@@ -94,10 +94,10 @@ var getScheduledServiceCached = new AsyncCache({
 					function (err, response, results) {
 						results = results.stops || [ ];
 						_.each(results, function (stop) {
+							// TODO: the line below should not be necessary, see 
+							// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
+							stop.station_code = stationCodeFromName(stop.station_name);
 							_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
-								// TODO: the line below should not be necessary, see 
-								// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
-								stop.station_code = stationCodeFromName(stop.station_name);
 								if (stop[propertyName]) {
 									stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
 									// TODO: the line below is to detect arrivals in the 
