@@ -92,24 +92,28 @@ var getScheduledServiceCached = new AsyncCache({
 						'json': true,
 					},
 					function (err, response, results) {
-						results = results.stops || [ ];
-						_.each(results, function (stop) {
-							// TODO: the line below should not be necessary, see 
-							// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
-							stop.station_code = stationCodeFromName(stop.station_name);
-							_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
-								if (stop[propertyName]) {
-									stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
-									// TODO: the line below is to detect arrivals in the 
-									// early hours of the following day, but it is not
-									// ideal 
-									if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
-										stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+						if (err) {
+							callback(err, null);
+						} else {
+							results = results.stops;
+							_.each(results, function (stop) {
+								// TODO: the line below should not be necessary, see 
+								// issue #6 https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues/6
+								stop.station_code = stationCodeFromName(stop.station_name);
+								_.each([ 'aimed_arrival_time', 'aimed_departure_time' ], function (propertyName) {
+									if (stop[propertyName]) {
+										stop[propertyName] = new Date(date + ' ' + stop[propertyName]);
+										// TODO: the line below is to detect arrivals in the 
+										// early hours of the following day, but it is not
+										// ideal 
+										if (((new Date()).getHours() > 18) && (stop[propertyName].getHours() < 4)) {
+											stop[propertyName].setDate(stop[propertyName].getDate() + 1);
+										}
 									}
-								}
+								});
 							});
-						});
-						callback(err, results);
+							callback(err, results);
+						}
 					}
 				);
 			});
@@ -140,21 +144,25 @@ var getScheduledDeparturesCached = new AsyncCache({
 						'json': true,
 					},
 					function (err, response, results) {
-						results = (results.departures || { all: [ ] }).all; 
-						_.each(results, function (departure) {
-							departure.origin_code = stationCodeFromName(departure.origin_name);
-							delete departure.origin_name;
-							departure.destination_code = stationCodeFromName(departure.destination_name);
-							delete departure.destination_name;
-							departure.aimed_departure_time = new Date(date + ' ' + departure.aimed_departure_time);
-							// TODO: the line below is to detect arrivals in the 
-							// early hours of the following day, but it is not
-							// ideal 
-							if (((new Date()).getHours() > 18) && (departure.aimed_departure_time.getHours() < 4)) {
-								departure.aimed_departure_time.setDate(departure.aimed_departure_time.getDate() + 1);
-							}
-						});
-						callback(err, results);
+						if (err) {
+							callback(err, null);
+						} else {
+							results = results.departures.all; 
+							_.each(results, function (departure) {
+								departure.origin_code = stationCodeFromName(departure.origin_name);
+								delete departure.origin_name;
+								departure.destination_code = stationCodeFromName(departure.destination_name);
+								delete departure.destination_name;
+								departure.aimed_departure_time = new Date(date + ' ' + departure.aimed_departure_time);
+								// TODO: the line below is to detect arrivals in the 
+								// early hours of the following day, but it is not
+								// ideal 
+								if (((new Date()).getHours() > 18) && (departure.aimed_departure_time.getHours() < 4)) {
+									departure.aimed_departure_time.setDate(departure.aimed_departure_time.getDate() + 1);
+								}
+							});
+							callback(err, results);
+						}
 					}
 				);
 			});
@@ -166,7 +174,7 @@ exports.getScheduledDepartures = function (fromStationCode, toStationCode, dateT
 }
 
 var getLiveArrivalsCached = new AsyncCache({
-	'maxAge': 60000,
+	'maxAge': 59000,
 	'load': function (stationCode, callback) {
 			initialise(function (err) {
 				request.get(
@@ -182,28 +190,32 @@ var getLiveArrivalsCached = new AsyncCache({
 						// TODO: manage situation in which there is no 
 						// results.arrivals.all : does that happen when I run out of
 						// API allowance? 
-						results = (results.arrivals || { all: [ ] }).all;
-						var entryDate = new Date(),
-							entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
-						_.each(results, function (arrival) {
-							arrival.origin_code = stationCodeFromName(arrival.origin_name);
-							delete arrival.origin_name;
-							arrival.destination_code = stationCodeFromName(arrival.destination_name);
-							delete arrival.destination_name;
-							_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
-								if (arrival[propertyName]) {
-									arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
-									// TODO: the line below is to detect arrivals in the 
-									// early hours of the following day, but it is not
-									// ideal 
-									if ((entryDate.getHours() > 18) && (arrival[propertyName].getHours() < 4)) {
-										arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
+						if (err) {
+							callback(err, null);
+						} else {
+							results = results.arrivals.all;
+							var entryDate = new Date(),
+								entryDateAsString = entryDate.getFullYear() + "/" + (entryDate.getMonth() < 9 ? '0' : '') + (entryDate.getMonth() + 1) + "/" + (entryDate.getDate() < 10 ? '0' : '') + entryDate.getDate() + " ";
+							_.each(results, function (arrival) {
+								arrival.origin_code = stationCodeFromName(arrival.origin_name);
+								delete arrival.origin_name;
+								arrival.destination_code = stationCodeFromName(arrival.destination_name);
+								delete arrival.destination_name;
+								_.each([ 'aimed_departure_time', 'expected_departure_time', 'aimed_arrival_time', 'expected_arrival_time'], function (propertyName) {
+									if (arrival[propertyName]) {
+										arrival[propertyName] = new Date(entryDateAsString + arrival[propertyName]);
+										// TODO: the line below is to detect arrivals in the 
+										// early hours of the following day, but it is not
+										// ideal 
+										if ((entryDate.getHours() > 18) && (arrival[propertyName].getHours() < 4)) {
+											arrival[propertyName].setDate(arrival[propertyName].getDate() + 1);
+										}
 									}
-								}
+								});
 							});
-						});
-						results.sort(function (a, b) { return a.aimed_arrival_time.valueOf() - b.aimed_arrival_time.valueOf(); });
+							results.sort(function (a, b) { return a.aimed_arrival_time.valueOf() - b.aimed_arrival_time.valueOf(); });
 							callback(err, results);
+						}
 					}
 				);
 		});
