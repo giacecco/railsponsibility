@@ -9,9 +9,13 @@ var fs = require('fs'),
 // returns service number and aimed arrival time at toStationCode of the first
 // train leaving from fromStationCode on or after dateTime 
 var getTrainDetails = function (fromStationCode, toStationCode, dateTime, callback) {
+	log("Calling getScheduledDepartures...");
 	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
 		if (err) throw err;
+		console.log(results);
+		log("Calling getScheduledService...");
 		transportapi.getScheduledService(_.first(results).service, fromStationCode, _.first(results).aimed_departure_time, function (err, stops) {
+			log("Finished calling");
 			if (err) throw err;
 			stops = _.filter(stops, function (s) { return s.station_code === toStationCode; });
 			callback(null, { 
@@ -34,7 +38,7 @@ var TrainMonitor = function (fromStationCode, toStationCode, aimedDepartureTime,
 		getTrainDetails(fromStationCode, toStationCode, aimedDepartureTime, function (err, result) {
 			if (err) throw err;
 			service = result.service;
-			aimedArrivalTime = result.aimedArrivalTime;
+			aimedArrivalTime = new Date(result.aimedArrivalTime.getTime());
 			log("Identified train as service " + service + " from " + fromStationCode + " at " + result.aimedDepartureTime + " due to arrive at " + toStationCode + " at " + aimedArrivalTime);
 			cycle();
 		});
@@ -43,12 +47,35 @@ var TrainMonitor = function (fromStationCode, toStationCode, aimedDepartureTime,
 	var cycle = function () {
 		var arrivalCache = null,
 			dateStart = new Date();
-		transportapi.getLiveArrivals(toStationCode, function (err, arrival) {
-			fs.writeFileSync("foo.json", JSON.stringify(arrival));
-			arrival = _.filter(arrival, function (a) {
-				if (a.service === service) console.log(a.aimed_arrival_time.getTime() + ' vs ' + aimedArrivalTime.getTime() + (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime() ? " FOUND" : ""));
-				return (a.service === service) && (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime());
-			})[0];
+		transportapi.getLiveArrivals(toStationCode, function (err, arrivals) {
+			fs.writeFileSync("foo.json", JSON.stringify(arrivals));
+			// I pick only the live arrivals of the service I am interested in
+			arrival = _.filter(arrivals, function (a) { 
+				return (a.service === service) && (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime()); 
+			})[0]; 
+/*
+			// BEGIN OF WORKAROUND TO ISSUE #7
+			// I check if there is at least one train of the same service 
+			// arriving at the expected time or earlier, and another arriving
+			// at the same time or later, in which case I change the 
+			// aimedArrivalTime to match the closest
+			if (!arrival) {
+				if (_.some(arrivals, function (a) {
+					return a.aimed_arrival_time.getTime() <= aimedArrivalTime.getTime();
+				}) && _.some(arrivals, function (a) { 
+					return a.aimed_arrival_time.getTime() >= aimedArrivalTime.getTime();
+				})) {
+					// ... and I get the one with the time that is closest to 
+					// what I was expecting
+					arrival = arrivals.sort(function (a, b) { 
+						return Math.abs(a.aimed_arrival_time - aimedArrivalTime) - Math.abs(b.aimed_arrival_time - aimedArrivalTime);
+					})[0];
+					log(toStationCode + ": correcting service " + service + "'s aimed arrival time of " + aimedArrivalTime + " with " + arrival.aimed_arrival_time);
+					aimedArrivalTime = new Date(arrival.aimed_arrival_time.getTime());
+				}
+			}
+			// END OF WORKAROUND TO ISSUE #7
+*/
 			var oneMinuteFromNow = new Date(dateStart.getTime());
 			oneMinuteFromNow.setMinutes(oneMinuteFromNow.getMinutes() + 1);
 			var checkAgainAt = new Date(Math.max(oneMinuteFromNow.getTime(), (arrival ? Math.min(arrival.aimed_arrival_time.getTime(), arrival.expected_arrival_time.getTime()) : aimedArrivalTime.getTime()) - ADVANCE_MONITOR_AWAKENING * 60000));
