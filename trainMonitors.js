@@ -12,7 +12,6 @@ var getTrainDetails = function (fromStationCode, toStationCode, dateTime, callba
 	log("Calling getScheduledDepartures...");
 	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
 		if (err) throw err;
-		console.log(results);
 		log("Calling getScheduledService...");
 		transportapi.getScheduledService(_.first(results).service, fromStationCode, _.first(results).aimed_departure_time, function (err, stops) {
 			log("Finished calling");
