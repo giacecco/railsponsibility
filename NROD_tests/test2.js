@@ -1,11 +1,12 @@
 var fs = require('fs'),
 	request = require('request'),
-	zlib = require("zlib");
+	zlib = require("zlib"),
+	SECRET = JSON.parse(fs.readFileSync('../NROD_SECRET.json'));
 
 request({ 
 	'url': 'https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate', 
 	'headers': {
-		'Authorization': 'Basic ' + (new Buffer('giacecco@dico.im:Rneth0ven_').toString('base64')),
+		'Authorization': 'Basic ' + (new Buffer(SECRET.username + ':' + SECRET.password).toString('base64')),
 	},
 	'qs': {
 		'type': 'CIF_ALL_FULL_DAILY',

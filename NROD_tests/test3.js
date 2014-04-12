@@ -67,7 +67,6 @@ getSchedule('BERKHMD', 'EUSTON', new Date(), function (err, results) {
 	}
 
 	console.log("Found " + results.length + " services.");
-	fs.writeFileSync("./foo.json", JSON.stringify(results[0]));
 	results.forEach(function (s) {
 		console.log("*** Service from " + s.JsonScheduleV1.schedule_start_date + ' to ' + s.JsonScheduleV1.schedule_end_date);
 		s.JsonScheduleV1.schedule_segment.schedule_location.forEach(function (l) {

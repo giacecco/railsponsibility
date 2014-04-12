@@ -1,7 +1,9 @@
-var Stomp = require('stomp-client'),
+var fs = require('fs'),
+    Stomp = require('stomp-client'),
 	destination = '/topic/TRAIN_MVT_ALL_TOC',
+    SECRET = JSON.parse(fs.readFileSync('../NROD_SECRET.json')),
 	// ongoing registration as giacecco@dico.im
-	client = new Stomp('datafeeds.networkrail.co.uk', 61618, 'giacecco@giacec.co', 'Rneth0ven_'),
+	client = new Stomp('datafeeds.networkrail.co.uk', 61618, SECRET.username, SECRET.password),
 	_ = require('underscore');
 
 client.connect(function (sessionId) {
