@@ -47,7 +47,6 @@ var TrainMonitor = function (fromStationCode, toStationCode, aimedDepartureTime,
 		var arrivalCache = null,
 			dateStart = new Date();
 		transportapi.getLiveArrivals(toStationCode, function (err, arrivals) {
-			fs.writeFileSync("foo.json", JSON.stringify(arrivals));
 			// I pick only the live arrivals of the service I am interested in
 			arrival = _.filter(arrivals, function (a) { 
 				if (a.service === service) { console.log(a.aimed_arrival_time.getTime() + ' vs ' + aimedArrivalTime.getTime() + ' ' + (a.aimed_arrival_time.getTime() === aimedArrivalTime.getTime() ? "FOUND" : "")); }

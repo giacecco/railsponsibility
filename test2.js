@@ -2,6 +2,6 @@ var trainMonitors = require('./trainMonitors'),
 	log = require('./utils').log,
 	_ = require('underscore');
 
-var foo = trainMonitors.create("HRW", "EUS", new Date("2014-04-11 12:54"), function (trainInfo) {
+var foo = trainMonitors.create("HRW", "EUS", new Date("2014-04-11 15:17"), function (trainInfo) {
 	log("The train has arrived, the full train info is " + JSON.stringify(trainInfo));
 });
