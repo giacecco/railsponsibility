@@ -12,8 +12,8 @@ var AsyncCache = require('async-cache'),
 var getScheduleCached = new AsyncCache({ 
 	'maxAge': 24 * 60 * 60000, // 1 day 
 	'load': function (key, callback) {
-			var fromTiplocCode = key.split('_')[0],
-				toTiplocCode = key.split('_')[1],
+			var fromTiplocCodes = key.split('_')[0].split('-'),
+				toTiplocCodes = key.split('_')[1].split('-'),
 				dateTime = new Date(parseInt(key.split('_')[2])),
 				limitTo = parseInt(key.split('_')[3]),
 				dayOfWeek = dateTime.getDay() === 0 ? 6 : dateTime.getDay() - 1,
@@ -37,7 +37,9 @@ var getScheduleCached = new AsyncCache({
 					// ordered!
 					// I drop information about trains that go the opposite direction to
 					// the specified one or stop at just one of the stations
-					var tiplocCodes = data.JsonScheduleV1.schedule_segment.schedule_location.map(function (l) { return l.tiploc_code; });
+					var tiplocCodes = data.JsonScheduleV1.schedule_segment.schedule_location.map(function (l) { return l.tiploc_code; }),
+						fromTiplocCode = _.intersection(tiplocCodes, fromTiplocCodes)[0],
+						toTiplocCode = _.intersection(tiplocCodes, toTiplocCodes)[0];
 					if ((tiplocCodes.indexOf(fromTiplocCode) === -1) || (tiplocCodes.indexOf(toTiplocCode) === -1) || (tiplocCodes.indexOf(fromTiplocCode) > tiplocCodes.indexOf(toTiplocCode))) return undefined;
 					data.JsonScheduleV1.schedule_segment.schedule_location.forEach(function (l) {
 						// I convert the stops public arrival and departure times in 
@@ -72,15 +74,17 @@ var getScheduleCached = new AsyncCache({
 				}))
 				.pipe(es.writeArray(function (err, array) {
 					// I sort the results by the time they depart from fromTiplocCode
-					array.sort(function (a, b) { return a.stops.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0].departure.getTime() - b.stops.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0].departure.getTime(); });
+					array.sort(function (a, b) { return a.stops.filter(function (l) { return _.contains(fromTiplocCodes, l.tiploc_code); })[0].departure.getTime() - b.stops.filter(function (l) { return _.contains(fromTiplocCodes, l.tiploc_code); })[0].departure.getTime(); });
 					callback(err, array);
 		    	}));
 		}
 });
 
-exports.getSchedule = function (fromTiplocCode, toTiplocCode, options, callback) {
+exports.getSchedule = function (fromTiplocCodes, toTiplocCodes, options, callback) {
+	fromTiplocCodes = [ ].concat(fromTiplocCodes).sort();
+	toTiplocCodes = [ ].concat(toTiplocCodes).sort();
 	if (_.isDate(options)) options = { 'dateTime': options };
 	if (!options.dateTime) options.dateTime = new Date();
 	if (!options.limitTo) options.limitTo = 2; 
-	getScheduleCached.get(fromTiplocCode + '_' + toTiplocCode + '_' + options.dateTime.getTime() + '_' + options.limitTo, callback);
+	getScheduleCached.get(fromTiplocCodes.join('-') + '_' + toTiplocCodes.join('-') + '_' + options.dateTime.getTime() + '_' + options.limitTo, callback);
 };
