@@ -1,4 +1,4 @@
-var AsyncCache = require('async-cache')
+var AsyncCache = require('async-cache'),
 	csv = require('csv'),
 	path = require('path');
 
@@ -45,4 +45,20 @@ var tiploc2stanoxCached = new AsyncCache({
 
 exports.tiploc2stanox = function (tiploc, callback) {
 	tiploc2stanoxCached.get(tiploc.toUpperCase(), callback);
+};
+
+var stanox2tiplocCached = new AsyncCache({
+	'max': STATION_CODES_CONVERSION_CACHE_SIZE, 
+	'load': function (key, callback) {
+		stationCodesInitialise(function (err) {
+			var station = STATION_CODES.filter(function (sc) {
+				return sc.stanox === key;
+			})[0];
+			callback(null, station ? station.tiploc : null);
+		});
+	}
+});
+
+exports.stanox2tiploc = function (stanox, callback) {
+	stanox2tiplocCached.get('' + stanox, callback);
 };
