@@ -46,6 +46,8 @@ Note that although the scripts allow to capture all trains arrival data at any s
 
 The *RailReferences.csv* file is part of the "National Public Transport Access Nodes (NaPTAN)" dataset and is published under [OGL](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/) at [http://data.gov.uk/dataset/naptan](http://data.gov.uk/dataset/naptan). It was last downloaded on 2 April 2014.
 
+The *railwaycodes_org_uk.csv* file is a scrape of the "CRS, NLC, TIPLOC and STANOX Codes" section of the ["Railway Codes and other data"](http://www.railwaycodes.org.uk/) website by Phil Davies, obtained by running the [*tools/railwaycodes_org_uk_scrape.js*](tools/railwaycodes_org_uk_scrape.js) script. We have contacted him to verify the licensing for the data, that appears to be collated from OGL-ed sources. It was last scraped on 13 April 2014.
+
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *Railsponsibility* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 
 The team picture at the International Open Data Day was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840), the one at the Joint Open Data Hackathon was taken by [@eehcnas](https://twitter.com/eehcnas/status/445972723614117888). Both were enhanced a little by giacecco. 
