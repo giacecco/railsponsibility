@@ -9,12 +9,9 @@ var fs = require('fs'),
 // returns service number and aimed arrival time at toStationCode of the first
 // train leaving from fromStationCode on or after dateTime 
 var getTrainDetails = function (fromStationCode, toStationCode, dateTime, callback) {
-	log("Calling getScheduledDepartures...");
 	transportapi.getScheduledDepartures(fromStationCode, toStationCode, dateTime, function (err, results) {
 		if (err) throw err;
-		log("Calling getScheduledService...");
 		transportapi.getScheduledService(_.first(results).service, fromStationCode, _.first(results).aimed_departure_time, function (err, stops) {
-			log("Finished calling");
 			if (err) throw err;
 			stops = _.filter(stops, function (s) { return s.station_code === toStationCode; });
 			callback(null, { 
