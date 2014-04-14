@@ -38,13 +38,9 @@ Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/gover
 
 ##Today
 
-The project awoke again on 31/3/14 for additional development by Giacecco focusing exclusively on gathering train arrival data (not only delayed trains). The software has been re-written from the ground-up to be production- rather than hackathon-quality. He also migrated from Stride to [Transport API](http://transportapi.com/), as there is no reason to add one more point of failure in the already long chain between the source data and the software. You should be able to find some sample data in the [data](data/) folder. 
-
-Note that although the scripts allow to capture all trains arrival data at any station, what we actually capture is only those stations where trains that are declared as delayed by some 'triggering event' stop, e.g. one passenger tweeting to @railspon something like "@railspon from berkhamsted to euston 1846" will capture all arrivals from any origin in Berkhamsted, Hemel Hempstead, Watford Junction and London Euston until the 18:46 train has arrived in London Euston. 
+The project awoke again on 31/3/14 for additional development by Giacecco focusing exclusively on gathering train arrival data (not only delayed trains). The software has been re-written from the ground-up to be production- rather than hackathon-quality. He also migrated from Stride to [Transport API](http://transportapi.com/) first and then directly to Network Rail's ["Data Feed" service](https://datafeeds.networkrail.co.uk/ntrod/login), as there is no reason to add more points of failure to the already long chain between the source data and the software. 
 
 ##Licence
-
-The *RailReferences.csv* file is part of the "National Public Transport Access Nodes (NaPTAN)" dataset and is published under [OGL](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/) at [http://data.gov.uk/dataset/naptan](http://data.gov.uk/dataset/naptan). It was last downloaded on 2 April 2014.
 
 The *railwaycodes_org_uk.csv* file is a scrape of the "CRS, NLC, TIPLOC and STANOX Codes" section of the ["Railway Codes and other data"](http://www.railwaycodes.org.uk/) website by Phil Davies, obtained by running the [*tools/railwaycodes_org_uk_scrape.js*](tools/railwaycodes_org_uk_scrape.js) script. We have contacted him to verify the licensing for the data, that appears to be collated from OGL-ed sources. It was last scraped on 13 April 2014.
 

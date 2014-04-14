@@ -2,7 +2,7 @@ var async = require('async'),
     fs = require('fs'),
     Stomp = require('stomp-client'),
     path = require('path'),
-    scheduleReader = require('./NROD_scheduleReader'),
+    scheduleReader = require('./scheduleReader'),
     utils = require('./utils'),
 	_ = require('underscore');
 
