@@ -31,6 +31,37 @@ function stationCodesInitialise (callback) {
 	stationCodesInitialiseCached.get(null, callback);
 }
 
+var crs2tiplocCached = new AsyncCache({
+	'max': STATION_CODES_CONVERSION_CACHE_SIZE, 
+	'load': function (key, callback) {
+		stationCodesInitialise(function (err) {
+			callback(null, STATION_CODES.reduce(function (memo, sc) {
+				if (sc.crs === key) memo.push(sc.tiploc);
+				return memo;
+			}, [ ]).sort());
+		});
+	}
+});
+
+exports.crs2tiploc = function (crs, callback) {
+	crs2tiplocCached.get(crs.toUpperCase(), callback);
+};
+
+var tiploc2crsCached = new AsyncCache({
+	'max': STATION_CODES_CONVERSION_CACHE_SIZE, 
+	'load': function (key, callback) {
+		stationCodesInitialise(function (err) {
+			callback(null, (STATION_CODES.filter(function (sc) {
+				return sc.tiploc === key;
+			})[0] || { 'crs': undefined }).crs);
+		});
+	}
+});
+
+exports.tiploc2crs = function (tiploc, callback) {
+	tiploc2crsCached.get(tiploc.toUpperCase(), callback);
+};
+
 var tiploc2stanoxCached = new AsyncCache({
 	'max': STATION_CODES_CONVERSION_CACHE_SIZE, 
 	'load': function (key, callback) {

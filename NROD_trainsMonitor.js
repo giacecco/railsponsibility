@@ -12,7 +12,7 @@ var SECRET = JSON.parse(fs.readFileSync(path.join(__dirname, 'NROD_SECRET.json')
     listenerIsOn = false,
     monitoredTrains = { };
 
-var initialise = function (callback) {
+var startListener = function (callback) {
     if (listenerIsOn) { callback(); return; } 
     listenerIsOn = true;
     listener.connect(function (sessionId) {
@@ -54,8 +54,8 @@ var initialise = function (callback) {
                 }
             }, function (err, arrivals) {
                 arrivals.forEach(function (arrival) {
-                    // utils.log(arrival.loc_tiploc + ": arrival of service " + arrival.train_service_code + " at " + prettyPrint(arrival.actual_timestamp) + " rather than " + prettyPrint(arrival.gbtt_timestamp));
-                    var trainKey = arrival.loc_tiploc + '_' + arrival.gbtt_timestamp.getTime();
+                    var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
+                    if (arrival.loc_tiploc.toUpperCase() === 'EUSTON') utils.log('*** arrived key ' + trainKey);
                     if (monitoredTrains[trainKey]) {
                         monitoredTrains[trainKey].callbacks.forEach(function (f) {
                             f({
@@ -64,34 +64,55 @@ var initialise = function (callback) {
                             });
                         });   
                         delete monitoredTrains[trainKey];
+                        if (_.keys(monitoredTrains).length === 0) {
+                            listener.disconnect(function () { });
+                            listenerIsOn = false;
+                        }
                     }
                 });
             });
         });
     });
+    callback(null);
 }
 
 var prettyPrint = function (d) {
     return (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();                   
 };
 
-var TrainMonitor = function (fromStationCode, toStationCode, aimedDepartureTime, callback) {
-    initialise(function () {
-        utils.log("Looking for schedule for train from " + fromStationCode + " to " + toStationCode + " at " + prettyPrint(aimedDepartureTime) + "...");
-        scheduleReader.getSchedule(fromStationCode, toStationCode, { 'dateTime': aimedDepartureTime }, function (err, result) { 
-            var result = result[0],
-                trainKey = toStationCode + '_' + _.last(result.stops).arrival.getTime();
-            utils.log("Identified schedule for train from " + fromStationCode + " at " + prettyPrint(result.stops.filter(function (s) { return s.tiploc_code === fromStationCode; })[0].departure) + " to " + toStationCode + " due at " + prettyPrint(_.last(result.stops).arrival) + ", service " + result.service + ".");
-            if (!monitoredTrains[trainKey]) monitoredTrains[trainKey] = {
-                callbacks: [ ],
-            };
-            monitoredTrains[trainKey].callbacks.push(callback);
+var TrainMonitor = function (fromStationCrs, toStationCrs, aimedDepartureTime, callback) {
+    startListener(function () {
+        var fromStationTiplocs,
+            toStationTiplocs;
+        async.parallel([
+            function (callback) { utils.crs2tiploc(fromStationCrs, function (err, tiplocs) {
+                fromStationTiplocs = tiplocs;
+                callback(err);
+            }) },
+            function (callback) { utils.crs2tiploc(toStationCrs, function (err, tiplocs) {
+                toStationTiplocs = tiplocs;
+                callback(err);
+            }) },
+        ], function (err) {
+            utils.log("Looking for schedule for train from " + fromStationCrs + " to " + toStationCrs + " at " + prettyPrint(aimedDepartureTime) + "...");
+            scheduleReader.getSchedule(fromStationTiplocs, toStationTiplocs, { 'dateTime': aimedDepartureTime }, function (err, result) { 
+                var result = result[0],
+                    fromStationTiploc = _.intersection(fromStationTiplocs, result.stops.map(function (s) { return s.tiploc_code; }))[0],
+                    toStationTiploc = _.intersection(toStationTiplocs, result.stops.map(function (s) { return s.tiploc_code; }))[0],
+                    trainKey = toStationTiploc + '_' + result.service + '_' + _.last(result.stops).arrival.getTime();
+                utils.log("Identified schedule for train from " + fromStationCrs + " at " + prettyPrint(result.stops.filter(function (s) { return fromStationTiploc === s.tiploc_code; })[0].departure) + " to " + toStationCrs + " due at " + prettyPrint(result.stops.filter(function (s) { return toStationTiploc === s.tiploc_code; })[0].arrival) + ", service " + result.service + ".");
+                if (!monitoredTrains[trainKey]) monitoredTrains[trainKey] = {
+                    callbacks: [ ],
+                };
+                monitoredTrains[trainKey].callbacks.push(callback);
+                utils.log('*** monitoring for key ' + trainKey);
+            });
         });
     });
     return { };
 };
 
-exports.create = function (fromStationCode, toStationCode, aimedDepartureTime, callback) {
-    return new TrainMonitor(fromStationCode, toStationCode, aimedDepartureTime, callback);
+exports.create = function (fromStationCrs, toStationCrs, aimedDepartureTime, callback) {
+    return new TrainMonitor(fromStationCrs, toStationCrs, aimedDepartureTime, callback);
 };
 
