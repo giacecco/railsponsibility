@@ -49,6 +49,16 @@ getLetters(function (err, letters) {
 						'tiploc': _.trim($('td:nth-child(4)', this).text()) || null,
 						'stanox': $('td:nth-child(5)', this).text().match(/\d+/) ? $('td:nth-child(5)', this).text().match(/\d+/)[0] : null,
 					});
+					// if the CRS cell is a rowspan, I make the cell normal and
+					// duplicate the values
+					if ($('td:nth-child(2)', this).attr('rowspan')) {
+					    var valueToDuplicate = $('td:nth-child(2)', this).text(),
+					        noOfRows = $('td:nth-child(2)', this).attr('rowspan');
+					    $('td:nth-child(2)', this).removeAttr('rowspan');
+					    $('td:nth-child(2)', this).parent().nextAll('tr').each(function (index, element) {
+					        if (index < noOfRows - 1) $(this).find('td').eq(0).after('<td>' + valueToDuplicate + '</td>');
+					    });
+					}
 				});
 				callback(null, memo);
 			}
