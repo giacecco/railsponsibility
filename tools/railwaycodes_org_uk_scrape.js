@@ -49,15 +49,19 @@ getLetters(function (err, letters) {
 						'tiploc': _.trim($('td:nth-child(4)', this).text()) || null,
 						'stanox': $('td:nth-child(5)', this).text().match(/\d+/) ? $('td:nth-child(5)', this).text().match(/\d+/)[0] : null,
 					});
+					// TODO: make the code below work for all 5 columns
 					// if the CRS cell is a rowspan, I make the cell normal and
 					// duplicate the values
-					if ($('td:nth-child(2)', this).attr('rowspan')) {
-					    var valueToDuplicate = $('td:nth-child(2)', this).text(),
-					        noOfRows = $('td:nth-child(2)', this).attr('rowspan');
-					    $('td:nth-child(2)', this).removeAttr('rowspan');
-					    $('td:nth-child(2)', this).parent().nextAll('tr').each(function (index, element) {
-					        if (index < noOfRows - 1) $(this).find('td').eq(0).after('<td>' + valueToDuplicate + '</td>');
-					    });
+					for(var columnNo = 1; columnNo <= 5; columnNo++) {
+						if ($('td:nth-child(' + columnNo + ')', this).attr('rowspan')) {
+						    var valueToDuplicate = $('td:nth-child(' + columnNo + ')', this).text(),
+						        noOfRows = $('td:nth-child(' + columnNo + ')', this).attr('rowspan');
+						    $('td:nth-child(' + columnNo + ')', this).removeAttr('rowspan');
+						    $('td:nth-child(' + columnNo + ')', this).parent().nextAll('tr').each(function (index, element) {
+						        // if (index < noOfRows - 1) $(this).find('td').eq(0).after('<td>' + valueToDuplicate + '</td>');
+						        if (index < noOfRows - 1) $(this).find('td:nth-child(' + columnNo + ')').eq(0).before('<td>' + valueToDuplicate + '</td>');
+						    });
+						}
 					}
 				});
 				callback(null, memo);

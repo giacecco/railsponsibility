@@ -9,7 +9,7 @@ Abbey Wood Ticket Office,,513120,,
 Abbotswood Junction,AWJ,470412,ABTSWDJ,67371
 Aber,ABE,381300,ABER,78371
 Aberaeron (Alban Square),AER,406802,ABARASQ,
-027400,AER,,,
+Aberaeron (Alban Square),AER,027400,,
 Aberbeeg,,369600,ABRBEG,76639
 Aberbeeg Signal Box,,369665,,
 Abercwmboi,ABI,385964,ABCWM,78128
@@ -18,22 +18,22 @@ Abercwmboi Phum/Plant Outlet,,386012,ABCWMPO,
 "Abercynon
 (formerly Abercynon South)",ACY,380100,ABRCYNS,78204
 Abercynon Junction,,380113,ABRCJN,78205
-"ABRCNJN
-(probably listed in error)",,,,
+Abercynon Junction,,380113,"ABRCNJN
+(probably listed in error)",
 Abercynon Junction,,380163,,
 Abercynon North,ABR,380300,ABRCYNN,78203
 Abercynon Signal A187,,380101,ABRC187,
 Abercynon Signal Box,,385763,ABRCNSB,
 Aberdare,ABA,398200,ABDARE,78100
-,380200,,,
+Aberdare,,380200,,
 Aberdare Diesel Sidings,,398211,ABDADS,78101
 Aberdare Penywaun (By Bus),XPZ,398202,ABDAPEN,
-PWN,,,,
+Aberdare Penywaun (By Bus),PWN,,,
 Aberdare SST,,331100,,
 Aberdare Station,,335728,,
 Aberdare Transrail,,398201,,
 Aberdare Trecynon (By Bus),XTO,398203,ABDATRE,
-TYN,,,,
+Aberdare Trecynon (By Bus),TYN,,,
 Aberdare Valley Freight,,380269,,
 Aberdeen,ABD,897600,ABRDEEN,02071
 Aberdeen Carless,,,,02107
@@ -215,7 +215,7 @@ Allanton Loop,See Merryton Loop,,,
 Allens West,ALW,752000,ALLENSW,15702
 Allens West Urlay Nook Crossover,,752010,ALLEURL,15705
 Allerton,ALE,221400,ALERTN,36192
-See Liverpool South Parkway High Level,,,,
+Allerton,See Liverpool South Parkway High Level,,,
 Allerton Diesel Multiple Unit Depot,XAL,221600,ALERTNS,36191
 "Allerton ""GAS""",,,,36190
 Allerton Junction,,221401,ALERTNJ,36195
@@ -248,7 +248,7 @@ Alston (Townhead),ALS,027600,,
 Althorne,ALN,686900,ALTHORN,50305
 Althorpe,ALP,653200,ALTPE,22075
 Althorpe Keadby Canal,,652600,ALTPKC,22085
-See also Keadby Canal,,,,
+Althorpe Keadby Canal,See also Keadby Canal,,,
 Altnabreac,ABC,860600,ALTNBRC,01010
 Altnabreac Civil Engineer's Sidings,,860660,ALTNCCE,01011
 Altofts,ATS,836300,ALTFTS,
@@ -263,8 +263,8 @@ Altrincham Metrolink,XNA,280620,ALTRMET,
 Alum Bay,,,ALUMBAY,
 Alvechurch,ALV,119800,ALVCHRC,66527
 Alvechurch Red Lion Pub,ARP,094200,ALVCRLP,
-,119803,,,
-,119801,ALVCRL,,
+Alvechurch Red Lion Pub,,119803,,
+Alvechurch Red Lion Pub,,119801,ALVCRL,
 Alves Junction,,860700,ALVES,02004
 Ambergate,AMB,167800,AMBERGT,57013
 Ambergate Chief Civil Engineer's Sidings,,,,57101
@@ -273,7 +273,7 @@ Ambergate Wingfield,,167803,AMBEWIN,57001
 Amberieu (France),,080667,AMBRIEU,00780
 Amberley,AMY,525000,AMLY,87957
 Amersham,AMR,050600,AMERSHM,70361
-ZAM,,,,
+Amersham,ZAM,,,
 Amersham London Transport Signal 34,,,AMLTS34,70363
 Amersham Mantles Wood,,050601,AMERMWD,70362
 Amiens,AMI,081800,AMIENS,
@@ -306,8 +306,8 @@ Andover Signal 8,,551001,ANDO8,86072
 Andover Yard,,551001,ANDOYD,86072
 Anerley,"ANY
 original code",539700,ANERLEY,87644
-"ANZ
-new code",,,,
+Anerley,"ANZ
+new code",,,
 Angel LT,ZAN,050700,,
 Angel Road,AGR,690900,ANGELRD,51924
 Angerstein Junction,,520660,ANGRSTJ,88510
@@ -433,7 +433,7 @@ Ashchurch For Tewkesbury,ASC,470000,ASHCHRC,68071
 Ashchurch MOD (Army),,470011,ASHCMOD,68073
 Ashchurch Signal G453,,470001,ASHC453,68074
 Ashchurch War Department Ground Frame,,470010,ASHCWGF,68075
-470012,,ASHCWTF,68072,
+Ashchurch War Department Ground Frame,,470012,ASHCWTF,68072
 Ashfield,ASF,995300,ASFIELD,06245
 Ashford A Junction,,500439,ASHFAJN,89438
 Ashford Carriage Holding Sidings,,500457,ASHFKCS,89420
@@ -441,8 +441,8 @@ Ashford Crane Depot,,500431,ASHFCR,89422
 Ashford Down Goods Loop,,,,89426
 Ashford Down Sidings,,500232,ASHFDNS,89420
 Ashford Down Yard,,520912,ASHFKDY,89427
-"ASHFKKY
-(thought to be reported in error)",,,,
+Ashford Down Yard,,520912,"ASHFKKY
+(thought to be reported in error)",
 Ashford Down Yard Washer Road,,520913,ASHFDYW,89421
 Ashford East Berthing Sidings,,500432,ASHFEBS,89419
 Ashford East Junction,,500436,ASHFEJN,89430
@@ -490,7 +490,7 @@ Ashton Moss South Junction,,,ASHTMSJ,
 Ashton-Under-Lyne,AHN,279000,ASHONUL,32115
 Ashurst,AHS,539800,ASHURST,87763
 Ashurst Bald Face Stag Public House,,539850,ASHUBUS,
-ABF,777100,,,
+Ashurst Bald Face Stag Public House,ABF,777100,,
 Ashurst Junction,,539821,ASHUJN,87765
 "Ashurst New Forest
 (formerly Lyndhurst Road)",ANF,590600,LYNDHRD,86893
@@ -579,11 +579,11 @@ Avonmouth Fisons Sidings,,,AVONMFS,
 Avonmouth Henry Bath Sidings,,320001,AVONHRN,81248
 Avonmouth Hydro-Agri,,,,81241
 Avonmouth National Power Silo 1,,320029,AVONNPI,81237
-,320027,AVONNPT,81237,
+Avonmouth National Power Silo 1,,320027,AVONNPT,81237
 Avonmouth National Power Silo 2,,320028,AVONNP2,81238
 Avonmouth Number 5 Wharf English Welsh & Scottish Railway,,320012,AVONWWF,81229
 Avonmouth Rockingham Road,,320005,AVONRKR,81242
-,,AVONRCK,,
+Avonmouth Rockingham Road,,,AVONRCK,
 Avonmouth Royal Edward Yard English Welsh & Scottish Railway,,324400,,81247
 Avonmouth West Wharf Freightliner Heavy Haul,,320004,AVONWFH,81227
 Awre,,475670,AWRE,76076
@@ -602,14 +602,14 @@ Aylesbury Signal ME302,,149207,AYLS302,
 Aylesbury Signal ME792,,149204,AYLS792,
 Aylesbury Vale Junction,,149203,AYLSVJN,70356
 Aylesbury Vale Parkway,AVP,109000,AYLSPWY,70355
-"149202 (code reported but probably not used, at least not after station opened)",AVP,,,
+Aylesbury Vale Parkway,AVP,"149202 (code reported but probably not used, at least not after station opened)",,
 Aylesbury Waddesdon Manor,,149205,AYLSWAD,70343
 Aylesford,AYL,516200,AYLESFD,89309
 Aylesford Reeds Sidings,,,AYLERSD,
 Aylesham,AYH,519700,ALSHAM,89515
 Aylsham South,,728800,AYSHMS,
 Aynho Junction,XAN,450100,AYNHOJ,69440
-AYJ,,,,
+Aynho Junction,AYJ,,,
 Aynho Junction Signal BS501,,450102,AYNH501,69443
 Aynho Park Junction,,450101,AYNHPKJ,69441
 Aynho Signal BS5002,,450104,AYNH502,69444
@@ -786,7 +786,7 @@ Barnwood Junction,BWJ,476024,BNWDJN,68082
 Barnwood Sidings,,476017,BNWDSDG,68083
 Barons Court Lay By Siding,,051601,BRNSSDG,72261
 Barons Court LT,ZBC,051600,BRNSTLT,72260
-ZBQ,,,,
+Barons Court LT,ZBQ,,,
 Barrhead,BRR,967400,BRHD,07224
 Barrhill,BRL,946700,BRRHL,08645
 Barrow Haven,BAV,621200,BARWHVN,21004
@@ -816,7 +816,7 @@ Barry Docks ABP Shipment,,380625,BARRABP,78802
 Barry Docks Advenza Freight,,380605,BARRDAZ,78801
 Barry Docks BP Chemicals [later Zeon],,380614,BARRBPC,78804
 Barry Docks Dow Chemicals,,380617,BARRDCG,78808
-Barry Docks Dow Chemicals Freightliner,,380618,78809,
+Barry Docks Dow Chemicals Freightliner,,380618,BARRDCG,78809
 Barry Docks Dow Corning,,380623,BRYDDCO,78813
 Barry Docks Dunn Brothers,,380604,BARRDUN,78807
 Barry Docks EWS,,380601,BARREWS,78803
@@ -846,7 +846,7 @@ Barton Under Needwood LH Group,,165807,BTNULH,57731
 Barton Under Needwood North Junction,,165813,BTNUNNJ,57727
 Barton Under Needwood South Junction,,165812,BTNUNSJ,57726
 Baschurch Sidings,,445708,BASCH,64123
-BASCSDG,,,,
+Baschurch Sidings,,445708,BASCSDG,
 Basel,,087302,BASEL,00506
 Basel SBB GB GTI,,087301,BASESGG,00505
 Basford,BAF,186400,BASFORD,55118
@@ -1044,7 +1044,7 @@ Bentley Junction,,641715,BTLYJN,23027
 Bentley RJB,,,BTLYBC,
 Bentley (Suffolk),,685671,BNTLEY,49300
 Bentley (Yorks),BYK,835200,BTLYSY,23115
-BLS,,,,
+Bentley (Yorks),BLS,,,
 Benton Killingworth,,757705,BENTKIL,12139
 Benton (Nexus),BNO,917000,BENTMET,12419
 Benton North Junction,,757700,BENTON,12255
@@ -1093,8 +1093,8 @@ Bethnal Green,BET,696100,BTHNLGR,52739
 Bethnal Green East Junction,,696106,BTHNLGE,52744
 Bethnal Green LT,ZBE,052000,,
 Bethnal Green North Junction,BGJ,696103,BTHNLGN,52740
-,"BTLGRNJ
-(older designation?)",,,
+Bethnal Green North Junction,,696103,"BTLGRNJ
+(older designation?)",
 Bethnal Green West Junction,,696105,BTHNLGW,52742
 Betley Road Signal Box,,123966,BETLRSB,42300
 Bettembourg,BBR,874700,BETTMBG,00889
@@ -1232,7 +1232,7 @@ Bishops Stortford Reception,BIR,680013,BSHPSFY,47411
 Bishops Stortford Up Loop,,680005,BSHPSUL,47414
 Bishopstone,BIP,540200,BSSN,88238
 Bishopstone (Hill Rise),,540250,BSSNBUS,
-BIR,778400,,,
+Bishopstone (Hill Rise),BIR,778400,,
 Bishopton,BPT,962000,BISHPTN,07132
 Bishopton British Aerospace,,962011,BISHPBA,07131
 BIS Siding,,,BISOKMR,
@@ -1248,7 +1248,7 @@ Blackburn Freight Depot,,256600,,29158
 Blackburn Holding Sidings,,273704,BLKBNHS,
 Blackburn King Street (British Fuels),,257013,BLKBKST,29159
 Blackburn PG Fogarty,,256611,BLKBBFG,29157
-,256612,29156,,
+Blackburn PG Fogarty,,256612,BLKBBFG,29156
 Blackburn Signal PN444,,273708,BLKB444,29149
 Blackburn Station Holding Sidings,,273709,BLKBSHS,29151
 Blackburn Taylor Street,,256601,BLKBNTS,29160
@@ -1410,7 +1410,7 @@ Bootle New Strand,BNW,219500,BOOTLNS,36071
 Bootle Oriel Road,BOT,223900,BOOTLOR,36072
 Bootle Stations,,1780,,
 Bopeep Junction Signal Box,XOP,521260,BOPEEPJ,88284
-BPJ,,,,
+Bopeep Junction Signal Box,BPJ,,,
 Bordeaux Bastide,,874201,BORDBAS,00792
 Bordeaux St Jean,BOX,874200,BORDSTJ,00792
 Bordesley,BBS,451300,BRDS,66412
@@ -1419,12 +1419,12 @@ Bordesley Loop,,451302,BRDSLYL,66419
 Bordesley MAT,,451316,BRDSMAT,66417
 Bordesley Signal LJ7326,,451304,BRDS732,66413
 Bordesley South Junction,,,BRDSSJN,
-,451307,BRDSLSJ,66401,
+Bordesley South Junction,,451307,BRDSLSJ,66401
 Bordesley Terminal Complex,,451360,BRDSLYY,66416
 Bordesley Up Loop,,451305,BRDSULP,66405
 Bordon,BDZ,254000,BORDON,
-"BRD
-code superseded?",,,,
+Bordon,"BRD
+code superseded?",,,
 Boroughbridge Road Level Crossing,,799613,BOROBDR,15882
 Borough Green & Wrotham,BRG,513000,BORWGAW,89401
 Borough Green Down Loop,,513001,BORWDNL,89412
@@ -1509,7 +1509,7 @@ Bow Road LT,ZBR,052800,,
 Bow Street,,430403,BORTBOW,64606
 Boxhill & Westhumble,BXW,540300,BOXHAWH,87686
 Boxhill Burford Bridge Hotel,BXX,540350,BOXHBUS,
-435000,BXX,,,
+Boxhill Burford Bridge Hotel,BXX,435000,,
 Boyle,BOQ,039000,,
 Bracknell,BCE,569300,BRACKNL,87101
 Bracknell Emergency Crossover,,569301,BRACETC,87087
@@ -1618,7 +1618,7 @@ Bridlington,BDT,804900,BRDLNGT,19007
 Bridlington Carnaby,,804905,BRDLCAR,19009
 Bridlington Quay Signal Box,,,BRDLQSB,19008
 Bridport (by bus),BPO,585000,,
-028200,BPO,,,
+Bridport (by bus),BPO,028200,,
 Brierfield,BRF,255400,BRIERFL,29036
 Brierley Hill,BHL,463600,BRIRLYH,65729
 Brierley Hill,,,,65728
@@ -1636,11 +1636,11 @@ Brighton Loco Holding Sidings,XDV,526801,BRGHLHS,87983
 Brighton Locomotive Works,,526806,,87982
 Brighton London Road,LRB,528100,BRGHLRD,88141
 Brighton London Road (Ditchling Rise),,528150,BRGHBUS,
-LRR,094400,,,
+Brighton London Road (Ditchling Rise),LRR,094400,,
 Brighton Montpelier Carriage Holding Sidings,XMP,526813,BRGHMHS,87981
 Brighton One Stop Shop (Old Steine),,3644,,
-"2791
-(later code)",,,,
+Brighton One Stop Shop (Old Steine),,"2791
+(later code)",,
 Brighton Reception Road,,526840,BRGHRC,87976
 Brighton Self Service Ticket Machines,,8882,,
 Brighton Signal T1257,,526809,BRGH257,87978
@@ -1669,7 +1669,7 @@ Bristol Barton Hill EWS,,322064,BRSTLBH,81434
 Bristol Barton Hill Freightliner Heavy Haul,,322063,BRSTBRT,81433
 Bristol Barton Hill Wagon Repair Depot,XHL,322060,BRSTLCW,81432
 Bristol Bath Road Traction Maintenance Depot,XAB,321669,BRSTMD,81800
-XTB,321600,BATHRD,,
+Bristol Bath Road Traction Maintenance Depot,XTB,321600,BATHRD,
 Bristol East Depot Down Goods Loop,,323184,BRSTEDT,81511
 Bristol East Depot EWS,,323160,BRSTLED,81512
 Bristol East Depot Regional Civil Engineer,BDR,323112,BRSTEDC,81513
@@ -1905,7 +1905,7 @@ Bury St Edmunds Carriage Maintenance Depot,,700814,BSTEDCM,46303
 Bury St Edmunds Down Goods Loop,,700817,BSTEDGL,46305
 Bury St Edmunds EWS Carriage & Wagon,,,,46304
 Bury St Edmunds Freight Depot Tarmac,,700819,BSTETAR,46309
-46307,,,,
+Bury St Edmunds Freight Depot Tarmac,,700819,BSTETAR,46307
 Bury St Edmunds Freightliner Heavy Haul,,700818,BSTEFHH,46306
 Bury St Edmunds Reception,,700816,BSTEDMR,46302
 Bury St Edmunds Signal BY19,,700802,BSTED19,46308
@@ -1913,7 +1913,7 @@ Bury Street Junction,XSG,694111,BYSTJN,51948
 Busby,BUS,979100,BUSBY,07613
 Busby Junction,,981260,BUSBYJ,07234
 Bushbury Junction,XBJ,116700,BSBYJN,65006
-BYJ,,,,
+Bushbury Junction,BYJ,,,
 Bushbury Junction Down Goods Loop,,116701,BSBYJDG,65007
 Bushey,BSH,139500,BUSHEY,72003
 Bushey DC lines,BSH,139501,BUSHYDC,72001
@@ -2046,8 +2046,8 @@ Camden Road Incline Junction,,136709,CMDNRIJ,72431
 Camden Road Junction,,144001,CMDNRDJ,72421
 Camden Signal 210,,,CMDN210,72423
 Camden Signal 610,,136707,CMDN610,72319
-"CMND610
-(believed listed in error)",,,,
+Camden Signal 610,,136707,"CMND610
+(believed listed in error)",
 Camden Signal 2102,,144004,CMD2102,72423
 Camden Signal NL1200,,136708,CMDN200,72429
 Camden Signal NL1202,,136713,CMDN202,72427
@@ -2062,8 +2062,8 @@ Camp Hill,,,CAMPH,
 Campile,CMP,039300,,
 Canada Water,"ZCW
 (as used by NRES)",515050,CNDAW,
-"CWA
-(as used by operational research software)",165900,87568,,
+Canada Water,"CWA
+(as used by operational research software)",165900,CNDAW,87568
 Canada Water Crossover,,165901,CNDAXO,87570
 Canada Water LT,,078800,CANAWLT,
 Canal Junction (New Cross),,065105,CANALJ,87578
@@ -2168,9 +2168,9 @@ Cardiff Tidal Rail Port,,382102,CARDRP,77108
 Cardiff Tidal Terminal Complex,CTC,382166,CARDFTS,77090
 Cardiff Tidal Wabtec,,390921,,77095
 Cardiff [unknown features],,,,76990
-77950,,,,
-77970,,,,
-77990,,,,
+Cardiff [unknown features],,,,77950
+Cardiff [unknown features],,,,77970
+Cardiff [unknown features],,,,77990
 Cardiff Up Goods Loop,,381510,CARDUGL,77302
 Cardiff West,,389976,CRDFW,77303
 Cardigan Finchs Square,CAI,028400,,
@@ -2189,7 +2189,7 @@ Carlisle Bog Junction,,211801,CARLBJN,09193
 Carlisle Brunthill Freightliner Heavy Haul,,211815,CARLBRU,09144
 Carlisle Caldew Junction,,211802,CARLCJN,09159
 Carlisle Collier Lane Sidings,,211803,CARL996,
-,,CARLCLS,,
+Carlisle Collier Lane Sidings,,,CARLCLS,
 Carlisle Exchange Sidings,,,CARLEXS,
 Carlisle Harker Kingstown Whittals Warehousing,,207812,CARLCWL,09142
 Carlisle Harker MOD,,,,09141
@@ -2238,10 +2238,10 @@ Carmarthen,CMN,406800,CMTHN,80419
 Carmarthen Blue Circle,,,,80413
 Carmarthen Bridge,,406883,CMTHNBG,80409
 Carmarthen Down Sidings,,406805,CMTHDSD,80417
-CMTHDNS,,,,
+Carmarthen Down Sidings,,406805,CMTHDNS,
 Carmarthen Freight Depot,,,CMTHNFD,
 Carmarthen Junction,XCI,406865,CMTHNJ,80411
-CMJ,,,,
+Carmarthen Junction,CMJ,,,
 Carmarthen Junction Signal CJ22,,,CMTHS22,
 Carmarthen Kemira Siding,,406815,CMTHNKS,80412
 Carmarthen Sidings,,406816,CMTHNSD,80414
@@ -2539,7 +2539,7 @@ Cheriton Emergency Siding,,502713,,89741
 Cheriton Eurotunnel Depot,,502712,CHERITO,
 Cheriton Junction,,502704,CHERTNJ,
 Cherry Hinton,CYH,702800,CHRYHNT,47007
-CHQ,,,,
+Cherry Hinton,CHQ,,,
 Cherry Tree,CYT,257300,CHTR,29162
 Chertsey,CHY,555300,CHTSEY,86012
 Chesham,ZCM,054300,CHSM,
@@ -2669,7 +2669,7 @@ Clandon,CLA,555500,CLANDON,87069
 Clapham Common,ZCC,054700,,
 Clapham High Street,CLP,530100,CLPHHS,87209
 Clapham Junction,,,,87218
-CLJ,559500,CLPHMJN,87219,
+Clapham Junction,CLJ,559500,CLPHMJN,87219
 Clapham Junction Platform 1,,559518,CLPHMJ1,
 Clapham Junction Platform 2,"CJN
 code used?",559527,CLPHMJ2,
@@ -2696,7 +2696,7 @@ Clapham North LT,ZCN,054800,,
 Clapham North Yorkshire,CPY,265300,CLPM,11565
 Clapham South LT,ZCA,054900,,
 Clapham Yard,XYM,559512,CLPHMYM,87221
-,,CLPHMYW,,
+Clapham Yard,,,CLPHMYW,
 Clapham Yard Sidings,,559517,CLPHMYS,87228
 Clapham Yard Signal CY11,,,CLPHY11,
 Clapton,CPT,692600,CLAPTON,52735
@@ -2727,7 +2727,7 @@ Cleethorpes,CLE,627400,CLTHRPS,21141
 Cleland,CEA,971800,CLELAND,07430
 Cleland Civil Engineer,,971860,CLELACE,07433
 Cliffe Brett Marine,XLF,516511,CLFFBM,88735
-CBM,,,,
+Cliffe Brett Marine,CBM,,,
 Cliffe Hill Ground Frame,,183316,CLIFHGF,58122
 Cliffe Hill Sidings,CIS,183331,CLIFHLS,58121
 Cliffe Hill Stud Farm,,,CLIFHSF,
@@ -2758,7 +2758,7 @@ Cloughjordan,CLZ,030600,,
 Clunderwen,CUW,407000,CLYNDRW,80305
 Clunes Intermediate Block Post,,866512,CLUNSIB,01093
 Clunybridge Junction,XCJ,917767,CLNYBDJ,03257
-CUJ,,,,
+Clunybridge Junction,CUJ,,,
 Clydach On Tawe Inco Europe,,,CLDACH,79108
 Clydebank,CYK,985500,CLYBANK,06345
 Coaley Junction,,476016,,68141
@@ -2807,7 +2807,7 @@ Cogload Junction,CGJ,347198,COGLOAD,83010
 Colchester,COL,686100,CLCHSTR,50049
 Colchester Bridge Road Up Clacton Siding,,686129,CLCHUCS,50049
 Colchester Carriage Servicing Depot,XLG,686161,CLCHCSD,50048
-,686162,CLCHRCS,50048*,
+Colchester Carriage Servicing Depot,,686162,CLCHRCS,50048
 Colchester East Gate Junction,,686122,CLCHEGJ,50036
 Colchester Goods Loop,,686112,CLCHGL,50052
 Colchester Hythe,HYH,685100,CLCHHYT,50030
@@ -2825,7 +2825,7 @@ Colchester Signal CO1385,,686136,CLCH138,49015
 Colchester Stanway,,685262,CLCHSWY,
 Colchester Stations,,0254,,
 Colchester Town,CET,685300,CLCHRTN,50041
-686110,CET,,,
+Colchester Town,CET,686110,,
 Colchester Up Passenger Loop,,686113,CLCHUP,50054
 Colchester Up Sudbury Siding (Sudbury Dock),,686125,CLCHUSS,50053
 Colchester Yard,XLP,685213,CLCHSTY,50051
@@ -2834,7 +2834,7 @@ Coldham Lane Junction,,702222,CLDHMLJ,47213
 Coleford (Network Rail/Dean Forest Railway Boundary),,582701,COLFORD,83323
 Coleham,,,COLHM,
 Coleham Civil Engineer's Sidings,,438719,COLHACE,64227
-COLHCE,,,,
+Coleham Civil Engineer's Sidings,,438719,COLHCE,
 Coleham Shelf Sidings,,,COLHMSS,64233
 Coleraine,CEI,032100,,
 Coleshill,,111700,COLESH,66231
@@ -2909,7 +2909,7 @@ Corby BSC Automotive Terminal,,184719,CORBGFC,60014
 Corby Bus Link,XXZ,,,
 Corby Gretton,,184708,CORBGRT,60008
 Corby Harringworth Signal Box,,184702,CORBHSB,60006
-See also Harringworth Signal Box,,,,
+Corby Harringworth Signal Box,See also Harringworth Signal Box,,,
 Corby Lewin Road,,184705,CORBLEW,60011
 Corby North Junction,,184701,CORBYNJ,60009
 Corby Oakley Road,,184706,CORBOAK,60011
@@ -2925,7 +2925,7 @@ Cork,COK,048400,CORK,
 Cork B&I Ferryport,,048461,CORKBIF,
 Corkerhill,CKH,962700,CKHL,07124
 Corkerhill Carriage Servicing & Maintenance Depot,XCK,962770,CKHLCSD,07125
-CRC,,,,
+Corkerhill Carriage Servicing & Maintenance Depot,CRC,,,
 Corkerhill Depot Junction,,962780,CKHLCSJ,07126
 Corkickle,CKL,204900,CRCK,10124
 Corkickle Caustic Albright & Wilson,,204912,,10128
@@ -2969,7 +2969,7 @@ Cottingley,COT,850500,COTNGLY,17143
 Coulsdon North,,535400,COLSDNN,
 Coulsdon South,CDS,540800,COLSDNS,87900
 Coulsdon Town,,538201,COLSTWN,87713
-CDN,Previously called Smitham,,,
+Coulsdon Town,CDN,Previously called Smitham,,
 Courthill Loop Junction,,505963,CRTHLPJ,88446
 Court Sart Junction,,416764,CTSARTJ,79595
 Cove Bay,,897620,CVEBAY,02110
@@ -2993,14 +2993,14 @@ Cowden,CWN,540900,COWDEN,87761
 Cowden Crossroads,COC,778500,COWDBUS,
 Cowdenbeath,COW,918500,CWDNBTH,03256
 Cowdenbeath Signal EC941,,918561,CWDN941,03259
-Also has STANOX 52728 assigned in error,,,,
+Cowdenbeath Signal EC941,Also has STANOX 52728 assigned in error,,,
 Cowden Crossroads,CCR,540950,COWDBUS,
 Cowes by Hydrofoil,,554900,,
 Cowes by Ship,,554800,COWESSP,
 Cowes (East),ECW,033800,COWESE,
 Cowes Thetis Wharf,XCW,554261,COWESTW,
-CWT,045900,,,
-034900,,,,
+Cowes Thetis Wharf,CWT,045900,,
+Cowes Thetis Wharf,CWT,034900,,
 Cowes (West),WTW,037100,COWESW,
 Cowes (West) Hoverport,,554264,COWESWH,
 Cow Green Crossover,,735575,COWGRNX,49009
@@ -3018,7 +3018,7 @@ Cowlairs West Passenger Loop,,962683,CWLRSPL,06421
 Cowley Bridge Junction,CBJ,341663,CWLYBDG,83398
 Cowley Hill,,234140,COWLEYH,35401
 Cowplain Shops Bus Stop,,565701,COWPBUS,
-CPS,818000,,,
+Cowplain Shops Bus Stop,CPS,818000,,
 Crabtree Sidings,,,CRABTRS,
 Cradlehall,,865168,CDLHL,
 Cradlehall,,864942,CRAHALL,01130
@@ -3137,24 +3137,24 @@ Crewe Sorting Sidings North,,124371,CREWSSN,42139
 Crewe South Junction,,124303,CREWESJ,42147
 Crewe South Junction North Staffordshire Junction,,124304,CREWSJN,42143
 Crewe South Yard,XCT,124324,CREWESY,42141
-CRZ,,,,
+Crewe South Yard,CRZ,,,
 Crewe Steel Works,,124305,CREWESW,42117
 Crewe Steventon Bulk Store,,123915,CREWSBS,42165
 Crewe Sydney Bridge,,124306,CREWSBG,42015
 Crewe Thomas Street Chief Civil Engineer,,124317,CREWETS,42127
 Crewe Traction Maintenance Depot (Diesel),,179752,CREWDED,42135
 Crewe [unknown features],,,,42900
-42950,,,,
-42980,,,,
-42990,,,,
-93800,,,,
+Crewe [unknown features],,,,42950
+Crewe [unknown features],,,,42980
+Crewe [unknown features],,,,42990
+Crewe [unknown features],,,,93800
 Crewe Up & Down Loop,,124314,CREWUDL,42140
 Crewe Up & Down Pottery Loop,,124316,CREWPLP,42151
 Crewe Up Manchester Loop,,125015,CREWUML,42016
 Crewe Wagon Shop Centrac (later Crewe Gresty Bridge DRS),,127811,CREWWSC,42162
 "Crewe Weston Gate (O, C & G)",,124315,CREWOCG,42143
 Crewe Willaston Level Crossing (CCTV),,123920,CREWWLC,
-See also Nantwich Willaston Level Crossing,,,,
+Crewe Willaston Level Crossing (CCTV),See also Nantwich Willaston Level Crossing,,,
 Crewe Works,,124211,CREWWKS,42121
 Crewe Works BRML Head Quarters,,124200,CREWWKX,42121
 Crewkerne,CKN,583200,CRKRN,83470
@@ -3199,7 +3199,7 @@ Croes Newydd North Fork,XNF,449001,CROESNF,41131
 Croft,,186600,CROFTS,59313
 Croftfoot,CFF,977800,CFFT,07555
 Crofton Depot,XRF,858468,CRFTDEP,18035
-CDP,,,,
+Crofton Depot,CDP,,,
 Crofton East Junction,,858420,CRFTNEJ,18034
 Crofton East Spur,,858470,CRFTESP,18033
 Crofton Park,CFT,507800,CFPK,88467
@@ -3241,7 +3241,7 @@ Croy,CRO,994300,CROY,06457
 Croydon JBMT Head Quarters,,566200,CROYJBM,
 Croydon Stations,,0449,,
 Croydon [unknown features],,,,87280
-87290,,,,
+Croydon [unknown features],,,,87290
 Crugwallins Sidings,,350302,CRUGWAL,85405
 Crumlin Lafarge,,362803,CRUNLAF,76638
 Crumpsall,CRP,287600,CRUMPSL,
@@ -3303,7 +3303,7 @@ Dagenham Dock ARC,,744075,DGNHARC,51406
 Dagenham Dock East Junction,,154105,DDOCKEJ,51412
 Dagenham Dock Hayes Distribution,,,,51405
 Dagenham Dock Marcroft,,,,51410
-51407,,,,
+Dagenham Dock Marcroft,,,,51407
 Dagenham Dock Reception,DGR,744074,DGNHREC,51400
 Dagenham Dock RFS Engineering,,744015,,51409
 Dagenham Dock Signal UR1152,,744076,DGNH152,
@@ -3312,7 +3312,7 @@ Dagenham East,,744100,DAGNHME,51361
 Dagenham East LT,ZDE,055500,DGNHELT,51359
 Dagenham Ford Marcroft,,,,51408
 Dagenham Ford Motor Co/Down Yard,,744012,DGNHMFD,51403
-51401,,,,
+Dagenham Ford Motor Co/Down Yard,,744012,DGNHMFD,51401
 Dagenham Ford Motor Co Signal UR821,,744079,DGNH821,51397
 Dagenham Ford Motor Co Signal UR826,,744078,DGNH826,51398
 Dagenham Ford Motor Co Signal UR840,,744081,DGNH840,
@@ -3360,7 +3360,8 @@ Dalston Junction,XJD,144302,DALSJN,52052
 Dalston Junction Signal D101,,144303,DALS101,52052
 "Dalston Junction Station East London Line
 (second CRS and NLC codes used after East London Line operated as part of national network)",XJD,144310,DALS,52074
-DLJ,144300,,,
+"Dalston Junction Station East London Line
+(second CRS and NLC codes used after East London Line operated as part of national network)",DLJ,144300,,
 Dalston Kingsland,DLK,142900,DALSKLD,52046
 Dalston Oil Terminal,,207711,DALSTOT,09211
 Dalston Oil Terminal Ground Frame,,207710,DALSOGF,09212
@@ -3434,7 +3435,7 @@ Daventry South Junction,,108745,DVNTYSJ,70077
 Daviot,,864945,DAVIOT,01132
 Dawdon Colliery,,,DAWDNCL,14151
 Dawley Loop,,317460,DWLEYLP,73782
-73797,,,,
+Dawley Loop,,317460,DWLEYLP,73797
 Dawlish,DWL,340800,DAWLISH,83605
 Dawlish Warren,DWW,340900,DAWLSHW,83603
 Daw Mill Colliery,DAW,109400,DAWMLCL,66201
@@ -3448,7 +3449,8 @@ Daw Mill Signal SY531,,109406,DAWM531,66199
 Daw Mill West Junction,,109408,DAWMWJ,66207
 "Dawsholm
 (now known as Kelvindale)",KVD,165500,DAWSHLM,06230
-DAW,995400,,,
+"Dawsholm
+(now known as Kelvindale)",DAW,995400,,
 Dax,DAX,874300,DAXX,00794
 Deal,DEA,501100,DEAL,89465
 Deal Siding,,501105,DEALSDG,89464
@@ -3463,7 +3465,7 @@ Deanside CPA,DSD,963315,DNSDCPA,07043
 Deanside CPA Freightliner Terminal,,963316,DNSDFLT,07044
 Deanside E G Steele,,,,07042
 Deanside Loop,,963317,DNSDLP,07053
-963362,,,,
+Deanside Loop,,963362,,
 Deanside Transit,,963319,DNSDT,07045
 Deanside Wagon Repairs,,,,07042
 Dean (Wilts),DEN,594200,DEAN,86112
@@ -3487,7 +3489,7 @@ Denby,,,,57129
 Denby Dale,DBD,843200,DNDL,18498
 Denby Opencast,,170600,DENBYOT,57131
 Den Haag CS,DHS,014900,DNHAAG,00927
-DHC,455900,,,
+Den Haag CS,DHC,455900,,
 Denham,DNM,305200,DENHAM,73450
 Denham Golf Club,DGC,306000,DENHMGC,73451
 Denmark Hill,DMK,542100,DENMRKH,87606
@@ -3499,7 +3501,7 @@ Denton Station Junction,,285503,DNTOSTJ,32502
 Deptford,DEP,514500,DEPTFD,88431
 Deptford Bridge DLR,"ZDB
 (same as Debden)",166300,,
-ZAB,089700,,,
+Deptford Bridge DLR,ZAB,089700,,
 Derby,DBY,182300,DRBY,57403
 Derby ABB,,,DRBYABB,
 Derby Adtranz Litchurch Lane,,182310,DRBYALL,57442
@@ -3606,7 +3608,7 @@ Dinting,DTG,289300,DNTG,32243
 Dinting Bahamas Locomotive Society,,,,32245
 Dinton,,579500,DINTON,86144
 Dinton MOD,DMD,579512,DINTNMD,86142
-86143,DMD,,,
+Dinton MOD,DMD,579512,DINTNMD,86143
 Direct Rail Services,,,,10200
 Disley,DSL,276500,DISLEY,32543
 Diss,DIS,734800,DISS,49002
@@ -3617,7 +3619,7 @@ Ditton Civil Engineer's Sidings,,228960,DTTNCCE,36403
 Ditton Foundry Lane AHC,,228908,DITTAHG,36398
 Ditton Foundry Lane AHC English Welsh & Scottish Railway,,228910,DITTAHC,36402
 Ditton Foundry Lane AHC Freightliner,,228909,DITTAHF,36406
-DITTCFL,,,,
+Ditton Foundry Lane AHC Freightliner,,228909,DITTCFL,
 Ditton Foundry Lane English Welsh & Scottish Railway Carriage & Wagon,,,,36399
 Ditton Foundry Lane Victa Westlink Rail,,228907,DITTVWR,36397
 Ditton O'Connor Sidings,,228912,DITTBOC,36404
@@ -3654,7 +3656,7 @@ Dollands Moor CTRL,,502730,DOLMCTL,89748
 Dollands Moor Down GET,,502733,DOLMGET,89730
 Dollands Moor Down Goods Line,,502714,DOLMDGL,89735
 Dollands Moor East,XTP,502715,DOLMEST,89739
-DMT,,,,
+Dollands Moor East,DMT,,,
 Dollands Moor East Boundary,,502732,DOLMEB,89580
 Dollands Moor Europorte 2,,502735,,89728
 Dollands Moor GB Railfreight,,502702,DOLMGBF,89726
@@ -3662,7 +3664,7 @@ Dollands Moor Loco Holding Siding,,502708,DOLMLHS,89736
 Dollands Moor Loco Loop,,502722,DOLMLL,
 Dollands Moor Loco Repair Siding,,502709,,89737
 Dollands Moor Sidings,XLM,502703,DOLMORS,89735
-DOM,,,,
+Dollands Moor Sidings,DOM,,,
 Dollands Moor Signal 2151,,502723,DOLM151,
 Dollands Moor Signal 2153,,502724,DOLM153,
 Dollands Moor Signal 2160,,502725,DOLM160,
@@ -3745,15 +3747,15 @@ Doncaster Signal D1490,,641325,DONCSWY,23412
 Doncaster Snowys Yard,,641312,DONCSNY,23426
 Doncaster Traction Maintenance Depot Wheel Lathe Road,,641810,,23436
 Doncaster [unknown features],,,,23950
-23990,,,,
-54990,,,,
+Doncaster [unknown features],,,,23990
+Doncaster [unknown features],,,,54990
 Doncaster Up Decoy Advenza,,641306,DONCUDA,23426
 Doncaster Up Decoy Freightliner,,641305,DONCUDF,23446
 Doncaster Up Decoy Spur 2,,641307,,23457
 Doncaster Up Decoy Yard,DDY,641319,DONCUDY,23430
 Doncaster West Reception,,641729,DONCWRL,23425
 Doncaster West Yard,XWV,641326,DONCWY,23418
-DCY,,,,
+Doncaster West Yard,DCY,,,
 Doncaster Wood Yard Civil Engineer's Sidings,,641764,DONCWDY,23433
 Doncaster Wood Yard Signal & Telecommunications Engineer's Sidings,,641730,,23435
 Doncaster Wood Yard Virtual Quarry,,641765,DONCVIR,23447
@@ -3764,7 +3766,7 @@ Doncaster Works Freightliner Heavy Haul,,641064,DONCWFL,23413
 Doncaster Works Wagon Shops,,641062,DONCWWS,23419
 Doncaster Yard CTT Forwardings,,641316,,23427
 Doncaster Yards,,641300,DONCYRD,23439
-Doncaster Yards Freightliner,,DONCDFL,,
+Doncaster Yards Freightliner,,641300,DONCDFL,
 Donnington Junction,,461904,DONNGTJ,64814
 Donnington Rail Freight Terminal,,461903,DONNRFT,64815
 Donnington Summerhouse Drive,,461906,DONNSUM,64816
@@ -3809,7 +3811,7 @@ Dover Military Dock Siding,,,,89601
 Dover (Port),DOV,,,
 Dover Priory,DVP,503300,DOVERP,89611
 Dover Priory Sidings,,503301,DOVERPS,89612
-503307,,,89611*,
+Dover Priory Sidings,,503307,,89611
 Dover Signal YE621,,503303,DOVE621,89614
 Dover Signal YE623,,503304,DOVE623,89613
 Dover Stations,,0414,,
@@ -3923,7 +3925,7 @@ Dumfries South Junction,,949030,DUMFRSJ,09026
 Dumfries Subsidiary Yard,,949013,DUMFRSY,09023
 Dumfries Up Sidings,,949014,DUMFUS,09024
 Dummy,,380401,ABLCA,78915
-,,,95000,
+Dummy,,,,95000
 Dumpton Park,DMP,503400,DUMPTNP,89470
 Dunbar,DUN,939700,DUNBAR,04827
 Dunbar Down Civil Engineer's Sidings,,939702,DUNBDCE,04828
@@ -3935,10 +3937,10 @@ Dunblane Down Passenger Loop,,871362,DUNADPL,03161
 Dunblane Down Refuge Siding,,871364,DUNADRS,03162
 Dunblane Signal Box,,871359,DUNANSB,03163
 Dunbridge,DBG,594400,MOTFONT,86107
-MTD,"Second CRS code used when station named ""Mottisfont & Dunbridge""",,,
+Dunbridge,MTD,"Second CRS code used when station named ""Mottisfont & Dunbridge""",,
 Duncraig Halt,DCG,868200,DUNCRAG,01074
 Dundalk,DNK,032300,,
-DUK,,,,
+Dundalk,DUK,,,
 Dundee,DEE,903900,DUNDETB,03054
 Dundee Central Junction,DCJ,903964,DUNDCJ,03053
 Dundee Central Junction Civil Engineer,,903969,DUNDCJC,03053
@@ -3981,7 +3983,7 @@ Dunstable BP Oils (Kennings),,,,62502
 Dunstable Vauxhall Motors,,,,62503
 Dunster,,345700,DNSR,
 Dunster (Steep),XDY,345701,DNSRSTP,
-DTR,,,,
+Dunster (Steep),DTR,,,
 Dunston,DOT,774400,DNSN,13523
 Dunton Green,DNG,510200,DTNG,89342
 Durham,DHM,774500,DRHM,13702
@@ -4012,11 +4014,11 @@ Ealing Common,,319005,EALINGC,
 Ealing Common LT,ZEC,056100,,
 Earles Sidings (Hope) English Welsh & Scottish Railway,,282814,ERLEHES,34007
 Earles Sidings (Hope) Freightliner Heavy Haul,,282815,ERLEFHH,34004
-282810,,EARLFHH,34013,
+Earles Sidings (Hope) Freightliner Heavy Haul,,282810,EARLFHH,34013
 Earles Sidings (Hope) BCI,,282812,ERLEBCI,34006
 Earles Sidings (Hope) Lafarge,,,,34004
 Earles Sidings (Hope) Marcroft,,282813,,34008
-,,34003,,
+Earles Sidings (Hope) Marcroft,,,,34003
 Earles Sidings (Hope) Signal Box,,282811,ERLESDG,34009
 Earlestown,ERL,229200,ERLSTWN,35325
 Earlestown East Junction,,229201,ERLSTEJ,35325
@@ -4126,18 +4128,18 @@ East London Line Boundary South,,515003,ELLBSTH,87592
 East Malling,EML,513400,EMALING,89411
 East Midlands Airport (by Bus),XMT,189717,EMPKAIR,
 East Midlands Parkway,EMD,190100,EMPKWAY,56650
-189716,EMD,,,
+East Midlands Parkway,EMD,189716,,
 East Peckham Reversing Siding,,523262,EPCKHMR,89320
 East Peckham Tip,EPT,523261,EPCKHMT,89319
 East Putney,ZPU,558500,EPUTNEY,87243
-ETP,,,,
+East Putney,ETP,,,
 Eastriggs Crossover,,949412,ERIGCRO,09036
 Eastriggs MOD,ERM,949411,ERIGMOD,09035
 Eastrington,EGN,811400,ESTRNGT,19218
 East Somerset Junction (Witham),EMJ,570800,ESTSOMJ,82241
 East Tilbury,ETL,747100,ETILBRY,51130
 East Usk Branch,,367300,EUSKBCH,76117
-,,EUSKBRN,,
+East Usk Branch,,,EUSKBRN,
 East Usk Branch Alpha Steel,,367314,EUSKALS,76116
 East Usk Branch Birdpoint,,367301,EUSKBDP,76126
 East Usk Junction,,367361,EUSKJN,76114
@@ -4282,13 +4284,13 @@ Elstow,,151210,ELSTOW,62197
 Elstow Redland Siding,ERS,151220,ELSTORS,62199
 Elstree & Borehamwood,ELS,154200,ELTR,63212
 Eltham,ELW,510300,ELTHAM,88418
-513600,ELW,,,
+Eltham,ELW,513600,,
 Elton & Orston,ELO,623800,ELTON,44514
 Elvanfoot,,970410,ELVFOOT,07984
 Elvan Water Viaduct,,961410,ELVWATV,07991
 Elverson Road DLR,"ZER
 (same as Edgware Road)",166400,,
-ZAC,089800,,,
+Elverson Road DLR,ZAC,089800,,
 Ely (Cambs),ELY,706800,ELYY,46273
 Ely Dock Junction,,706817,ELYYDLN,46275
 Ely Down Through Siding,,706812,ELYYDTS,46274
@@ -4324,16 +4326,16 @@ Epsom South Western,EPS,536065,EPSMSW,87681
 Epsom Ballast,,536019,EPSMBAL,87680
 Epsom Downs,EPD,536100,EPSDNS,87692
 Epsom Down Sidings,,536017,EPSMDS,87682
-,,EPSMDSD,,
+Epsom Down Sidings,,,EPSMDSD,
 Epsom Signal 444,,536015,EPSM444,87681
 Epsom Signal 456,,536014,EPSM456,87682
 Epsom Signal W1181,,536001,EPSM181,87684
 Epsom Up Sidings,XFK,536018,EPSMUS,87682
-,,EPSMUSD,,
+Epsom Up Sidings,,,EPSMUSD,
 Erdington,ERD,104100,ERDNGTN,65606
 Eridge,ERI,545900,ERIDGE,87764
 Eridge (A26 Bus Stop),ERB,545950,ERIDBUS,
-781600,ERB,,,
+Eridge (A26 Bus Stop),ERB,781600,,
 Erith,ERH,510400,ERITH,88604
 Erith Loop,,515412,ERITHLP,88426
 Errol,,876600,ERROLLC,03069
@@ -4342,7 +4344,7 @@ Esher,ESH,555800,ESHER,86002
 Eskbank,,377600,ESKBANK,
 Eskdale (Dalegarth),,192165,ESKDALE,
 Eskmeals,,199905,ESKMLS,11207
-,,ESKMEAL,,
+Eskmeals,,,ESKMEAL,
 Essen Hbf,ESS,014100,ESSNHBF,00020
 Essex Road,EXR,600400,ESSEXRD,54295
 Essington Wood Sidings,,119900,ESNTNWS,65515
@@ -4450,7 +4452,7 @@ Euston LT,ZEU,057400,,
 Euston Olympic Games,LOY,047300,EUSTOLM,
 Euston Park Street,,144403,EUSTPKS,72400
 Euston RES,XEN,144463,EUSTRES,72402
-EUR,,,,
+Euston RES,EUR,,,
 Euston Signal 105,,,EUST105,
 Euston Signal WM102,,144443,EUST102,72405
 Euston Signal WM104,,144442,EUST104,72407
@@ -4484,7 +4486,7 @@ Exeter Central,EXC,575500,EXETERC,83431
 Exeter Central Civil Engineer's Sidings,,575516,EXETCCE,83433
 Exeter City Basin,EXB,341100,EXETRCB,83516
 Exeter Exminster,,341401,EXETEXM,83595
-83495,,,,
+Exeter Exminster,,341401,EXETEXM,83495
 Exeter Locomotive Stabling Point,,341014,,83401
 Exeter Marcroft,,,,83408
 Exeter Marsh Barton (Alphington Road),,341116,EXETMBS,83513
@@ -4546,12 +4548,13 @@ Falmouth Docks,,350811,,85522
 Falmouth Town,FMT,359100,FALMTHT,85515
 "Fambridge
 Later called North Fambridge",FAM,687500,FAMBDGE,50307
-NFA,,,,
+"Fambridge
+Later called North Fambridge",NFA,,,
 Fareham,FRM,590000,FAREHAM,86241
 Fareham ARC Sidings,FAS,590014,FAREARC,86242
 Fareham North Junction,,590005,FARENJN,86243
 Fareham Signal E283,,590004,FARE283,86239
-86243,,,,
+Fareham Signal E283,,590004,FARE283,86243
 Fareham Signal E821,,590003,FARE821,86237
 Fareham Signal E822,,590002,FARE822,86240
 Faringdon Oxfordshire,FAX,169300,,
@@ -4564,18 +4567,18 @@ Farnborough London End,,552104,FRNBRLE,86048
 Farnborough Main,FNB,552100,FRBRMN,86042
 Farnborough North,FNN,568800,FRBRNTH,87010
 Farnborough Signal 100,,552102,FRBR100,86042
-,,FRNB100,86020,
+Farnborough Signal 100,,,FRNB100,86020
 Farnborough Signal BE5100,,552106,FRNB100,
 Farnborough Signal YW4,,552103,FRBRYW4,86042
 Farnborough Stations,,0260,,
 Farncombe,FNC,564300,FRNCMB,87055
 Farnham,FNH,554500,FARNHAM,87026
 Farnham Carriage Servicing Depot,XFM,554562,FARNHMD,87028
-FND,,,,
+Farnham Carriage Servicing Depot,FND,,,
 Farnham Electric Multiple Unit Sidings,XFN,554565,FARNEMU,87029
 Farnham Road (Slough) Loop,,,FNROAD,73834
 Farnham Signal FN3,,554507,FARNF3,87027
-FARNSG3,,,,
+Farnham Signal FN3,,554507,FARNSG3,
 Farnham Signal FN30,,554502,FARNF30,87017
 Farnham Tip,,554567,FARNHMT,
 Farningham Road,FNR,510500,FRNNGRD,88480
@@ -4657,7 +4660,7 @@ Fenny Compton MOD,FCM,455213,FENYMOD,69411
 Fenny Compton Regional Civil Engineer's Sidings,,455212,FENYCE,69412
 Fenny Compton Signal OL715,,455201,FENN715,69415
 Fenny Stratford,FEN,137700,FSTR,62057
-FSD,,,,
+Fenny Stratford,FSD,,,
 Ferme Park,FEP,,FRMPK,
 Ferme Park Diesel Sidings,,601114,FRMPKDS,54211
 Ferme Park London Concrete,,601101,FRMPKLC,54215
@@ -4696,9 +4699,9 @@ Fifoots Point Power Station Freightliner,,367320,FIFOTFL,76121
 Filey,FIL,806200,FILEY,19002
 Filey Gristhorpe,,806205,FILEGRS,19001
 Filton,FIT,323500,FILTON,81299
-XFI,,,,
+Filton,XFI,,,
 Filton Abbey Wood,FAW,323500,FILTNEW,81305
-FIT,,,,
+Filton Abbey Wood,FIT,,,
 Filton Junction,FLJ,323513,FILTONJ,81300
 Filton Junction Coal Concentration Depot,,,FILTCCD,
 Filton Signal B343,,323566,FILT343,
@@ -4729,7 +4732,7 @@ Fishersgate,FSG,528400,FSHRSGT,87987
 Fishguard And Goodwick,FGW,668000,FGDHGWK,80013
 Fishguard Harbour,FGH,407600,FGDHBR,80011
 Fishguard Harbour Advenza Freight,,407601,FGDHADV,80012
-,,FGDHAFL,,
+Fishguard Harbour Advenza Freight,,,FGDHAFL,
 Fishguard Harbour Carriage Holding Sidings,XFH,,FGDHCS,
 Fishguard Harbour Siding,XFH,407612,FGDHSDG,80010
 Fishguard (Port),FSH,,,
@@ -4943,11 +4946,11 @@ Garston Mechanical & Electrical Engineer's Siding,,218118,,36312
 Garston Yard English Welsh & Scottish Railway International,,,,36320
 Garswood,GSW,233500,GARW,35395
 Gartcosh,GRH,972300,GRTCSH,06502
-NLC was 972320 until station reopened,GRH,,,
+Gartcosh,GRH,NLC was 972320 until station reopened,,
 Gartcosh British Steel,,,,07343
 Gartcosh JG Russell Transit,,972310,GRTCSHR,07308
 Gartcosh Junction,,972320,GRTCSHJ,07305
-NLC was 972300 until nearby station reopened,,,,
+Gartcosh Junction,,NLC was 972300 until nearby station reopened,,
 Garth (Mid-Glamorgan),GMG,396100,GRTHMG,79824
 Garth (Powys),GTH,414800,GARTH,79084
 Gartly,,892530,GTLY,02023
@@ -4972,7 +4975,7 @@ Gas Factory Junction,,749111,GASFCTJ,52703
 Gas Factory Loop,,749113,GASFLP,52704
 Gateshead,GHD,028800,,
 Gateshead Metro Centre,MCE,772500,GTSHDMC,13515
-GMC,Second CRS code may be questionable,,,
+Gateshead Metro Centre,GMC,Second CRS code may be questionable,,
 Gateshead Redland,,,,13225
 Gateshead Traction Maintenance Depot,,774963,GTSHTMD,13240
 Gathurst,GST,239700,GATHRST,35102
@@ -5069,14 +5072,14 @@ Glasgow Queen St Low Level,GQL,991200,GLGQLL,06399
 Glasgow Stations,,0433,,
 Glasgow Springburn Works,,989200,GLGWWKS,06506
 Glasgow [unknown features],,,,06900
-06910,,,,
-06970,,,,
-06980,,,,
-06990,,,,
-93900,,,,
+Glasgow [unknown features],,,,06910
+Glasgow [unknown features],,,,06970
+Glasgow [unknown features],,,,06980
+Glasgow [unknown features],,,,06990
+Glasgow [unknown features],,,,93900
 Glasshoughton,GLH,836000,GLASHTN,17302
-"CRS code may have been GHN
-NLC was 835910 until station reopened",,,,
+Glasshoughton,"CRS code may have been GHN
+NLC was 835910 until station reopened",,,
 Glastonbury Town Hall Bus Stop,XEA,323156,GLSTHAL,
 Glazebrook,GLZ,230100,GLAZBRK,36719
 Glazebrook British Tar Products,,230212,GLAZBTP,36724
@@ -5118,7 +5121,7 @@ Gloucester Old Yard,,476005,GLOSTOY,68104
 Gloucester Road Junction,,,GLCSTRJ,
 Gloucester Road LT,ZGR,058300,,
 Gloucester Signal G31,,476002,GLOSS31,68112
-476011,,GLOS31,-,
+Gloucester Signal G31,,476011,GLOS31,
 Gloucester Signal G152,,,GLOS152,
 Gloucester Signal G156,,476026,GLOS156,68100
 Gloucester Signal G239,,475614,GLOS239,68100
@@ -5157,7 +5160,7 @@ Goodge Street LT,ZGS,058600,,
 Goodmayes,GMY,687800,GODMAYS,50412
 Goodmayes Up Reception,,687814,GDMYSUR,50412
 Goodrington Carriage Holding Sidings,XFO,342759,GOODCHS,83634
-GOH,,,,
+Goodrington Carriage Holding Sidings,GOH,,,
 Goodrington Sands,,342900,GOODSND,83636
 Goodrington Yard,,,,83633
 Goole,GOO,802500,GOOLE,20002
@@ -5467,7 +5470,7 @@ Hadley Junction,,,HDLYJN,
 Hadley Wood,HDW,607500,HADLYWD,54008
 Hag Fold,HGF,258500,HAGFOLD,35140
 Haggerston,HGG,515090,HAGGERS,52078
-102200,HGG,,,
+Haggerston,HGG,102200,,
 Haggerston Crossover,,102201,HAGGXO,52076
 Hagley,HAG,457700,HAGLEY,65934
 Hainault LT,ZHT,059200,,
@@ -5525,15 +5528,15 @@ Hambleton West Junction,,813916,HAMBLWJ,16514
 Hamilton Central,HNC,972600,HAMLTNC,07479
 Hamilton Direct Rail Services,,972650,HAMLDRS,07482
 Hamilton Square,BKQ,221900,HAMTSQ,38185
-221902,BKQ,HAMTSQ2,,
-221903,BKQ,HAMTSQ3,,
+Hamilton Square,BKQ,221902,HAMTSQ2,
+Hamilton Square,BKQ,221903,HAMTSQ3,
 Hamilton Square Riverbed Signal ML534,,221901,HAMT534,38187
 Hamilton Stations,,0405,,
 Hamilton Steele EG,,972618,HAMLSTL,07481
 Hamilton West,HNW,972700,HAMLTNW,07480
 Hammersmith LT,ZHA,059300,HAMDLUL,72259
 Hammersmith Metropolitan Line LT,ZHZ,059200,,
-077300,ZHZ,,,
+Hammersmith Metropolitan Line LT,ZHZ,077300,,
 Hammerton,HMM,824100,HAMERTN,16118
 Hampden Park,HMD,545000,HMPDNPK,88252
 Hampstead Heath,HDH,141300,HMPSTDH,72418
@@ -5562,7 +5565,7 @@ Ham Street,HMT,503700,HMST,89431
 Hamworthy,HAM,594000,HMWTHY,86951
 Hamworthy Blue Circle Industries,,593918,HMWTBCI,86953
 Hamworthy Goods Poole Harbour Commissioners,,593960,HMWTPHC,86959
-594001,,,,
+Hamworthy Goods Poole Harbour Commissioners,,594001,HMWTPHC,
 Hamworthy Terminal Complex,,593900,HMWTTC,86959
 Hanborough,HND,300700,HANDBRO,74451
 Handforth,HTH,276700,HNDFRTH,32566
@@ -5620,7 +5623,7 @@ Harpenden Sandridge,,154304,HRPNSAN,62425
 Harrietsham,HRM,514000,HRSM,89406
 Harringay,HGY,601200,HRGY,54202
 Harringay Green Lanes,HRY,740100,HRGYSTD,51561
-740159,HRY,HRGYGL,51561*,
+Harringay Green Lanes,HRY,740159,HRGYGL,51561
 Harringay Junction,,601205,HRGYJN,
 Harringay Park Junction,,601213,HRGYPJN,51562
 Harringay RS,,,HRGYURS,
@@ -5644,7 +5647,7 @@ Harrow DC Signal WS305,,139703,HROW305,72018
 Harrow DC Turnback Signal WS307,,139702,HROW307,72018
 Harrowden Junction,,194008,HRWDENJ,61011
 Harrow-on-the-Hill,HOH,059800,HAROOTH,70381
-Harrow-on-the-Hill LT,ZHH,,,
+Harrow-on-the-Hill LT,ZHH,059800,HAROOTH,
 Harrow-On-The-Hill For Games,HXZ,656800,CATZ028,
 Harrow-on-the-Hill South Junction,,059801,HAROHSJ,70385
 Hartburn Junction,,796112,HRTBJN,15227
@@ -5701,7 +5704,7 @@ Hattersley,HTY,260400,HATRSLY,32230
 Hatton,HTN,459400,HATTON,66436
 Hatton Budbrook Junction,,459404,HATTBUD,69317
 Hatton Civil Engineer's Sidings,,,HATTNCE,66435
-459411,,HATTCE,,
+Hatton Civil Engineer's Sidings,,459411,HATTCE,
 Hatton Cross LT,ZHX,077900,,
 Hatton Down Goods Loop,,459403,HATTDGL,69316
 Hatton North Junction,,459401,HATTNNJ,66439
@@ -5738,7 +5741,7 @@ Hawkhead (Paisley),HKH,963400,HWKHEAD,07116
 Hawkhead (Paisley) Shell,,966200,HWKHSHL,07123
 Hawksworth,,834800,HWKSWTH,
 Haworth,XHV,846815,HAWORTH,
-HWT,033900,,,
+Haworth,HWT,033900,,
 Haydock,,,HAYDOCK,
 Haydock Branch Junction,,232302,HAYDKBJ,35122
 Haydock Branch Stopboard,,,HAYDBS,
@@ -5773,9 +5776,9 @@ Haywards Heath Down Siding North,,549064,HYWRDSN,87961
 Haywards Heath Down Siding South,,549065,HYWRDSS,87962
 Haywards Heath Signal T350X,,549062,HYWR350,87956
 Haywards Heath Signal TB1225,,,HYD1225,87955
-549002,,HYWR225,,
+Haywards Heath Signal TB1225,,549002,HYWR225,
 Haywards Heath Signal TB1226,,,HYD1226,87960
-549003,,HYWR226,,
+Haywards Heath Signal TB1226,,549003,HYWR226,
 Haywards Heath Up Siding,,549063,HYWRUS,87968
 Haywood Junction,,641411,HYWDJN,
 Hazebrouck,,080650,HAZEBCK,00736
@@ -5786,15 +5789,15 @@ Headcorn,HCN,522000,HEADCRN,89323
 Headcorn Up Goods Loop,,522058,HEADUGL,89323
 Headingley,HDY,849800,HEDNGLY,17103
 Head Quarters Functions: BR,,,,72700
-72890,,,,
-72891,,,,
-72910,,,,
-72920,,,,
+Head Quarters Functions: BR,,,,72890
+Head Quarters Functions: BR,,,,72891
+Head Quarters Functions: BR,,,,72910
+Head Quarters Functions: BR,,,,72920
 Head Quarters Functions: BRB Watford Management Centre,,,,72950
 Head Quarters Functions: BR Central Services,,,,72980
 Head Quarters Functions: English Welsh & Scottish Railway,,,,72900
 Head Quarters Functions: Freightliner (?),,,,72810
-72820,,,,
+Head Quarters Functions: Freightliner (?),,,,72820
 "Head Quarters Functions: ""PDNFL"" (definition unknown)",,,,72800
 Head Quarters Functions: Railtrack,,,,72999
 Head Quarters Functions: Various,,,,72990
@@ -5823,7 +5826,7 @@ Heath Junction Ground Position Light Signal 22,,384501,HEATH22,
 Heath Junction Ground Position Light Signal 7433,,384502,HEATH33,
 Heath Low Level,HLL,390800,HEATHLL,78391
 Heathrow Airport,,308100,HTRW,
-556400,,,,
+Heathrow Airport,,556400,,
 Heathrow Airport CTA,LHR,308100,HTRWAPT,
 Heathrow Airport Junction,,318620,HTRWAJN,73775
 Heathrow Central Bus Station,HTR,986900,HTRWCBS,
@@ -5843,7 +5846,7 @@ Heathrow Terminal 4,HWF,318200,HTRWTE4,
 Heathrow Terminal 4 Bus,,709101,HTRBUS4,
 Heathrow Terminal 4 LT,ZHF,078100,,
 Heathrow Terminal 5,HWV,984600,HTRWTM5,73767
-308119,HWV,,,
+Heathrow Terminal 5,HWV,308119,HTRWTM5,
 Heathrow Terminal 5 Bus,HWX,323400,HTRBUS5,
 Heathrow Terminal 5 LT,ZHE,078300,,
 Heathrow Terminal 5 Spur,,308120,HTRWT5S,
@@ -5901,7 +5904,7 @@ Hemerdon AWB,,,HEMERSB,
 Hem Heath Colliery [Trentham],,,HEMHCOL,43301
 Hemsworth Loop,,858800,HEMSWTH,18074
 Henbury West (Avonmouth),,320029,HENBRY,81121
-,,HENBRYW,,
+Henbury West (Avonmouth),,,HENBRYW,
 Hencote Stop Board,,,HENCTSB,
 Hendaye,HEF,874400,HNDAYE,00796
 Hendon,HEN,152200,HDON,63252
@@ -5953,7 +5956,7 @@ Hethersett,,737500,HETHRST,48421
 Hethersett Esso,,,,48422
 Hever,HEV,541700,HEVER,87762
 Hever (Stick Hill Phone Box/Brocas Farm),,541750,HEVEBUS,
-HBF,788400,,,
+Hever (Stick Hill Phone Box/Brocas Farm),HBF,788400,,
 Hewish,,583205,HEWISH,83465
 Heworth,HEW,776600,HEWORTH,13156
 Heworth (Nexus),HEZ,914000,HEWOMTR,13157
@@ -6010,7 +6013,7 @@ High Wycombe Engineer's Siding,,305408,HWYCENG,73498
 High Wycombe Middle Road,,,HWYCMMR,
 High Wycombe Signal ME139,,305406,HWYC139,73498
 High Wycombe Signal ME152,,305405,HWYC152,73497
-HWME152,,,,
+High Wycombe Signal ME152,,305405,HWME152,
 High Wycombe Signal ME641,,305407,HWYC641,73498
 High Wycombe UPL,,,HWYCUPL,
 High Wycombe (West Wycombe),,305415,HWYCWW,73506
@@ -6029,7 +6032,7 @@ Hillside DCL Cereals,,906311,,03013
 Hillside Signal 102,,223101,HILL102,36061
 Hilsea,HLS,553900,HILSEA,86332
 Hilton CV Depot,,,,63149
-"Despite the similarity between Stannox codes in this and the next record, they are according to raw data separate locations in the LNW and Scotland Territories respectively",,,,
+Hilton CV Depot,"Despite the similarity between Stannox codes in this and the next record, they are according to raw data separate locations in the LNW and Scotland Territories respectively",,,
 Hilton Junction,HIJ,880536,HILTONJ,03149
 Hinchley Wood,HYW,559100,HNCHLYW,87185
 Hinckley Elmesthorp,,186603,HINCELM,59315
@@ -6050,16 +6053,16 @@ Hinton Admiral,HNA,588000,HINTONA,86913
 Hirwaun,HWU,398800,,
 Hirwaun Clock Bus Stop,XHW,400807,HIRWBUS,
 Hirwaun Pond,,400806,HIRWAUN,78114
-,,HIRWPON,,
-398801,,,,
+Hirwaun Pond,,,HIRWPON,
+Hirwaun Pond,,398801,,
 Hitchin,HIT,608600,HITCHIN,53221
 Hitchin Advenza Freight,,608671,HICAFW,53214
-,,HITCAFW,,
-608606,,HITCAFX,-,
+Hitchin Advenza Freight,,,HITCAFW,
+Hitchin Advenza Freight,,608606,HITCAFX,
 Hitchin Cambridge Junction,,608613,HITCHCJ,
 Hitchin Down Yard,,608212,HITCHDY,53219
 Hitchin Engineers Yard,XHY,608660,HITCCEE,53212
-HEY,,,,
+Hitchin Engineers Yard,HEY,,,
 Hitchin Plant Civil Engineer's Sidings,,608662,HITCISU,53211
 Hitchin Signal & Telecommunications Engineer's Sidings,,608671,HITCSTE,53214
 Hitchin Signal K228,,608605,HITC228,53216
@@ -6106,7 +6109,7 @@ Holmwood Signal HM63,,,HLMJS63,
 Holsworthy Cattle Market,,335901,HOLSCAT,
 Holsworthy Church,,341044,HOLSCHR,
 Holsworthy Library (by bus),XEE,341045,HOLSLIB,
-HWR,,,,
+Holsworthy Library (by bus),HWR,,,
 Holton Heath,HOL,594100,HOLTONH,86961
 Holton Heath TMW Siding,,,HOLTNHS,
 Holton-Le-Moor Signal Box,,631869,HLTNLMR,44041
@@ -6133,7 +6136,7 @@ Homerton,HMN,697900,HOMRTON,52042
 Hondeghem,,80675,HONDEGM,00761
 Honeybourne,HYB,479400,HONYBRN,67356
 Honeybourne Chief Civil Engineer's Tip,HBT,479466,HONYBTP,67357
-67359,HBT,,,
+Honeybourne Chief Civil Engineer's Tip,HBT,479466,HONYBTP,67359
 Honeybourne North Junction,,479401,HONYNJN,67354
 Honeybourne Sidings,,479403,HONYSID,67366
 Honeybourne Staff Hut,,479402,HONYHUT,67365
@@ -6164,12 +6167,12 @@ Hoo Junction Signal D19,,,HOOJD19,
 Hoo Junction Signal D230,,521014,HOOJ230,88733
 Hoo Junction Signal NK502,,521021,HOOJ502,88723
 Hoo Junction Signal NK511,,521064,HOOJ511,
-521028,,,,
+Hoo Junction Signal NK511,,521028,HOOJ511,
 Hoo Junction Signal NK512,,521027,HOOJ512,
-"HOJ512
-(thought to be reported in error)",,,,
+Hoo Junction Signal NK512,,521027,"HOJ512
+(thought to be reported in error)",
 Hoo Junction Signal NK1611,,521014,HOOJ611,88733
-521026,,,,
+Hoo Junction Signal NK1611,,521026,HOOJ611,
 Hoo Junction Signal NK1620,,521029,HOOJ620,88742
 Hoo Junction Staff Halt,HOJ,521061,HOOJSFH,88725
 Hoo Junction Up Yard,XHJ,521019,HOOJUYD,88730
@@ -6198,7 +6201,7 @@ Hornbeam Park,HBP,821200,HRNBPK,16101
 Hornchurch,,744400,HRNCHUR,
 Hornchurch LT,ZHU,061000,,
 Horndean Precinct/Good Intent (by Bus),,565702,HORNBUS,
-HGI,818100,,,
+Horndean Precinct/Good Intent (by Bus),HGI,818100,,
 Hornsey,HRN,601500,HRNSY,54203
 Hornsey Carriage Holding Sidings,XHS,601514,HRNSYCS,54201
 Hornsey Carriage Holding Sidings Electric Multiple Unit,,601513,HRNSYES,54206
@@ -6225,7 +6228,7 @@ Hornsey Up Reversing Sidings,,601517,HRNSURS,54203
 Hornsey Wood Green LT Station Bus,,601503,HRNSWGB,
 Horsforth,HRS,849900,HSFT,17105
 Horsforth Leeds & Bradford Airport,XLB,849905,HSFTLBD,
-168100,XLB,,,
+Horsforth Leeds & Bradford Airport,XLB,168100,,
 Horsham,HRH,530900,HORSHAM,87941
 Horsham Branch Siding/Down Sidings North,,530920,HORSBS,87947
 Horsham Chipman Siding,,530714,HORSUKF,87943
@@ -6271,7 +6274,7 @@ Howsham (Lincs),,631875,HLTNHOW,44040
 Howwood,HOZ,173400,HOWOOD,07102
 How Wood (Herts),HWW,156300,HOWWOOD,71034
 Hoxton,HOX,515080,HOXTON,
-102300,HOX,52080,,
+Hoxton,HOX,102300,HOXTON,52080
 Hoylake,HYK,219400,HOYLAKE,38004
 Hoylake Carriage Holding Sidings,,219401,HOYLCHS,38004
 Hubberts Bridge,HBB,622100,HBRTBDG,44207
@@ -6287,7 +6290,7 @@ Hull Boothferry Park,BFP,813700,HULLBFP,19157
 Hull Botanic Gardens Diesel Multiple Unit Depot,XBG,812661,HULLDMU,19101
 Hull B Quay Siding,,808404,HULLBQS,19130
 Hull Bridges Junction,,807917,HULLBJN,19110
-807903,,HULLBGJ,,
+Hull Bridges Junction,,807903,HULLBGJ,
 Hull Bulk Terminal GB Railfreight,,808420,HULLBT,19124
 Hull Bus Station,HUU,34000,HULLBS,
 Hull Coal Terminal,,809115,HULLCT,19114
@@ -6387,7 +6390,7 @@ Ilford,IFD,688100,ILFORD,50423
 Ilford Country End Junction,,,ILFECEJ,50419
 Ilford Electric Multiple Unit Depot,XIF,688160,ILFEMUD,50422
 Ilford Electric Multiple Unit Depot Wheel Lathe Road,,688114,ILFEFLR,50425
-50421,,,,
+Ilford Electric Multiple Unit Depot Wheel Lathe Road,,688114,ILFEFLR,50421
 Ilford Level 5 Depot,,688187,ILFEL5D,50420
 Ilford London End Junction,,688110,ILFELEJ,50419
 Ilford Newbury Park LT,ZNP,065000,ILFENBP,
@@ -6409,7 +6412,7 @@ Immingham Bulk Terminal CP1,,629334,IMNGCIT,21203
 Immingham Bulk Terminal CP2,,629336,IMNGCT2,21207
 Immingham Bulk Terminal Freightliner Heavy Haul,,629332,IMNGBFL,21218
 Immingham Chris Smallers,,629314,IMNGSMA,21261
-ISS,,IMNGHMS,,
+Immingham Chris Smallers,ISS,,IMNGHMS,
 Immingham Coal Loading Area NCB Pad 2 Enron,,629329,IMNGCLA,21221
 Immingham CPL Freightliner Heavy Haul,,629357,IMNGCPL,21187
 Immingham Dock Container Terminal Freightliner Heavy Haul,,629309,IMNGFHH,21217
@@ -6426,7 +6429,7 @@ Immingham Dock [unknown feature],,629349,IMNGREF,21193
 Immingham Dock [unknown feature],,,IMNGESL,21242
 Immingham East Junction,,629325,IMNGHEJ,21241
 Immingham Engine Line,,629339,IMNGENG,21225
-IMNGENL,,,,
+Immingham Engine Line,,629339,IMNGENL,
 Immingham Fisons,,629315,IMNGHFS,21231
 Immingham Hargreaves Container Terminal,,629317,IMNGHAR,21211
 Immingham Hargreaves Container Terminal Fastline Freight,,629343,IMNGHFF,21197
@@ -6444,7 +6447,7 @@ Immingham Killingholme Admiralty Platform,,629405,IMNGKAP,21216
 Immingham Lindsey Oil Refinery,,629418,IMNGLOR,21204
 Immingham Lindsey Oil Refinery GB Railfreight,,629401,IMNGLGB,21197
 Immingham Loading Line 7,,629369,IMNGLL7,21246
-629363,,IMNGBR7,21247,
+Immingham Loading Line 7,,629363,IMNGBR7,21247
 Immingham Mineral Quay,,629319,IMNGHMQ,21228
 Immingham Mineral Quay GB Railfreight,,629404,IMMDGBR,21248
 Immingham Mineral Quay Rail Port GB Railfreight,,629403;,IMMDRP,21243
@@ -6468,7 +6471,7 @@ Immingham Traction Maintenance Depot,,629360,IMNGTMD,21210
 Immingham Traction Maintenance Depot Freightliner Heavy Haul,,629305,IMNGDFL,21223
 Immingham Transit Quay,,629328,IMNGTRQ,21212
 Immingham [unknown feature],,629356,IMNGNIC,21189
-IMNGNIG,,,,
+Immingham [unknown feature],,629356,IMNGNIG,
 Immingham Wagon Repair Depot,,629361,IMNGWRD,21209
 Immingham West Junction,,629310,IMNGHWJ,21219
 Immingham Yard Freightliner Heavy Haul,,629307,IMNGMAF,21224
@@ -6502,7 +6505,7 @@ Invalid TIPLOC Code,,999999,INVALID,
 Invergordon,IGD,864800,IVRGRD,01053
 Invergordon Alcan Sidings,,864801,,01054
 Invergordon British Pipe Coating Services,,,,01056
-01054,,,,
+Invergordon British Pipe Coating Services,,,,01054
 Invergordon Civil Engineer's Sidings,,864861,IVRGRCE,01053
 Invergordon Delny Level Crossing,,864810,IVRGDLC,01053
 Invergordon Distillery (No 2 Up Siding),,864811,IVRGRDN,01052
@@ -6552,7 +6555,7 @@ Inverurie Yard,,892465,INVURYD,02033
 Ipswich,IPS,721700,IPSWICH,49211
 Ipswich Boss Hall Junction,,721764,IPSWBHJ,
 Ipswich Carriage Servicing Depot,XIP,721775,IPSWCCS,49202
-,,49199,,
+Ipswich Carriage Servicing Depot,,,IPSWCCS,49199
 Ipswich Centre Road,,721721,IPSWCRD,
 Ipswich Civil Engineer's Sidings,,,,49206
 Ipswich Cliffe Quay,,721724,IPSWCLQ,49214
@@ -6617,8 +6620,8 @@ Iver,IVR,317000,IVER,73810
 Iver Sidings English Welsh & Scottish Railway,,,,73811
 Ivybridge,IVY,355500,IVYBDGE,84067
 James Street,LVJ,224400,JAMESST,38184
-224404,LVJ,JAMEST2,,
-224405,LVJ,JAMEST3,,
+James Street,LVJ,224404,JAMEST2,
+James Street,LVJ,224405,JAMEST3,
 James Street Sidings,,224403,JAMESDG,38184
 James Street Signal 1504,,224402,JAME504,38184
 James Street Signal 537,,224401,JAME537,38184
@@ -6656,7 +6659,7 @@ Kaimes Quarry Siding,KQY,923063,KAIMES,04113
 Karlsruhe,,081605,KARLSRH,00058
 Kay Park Junction,,951415,KAYPRKJ,08727
 Keadby Canal,,652600,KEADBYC,22085
-See also Althorpe Keadby Canal,,,,
+Keadby Canal,See also Althorpe Keadby Canal,,,
 Kearsley,KSL,260500,KEARSLY,31567
 Kearsney,KSN,503800,KSNY,89519
 Keighley,KEI,846800,KEIGHLY,17011
@@ -6677,7 +6680,8 @@ Kelso (by bus),KES,029200,,
 Kelvedon,KEL,683800,KELVEDN,50113
 "Kelvindale
 (originally planned to be Dawsholm)",KVD,165500,DAWSHLM,06230
-DAW,995400,,,
+"Kelvindale
+(originally planned to be Dawsholm)",DAW,995400,,
 Kemble,KEM,332500,KEMBLE,75018
 Kempston Hardwick,KMH,138400,KMPSTNH,62040
 Kempton Park,KMP,567800,KMPTNPK,87154
@@ -6689,7 +6693,7 @@ Kendal,KEN,197600,KENDAL,11007
 Kenilworth,,459701,KENLWTH,69309
 Kenley,KLY,541900,KNLY,87810
 Kenley (A22),,541950,KNLYBUS,
-KEB,788500,,,
+Kenley (A22),KEB,788500,,
 Kennardington Level Crossing,,,KNRDTNX,
 Kennet Bridge Loop,,,,74232
 Kennethmont,,892700,KNMTSB,02024
@@ -6716,7 +6720,7 @@ Kent House,KTH,508000,KENTHOS,88314
 Kentish Town,KTN,155300,KNTSHTN,63551
 Kentish Town Junction,,155302,KNTSHTJ,63551
 Kentish Town LT,ZKT,155300,,
-061900,ZKT,,,
+Kentish Town LT,ZKT,061900,,
 Kentish Town West,KTW,144900,KNTSHTW,72420
 Kenton,KNT,139900,KTON,72008
 Kents Bank,KBK,196600,KTBK,11341
@@ -6815,7 +6819,7 @@ Kingmoor Up Through Sidings,,,KGMRUTS,
 Kingmoor Virtual Quarry,,211911,KGMRVQ,09152
 Kingmoor Yard Down Departure Siding,,211840,KGMRDDS,09164
 Kingsbridge Quay,KBD,355805,KNGBQUY,
-XAW,,,,
+Kingsbridge Quay,XAW,,,
 Kingsbury Birch Coppice,,105506,KNGSBC,66032
 Kingsbury Birch Coppice Colliery,,,,66022
 Kingsbury Birch Coppice Exchange Siding,,105501,KNGSBCE,66033
@@ -6851,7 +6855,7 @@ Kings Cross St Pancras LT,ZKX,062500,,
 Kings Cross Spoil Siding,,612005,KNGXSPS,54308
 Kings Cross Tarmac Topmix,,612012,KNGXFGM,54302
 Kings Cross Thameslink,KCM,142700,KNSXMCL,63632
-950700,KCM,KXTLSR,63632*,
+Kings Cross Thameslink,KCM,950700,KXTLSR,63632
 Kings Cross [unknown feature],,,,54950
 "Kings Cross York Way North Junction
 (See also York Way North Junction)",,,KNGXYWJ,
@@ -6872,7 +6876,7 @@ Kingsnorth Whitehall Sidings,,,KNTHWSD,88739
 Kings Norton,KNN,110900,KNORTON,66510
 Kings Norton Car Terminal,,110966,KNORCT,66511
 Kings Norton On Track Plant Depot,,110911,KNOROTP,66512
-KNOROTM,,,,
+Kings Norton On Track Plant Depot,,110911,KNOROTM,
 Kings Norton Signal SY57,,110913,KNOR57,66516
 Kings Norton Signal SY522,,110912,KNOR522,66509
 Kings Norton Signal SY523,,110916,KNOR523,66524
@@ -6890,7 +6894,7 @@ Kingswood,KND,536600,KGWD,87709
 Kingussie,KIN,865500,KGUSSIE,01147
 Kingussie Civil Engineer's Sidings,,865564,KGUSCE,01146
 Kinnaird Park,,,KNAIRPK,
-See also Newcraighall,,,,
+Kinnaird Park,See also Newcraighall,,,
 Kintbury,KIT,307300,KNTBRY,74805
 Kintbury Signal R848,,307301,KNTB848,74805
 Kintbury Signal RK103,,307302,KNTB103,74805
@@ -6936,7 +6940,7 @@ Kirton Lime Sidings,,646611,KRTNLMS,26003
 Kirton Lindsey,KTL,646600,KRTNLND,26004
 Kirton Lindsey Credential,,,,26005
 Kittybrewster,,897611,KITTYBR,02060
-,,,02066,
+Kittybrewster,,,,02066
 Kittybrewster Ground Frame,,897602,KITTYGF,02059
 Kittybrewster Scatter Burns Intermediate Block Section,,897613,KITTSCA,02058
 Kiveton Bridge,KIV,640100,KVTNBDG,26609
@@ -6952,7 +6956,7 @@ Knightsbridge LT,ZKN,062600,,
 Knockholt,KCK,510900,KNCKHLT,89341
 Knockshinnoch Freightliner Heavy Haul,,959101,KNOKFHH,08832
 Knockshinnoch Signal NC15,,959100,KNOK15,08831
-Knockshinnoch Washery,KNW,KNOKSCH,,
+Knockshinnoch Washery,KNW,959100,KNOKSCH,
 Knodishall Level Crossing,,722465,KNDLVLX,
 Knottingley,KNO,854600,KNTNGLY,18022
 Knottingley Depot,,854700,KNTNYFD,18018
@@ -6977,7 +6981,7 @@ Knucklas,KNU,422800,KNUCKLS,79096
 Knutsford,KNF,284800,KNUTSFD,37221
 Koblenz Hbf,KBZ,014500,KOBLENZ,00034
 Koln HBF,,081614,KOLNHBF,00009
-KOL,081600,,,
+Koln HBF,KOL,081600,,
 Koln Niehl,,081606,KOLNNIE,00010
 Kyleakin (Skye),KYK,906900,KYLEAKN,
 Kyle of Lochalsh,KYL,865700,KYLELSH,01071
@@ -7016,7 +7020,7 @@ Lairg Level Crossing,,865810,LAIRGLC,01031
 Lairg Oil Terminal,,865801,LAIRGOT,01033
 Lairg South Shunt,,865805,LAIRSSH,01030
 Laisterdyke European Metal Recycling,,834585,LAISEMR,18630
-18612,,,,
+Laisterdyke European Metal Recycling,,834585,LAISEMR,18612
 Laisterdyke Signal ML1558,,834586,LAISWJN,18629
 Lake,LKE,550400,LAKEIOW,86293
 Lakenheath,LAK,720100,LAKNHTH,46266
@@ -7024,7 +7028,7 @@ Lambeth North LT,ZLN,062800,,
 Lambhill,LMH,See Gilshochill,,
 Lambrigg,,209003,LBRIGG,09337
 Lampeter Black Lion/National Westminster Bank,LTR,406801,LMPTBLL,
-029500,LTR,,,
+Lampeter Black Lion/National Westminster Bank,LTR,029500,,
 Lamphey,LAM,408400,LAMPHEY,80205
 Lanark,LNK,971000,LANARK,07957
 Lanark Junction,,971063,LANARKJ,07956
@@ -7091,7 +7095,7 @@ Largs,LAR,952100,LARGS,08221
 Larkfield Carriage Sidings,,979965,LRKFCAR,07260
 Larkfield Junction,LFJ,979964,LRKFLDJ,07262
 Larkhall,LRH,972800,LARKHAL,07496
-LKH,,,,
+Larkhall,LKH,,,
 Larne,LRN,,,
 Larne Harbour,LRH,955800,LARNEHB,
 Latchford Sidings,,238303,LTFDSD,35534
@@ -7102,7 +7106,7 @@ Launceston Westgate Street Bus,XAZ,358012,LAUNWST,
 Laurencekirk,LAU,893100,LRNCKRK,03001
 Laurencekirk Down Refuge Siding,,893155,LRNCDRS,03002
 Laurencekirk Up Refuge Siding,,893157,LRNCURS,03004
-03005,,,,
+Laurencekirk Up Refuge Siding,,893157,LRNCURS,03005
 Laverstock North Junction,LJN,566302,LSTOKNJ,86115
 Laverstock South Junction,LSJ,566303,LSTOKSJ,86114
 Lavington,LAV,302800,LAVNGTN,74822
@@ -7156,7 +7160,7 @@ Leatherhead Signal W1195,,536801,LETH195,87676
 Lechlade Market Square,,333353,LECHMSQ,
 Leckwith Bridge Ground Frame,,381653,LCKWBGF,78518
 Leckwith Loop,,381654,LCKWLOP,78510
-,,LCWLOP,,
+Leckwith Loop,,,LCWLOP,
 Leckwith North Junction,LWJ,381658,LCKWTHJ,77307
 Leckwith South Junction,,381655,LCKWSTJ,78517
 Ledburn Ballast Sidings,,,,70318
@@ -7170,7 +7174,7 @@ Ledbury,LED,478400,LDBURY,67219
 Ledbury Sidings,,,,67210
 Lee,LEE,511000,LEEE,88453
 Leeds,LDS,848700,LEEDS,17132
-17950,LDS,,,
+Leeds,LDS,848700,LEEDS,17950
 Leeds Balm Road Freight Depot,,857100,LEEDBFD,17173
 Leeds Balm Road Loco Freightliner Heavy Haul,,857102,LEEDFHH,17172
 Leeds East Junction,,848720,LEEDSEJ,17126
@@ -7207,7 +7211,7 @@ Leicester,LEI,194700,LESTER,59241
 Leicester A E Piggott,,,LESTPIG,
 Leicester Braunstone Gate,LBE,188900,LESTBRG,59251
 Leicester Carriage Sidings,,194705,LESTCSD,59238
-LESTRCS,,,,
+Leicester Carriage Sidings,,194705,LESTRCS,
 Leicester HS,,,LESTRHS,
 Leicester Humberstone Road,HSR,194707,LESTHR,59221
 Leicester Humberstone Road Junction,LHJ,194708,LESTHRJ,59219
@@ -7227,10 +7231,10 @@ Leicester Signal LR421,,194702,LEST421,59244
 Leicester Signal LR426,,194703,LEST426,59245
 Leicester South Junction,,194701,LESTRSJ,59243
 Leicester Square LT,ZLC,,,
-ZLS,063100,,,
+Leicester Square LT,ZLS,063100,,
 Leicester V Berry,,,,59231
 Leigh Fleur-De-Lis Public House,,529450,LEIGBUS,
-094300,,,,
+Leigh Fleur-De-Lis Public House,,094300,,
 Leigh (Kent),LIH,529400,LEIGHK,87739
 Leigh-On-Sea,LES,744600,LHONSEA,51013
 Leighton Buzzard,LBZ,137300,LTNBZRD,70321
@@ -7296,7 +7300,7 @@ Leyland British Leyland,,271011,LEYLBLM,30161
 Leyton Carriage Maintenance Depot,XLY,692060,LETNCMD,52208
 Leyton (London),,692064,,52208
 Leyton LT,,740204,LEYTLUL,
-ZLY,063200,,,
+Leyton LT,ZLY,063200,,
 Leyton Midland Road,LEM,740200,LEYTNMR,51551
 Leytonstone High Road,LER,740300,LYTNSHR,51547
 Leytonstone LT,ZLE,063300,,
@@ -7342,7 +7346,7 @@ Limehouse Stepney East DLR,ZLH,086200,,
 Lime Kiln Siding Signal Box,,367875,LMKLSSB,
 Limerick Colbert,LRK,048900,LIMERIC,
 Limerick Junction,LJN,035200,LIMERCJ,
-XLJ,048960,,,
+Limerick Junction,XLJ,048960,LIMERCJ,
 Linby Colliery,,,,55005
 Lincoln Central,LCN,634000,LINCLNC,44038
 Lincoln Holmes Carriage Holding Sidings,,,LINCHCS,
@@ -7459,7 +7463,7 @@ Llandudno,LLD,248400,LUDO,40046
 Llandudno Junction,LLJ,248500,LANDUDJ,40050
 Llandudno Junction Carriage Siding,,,LANDJCS,40051
 Llandudno Junction Loco Holding Sidings,,248502,LANDLHS,40051
-LANDJHS,,,,
+Llandudno Junction Loco Holding Sidings,,248502,LANDJHS,
 Llandudno Junction Loco Inspection Point,,,LANDLSD,
 Llandudno Junction Signal LJ69,,248508,LAND69,40054
 Llandudno Junction Signal LJ70,,248506,LAND70,40049
@@ -7477,7 +7481,7 @@ Llangadog,LLG,406000,LLGADOG,79075
 Llangammarch,LLM,416200,LLGMMRW,79083
 Llangefni,,,,40027
 Llangelynin,CEN,430200,LLGL,64403
-LM HQ Input,LMH,-,,
+LM HQ Input,LMH,430200,LLGL,
 Llangennech,LLH,413800,LLGNNCH,79056
 Llangollen,,,,41404
 Llangyfelach,,421212,LLNGYFL,79090
@@ -7495,7 +7499,7 @@ Llanthony Sidings,,,LLNYSDG,
 Llantrisant,LTI,384900,LLTRSNT,78610
 Llantrisant Rockwell,,384902,LLTRROC,78611
 Llantwit Major,LWM,969900,LLNWTMR,78915
-NLC was 380401 until station reopened,,,,
+Llantwit Major,NLC was 380401 until station reopened,,,
 Llanwern Coal Siding,LWC,366613,LWERSDG,76113
 Llanwern Coal Siding English Welsh & Scottish Railway,,,,76108
 Llanwern Coal Yard,,366615,LWERCOA,76109
@@ -7519,8 +7523,8 @@ Llwyngwril,LLW,442100,LYNGRIL,64412
 Llwynypia,LLY,385200,LLWYNYP,78010
 Llynfi Junction,LYJ,,LLYNFIJ,
 Llysfaen Emergency Ground Frame,,245145,LLYSFGF,40048
-"LLYNFGF
-(looks wrong)",,,,
+Llysfaen Emergency Ground Frame,,245145,"LLYNFGF
+(looks wrong)",
 Locate Triulzi,,,,00325
 Lochailort,LCL,882900,LCHALRT,06006
 Loch Awe,LHA,871200,LOCHAWE,06051
@@ -7573,7 +7577,7 @@ Londonderry Hendon Junction,,,LNDHNDJ,
 London Eurostar (CIV),LOE,993400,LONDEUR,
 London Fields,LOF,696600,LONFLDS,52737
 London Hatton Cross,XHC,555955,LHRBHC,
-ZHX,,,,
+London Hatton Cross,ZHX,,,
 "London Heathrow Terminal 1 South West Trains Bus
 (see also Heathrow Terminal 1 Bus)",HWO,555951,LHRBT1,
 "London Heathrow Terminal 2 South West Trains Bus
@@ -7589,14 +7593,14 @@ London International Freight Terminal No 7 Shed,,,,52214
 London International Freight Terminal No 9 Shed,,,,52217
 London International Freight Terminal Nos 10 & 11 Sheds,,,,52213
 London Liverpool Street,LST,696500,LIVST,52741
-52990,LST,,,
+London Liverpool Street,LST,696500,LIVST,52990
 London Liverpool Street (Ballast),,696522,LIVSTBL,52743
 London Liverpool Street (GB Railfreight),,,,52900
 London Liverpool Street Loco Holding Siding,,696511,LIVSTHS,
 London Liverpool Street [unknown feature],,,,52950
 London Road Depot,,057060,LRDDEAC,72357
 London Road (Guildford),LRD,563200,LRDGFD,87068
-LON,,,,
+London Road (Guildford),LON,,,
 "London Terminals
 (may originally have been plain ""London"")",~LO,1072,,
 "London Terminals
@@ -7605,7 +7609,7 @@ London Thameslink Stations,,4452,,
 London Travelcard Zone 6,,007100,,
 London Underground Limited Through Ticket Issues,,002000,,
 London [unknown features],,,,91800
-92600,,,,
+London [unknown features],,,,92600
 London Zone 3C (Capital Card),,005800,,
 London Zone B1 London Transport Bus,,004500,,
 London Zone B12 London Transport Bus,,004600,,
@@ -7779,7 +7783,7 @@ Luncarty,,880532,LUNCARY,03112
 Luton,LUT,153600,LUTON,62400
 Luton Airport,LUA,157000,LUTNAIR,
 Luton Airport Parkway,LTN,364500,LUTOAPY,62410
-156900,LTN,,,
+Luton Airport Parkway,LTN,156900,,
 Luton Airport Rail Information Desk (in Airport Terminal),,3667,,
 Luton Alma Street,,153608,LUTOALM,
 Luton Bridge Street/Galaxy Centre,,153609,LUTOBRI,
@@ -7814,7 +7818,7 @@ Lympstone Commando,LYC,576200,LYMPSTC,83473
 Lympstone Village,LYM,576100,LYMPSTN,83474
 Lyndhurst Park Hotel,,590601,LYNDPKH,
 Lyndhurst Road,LYN,,LYNDHRD,86893
-See also Ashurst New Forest,,,,
+Lyndhurst Road,See also Ashurst New Forest,,,
 Lyneham Camp Main Gate,XBD,333356,LYNECMP,
 Lynemouth Alcan,LYA,760816,LYNMTHA,12216
 Lynemouth Alcan Branch Junction,,761905,LYNMABJ,12214
@@ -7827,7 +7831,7 @@ Lynemouth RJB Mining,,761900,LYNMTHC,12215
 Lyon Guillotiere,,873401,LYONGUI,00775
 Lyon Perrache,LYS,873400,,00791
 Lyon Venissieux,,873402,LYONVEN,00776
-00795,,,,
+Lyon Venissieux,,873402,LYONVEN,00795
 Lytham,LTM,267000,LYTHAM,30038
 Machen Run Round,,366800,MACHENR,76512
 Machen Quarry,MHQ,366811,MACHENQ,76511
@@ -7969,7 +7973,7 @@ Manchester Stations,,0438,,
 Manchester Trafford Park Cerestar,,296916,MCRTPCS,33049
 Manchester United Football Ground,MUF,299600,MNCRUFG,33092
 Manchester [unknown features],,,,32950
-32990,,,,
+Manchester [unknown features],,,,32990
 Manchester Velopark Metrolink,VPM,730100,MNCRVPM,
 Manchester Victoria,MCV,297000,MNCRVIC,31510
 Manchester Victoria East Junction,,297030,MNCRVEJ,31508
@@ -8040,7 +8044,7 @@ Margam Abbey West Junction,,418002,MRGMAWJ,79776
 Margam Abbey Works East,MWE,418057,MRGMAWE,79781
 Margam Aberaiden South,,419925,MLPTABS,79760
 Margam Civil Engineer's Sidings,MGA,,MRGMACE,79782
-,418062,MRGMCE,,
+Margam Civil Engineer's Sidings,,418062,MRGMCE,
 Margam East,,,MRGME,79767
 Margam East Junction,,418003,MRGMEJ,79768
 Margam High Output Train Depot,,418020,MRGMHOD,79773
@@ -8091,7 +8095,7 @@ Marks Tey Signalling & Telecommunications Engineer's Siding,,686315,MRKSSAT,5010
 Marks Tey Tarmac,MTT,686311,MRKSTAR,50102
 Marks Tey Up Loop,,686314,MRKSTUL,50103
 Marlborough High Street (Bus),XBH,333361,MRLBHST,
-,333376,MARBORO,,
+Marlborough High Street (Bus),,333376,MARBORO,
 Marlow,MLW,302100,MARLOW,74016
 Marne-La-Vallee,MCK,156400,MARNELV,00799
 Marple,MPL,283000,MARPLE,32553
@@ -8164,7 +8168,7 @@ Meaford Crossing,,,MEAFCNG,
 Medstead,,592465,MEDSTED,
 Melbourne Junction,,168101,MELBRNJ,57453
 Meldon Quarry,MQU,578663,MLDONQ,83301
-MDQ,087700,,,
+Meldon Quarry,MDQ,087700,,
 Meldon Quarry Freightliner Heavy Haul,,578666,MLDOFHH,83300
 Meldreth,MEL,703600,MELDRTH,47248
 Melkridge Opencast,,756312,MLKRDGE,13307
@@ -8230,7 +8234,7 @@ Metz Ville,MZM,873100,METZ,00764
 Mevagissey Trevorth,XEF,353402,MEVATRE,
 Mexborough,MEX,670700,MEXBRGH,24314
 Mexborough Junction,,670716,MEXBRJN,24315
-,,MEXBJN,,
+Mexborough Junction,,,MEXBJN,
 Micheldever,MIC,590800,MCHLDVR,86081
 Micheldever Elf Oil Sidings,MOI,590811,MCHLELF,86082
 Micheldever Signal E125,,590802,MCHL125,86138
@@ -8350,7 +8354,7 @@ Milton Keynes Central,MKC,137800,MKNSCEN,70261
 Milton Keynes City Centre/The Point,,137802,MKNSBUS,
 Milverton Junction,,459702,MLVTJN,69307
 Minehead,MHD,346300,MINEHED,83019
-,303500,MINEHD,-,
+Minehead,,303500,MINEHD,
 Minehead Bancks Street,,346301,MINEBAN,
 Minehead Butlins,,346304,MINEBUT,
 Minehead (Parade),,346302,MINEPAR,
@@ -8415,7 +8419,7 @@ Moorfields (Northern line station),XMR,222601,MORFNL,36078
 Moorgate (Great Northern),MOG,600500,MRGT,54299
 Moorgate LT,ZMG,064500,MORGTLT,
 Moorgate (Midland),XMM,142701,MGTE,63636
-,950902,MGTLSR,63636*,
+Moorgate (Midland),,950902,MGTLSR,63636
 Moor Lane Junction,,567017,MRLAJN,
 Moor Park,MPA,064600,MOORPK,70378
 Moor Park LT,ZMP,,,
@@ -8446,7 +8450,7 @@ Moreton-On-Lugg Freightliner Heavy Haul,,361702,MRTNFHH,76365
 Moreton Warmwell Roundabout,,595701,MOREWWR,
 Morfa Mawddach,MFA,447000,MFAM,64404
 Morlais Colliery,,415600,MORLSCL,79055
-,,79059,,
+Morlais Colliery,,,MORLSCL,79059
 Morlais Junction,,413859,MORLASJ,79055
 Morley,MLY,850400,MRLY,17145
 Morningside Road,,,,04685
@@ -8471,7 +8475,7 @@ Moses Loops/Gate Junction,,260620,MSGTLPS,31612
 Mosney,MOY,163600,,
 Mossband,,211804,MSBD,09097
 Mossend,MSE,,MOSEND,
-MSE,970600,MOSSEND,,
+Mossend,MSE,970600,MOSSEND,
 Mossend Advenza,,972975,MOSEADV,07364
 Mossend Anglo Coal/Delta Coal,,972913,MOSEDCE,07363
 Mossend Civil Engineer's Sidings,,972912,MOSECE,07366
@@ -8542,8 +8546,8 @@ Motherwell Wagon Repair Depot,,969162,MOTHWRD,07451
 Motherwell Weighs Carriage Holding Sidings,XMH,969170,MOTHWCS,07467
 Motspur Park,MOT,564500,MOTSPRP,87301
 Motspur Park Junction,,564515,MOTSPJN,87399
-"MOTSPPJ
-(not certain)",,,,
+Motspur Park Junction,,564515,"MOTSPPJ
+(not certain)",
 Mottingham,MTG,511800,MOTNGHM,88457
 "Mottisfont & Dunbridge
 (Now Dunbridge)",MTD,594400,MOTFONT,86107
@@ -8571,7 +8575,7 @@ Mouscron,,081402,MOUSCRN,00846
 Moutiers-Salins,,270100,,
 Moy,,866400,MOYY,01133
 Muck,MUK,906100,MUCK,
-MUC,CRS code uncertain: conflicting raw data,,,
+Muck,MUC,CRS code uncertain: conflicting raw data,,
 Mudchute DLR,ZMC,085700,,
 Muine Bheag,MBH,163800,,
 Muirend,MUI,960800,MUIREND,07567
@@ -8607,7 +8611,7 @@ Nantgarw Colliery,,,NGARCOL,
 Nant Gwernol,,192463,NGWR,
 Nantwich,NAN,124700,NANTWCH,42172
 Nantwich Willaston Level Crossing,,124704,NANTWLC,42173
-See also Crewe Willaston Level Crossing,,,,
+Nantwich Willaston Level Crossing,See also Crewe Willaston Level Crossing,,,
 Nantyronen,NYN,431500,NNTYRNN,
 Napoli Centrale,,087210,NAPCENT,00353
 Narberth,NAR,409800,NRBERTH,80217
@@ -8671,7 +8675,7 @@ Newark North Gate,NNG,649900,NEWANG,44304
 Newark Northgate Shunt Siding,,649905,NEWANSH,44305
 Newark Signal D88,,,NEWAD88,
 Newark Southwell Church Street,,885500,NEWASCH,
-635400,,,,
+Newark Southwell Church Street,,635400,NEWASCH,
 Newark Southwell Westgate,SLZ,885000,NEWASWG,
 Newark Stations,,0441,,
 Newark Swinderby A46 Roundabout,SWC,984000,NEWASWN,
@@ -8691,7 +8695,7 @@ New Bilton,,,NBLT,
 Newbridge [Ireland],NBG,164200,,
 Newbridge Civil Engineer's Sidings,,942663,NWBGCE,04033
 Newbridge Junction,NBG,942661,NWBG,04032
-NBJ,,,,
+Newbridge Junction,NBJ,,,
 Newbridge Junction Down Passenger Loop,,942662,NWBGDPL,04034
 Newbridge [Wales],NBE,991900,NBRWGE,76634
 New Brighton,NBN,215200,NBTN,38010
@@ -8712,8 +8716,8 @@ Newbury Signal R861,,307404,NEWB861,
 Newbury Yard,,307413,NEWBYD,74802
 Newby Bridge,,191961,NWBB,
 Newcastle,NCL,772800,NWCSTLE,12931
-13950,NCL,,,
-13990,NCL,,,
+Newcastle,NCL,772800,NWCSTLE,13950
+Newcastle,NCL,772800,NWCSTLE,13990
 Newcastle Airport,NCA,,,
 Newcastle BT CBI,NCX,609400,,
 Newcastle Central East End,,772815,NWCSCEE,12931
@@ -8759,7 +8763,7 @@ Newhaven Marine No 3 Siding,,533506,NEWHVM3,88240
 Newhaven Marine No 4 Siding,,533505,NEWHVM4,88240
 Newhaven Stations,NVP,0439,,
 Newhaven Town,NVN,533100,NEWHVNT,88231
-88233,NVN,,,
+Newhaven Town,NVN,533100,NEWHVNT,88233
 Newhaven Town Yard,,533101,NEWHVNY,
 New Hey,NHY,292300,NHEY,31053
 New Holland,NHL,620900,NHOL,21005
@@ -8803,7 +8807,7 @@ Newport New Sidings,,,,76463
 Newport Signal NT1273,,367760,NWPT273,76472
 Newport Sims Metals Advenza,,367501,NWPTDSA,76453
 Newport [unknown feature],,,,76410
-,,,76427,
+Newport [unknown feature],,,,76427
 New Pudsey,NPD,850600,NPUD,18651
 Newquay,NQY,352300,NEWQUAY,85261
 New Quay (Dyfed),NQC,038700,,
@@ -8884,7 +8888,7 @@ Northallerton Reversing Line,,799605,NLRTREV,15878
 Northallerton Up Sidings,,799601,NLRTNUS,
 Northallerton Wensleydale Railway,,886100,NLRTWDR,15901
 Northam Carriage Servicing Depot,XFS,591762,NTHMDEP,86508
-86502,XFS,,,
+Northam Carriage Servicing Depot,XFS,591762,NTHMDEP,86502
 Northam Depot Reception Line,,591763,NTHMRCL,86507
 Northam Freightliner,,591501,NTHMFL,86504
 Northam Junction,,591760,NTHMJN,86513
@@ -8914,7 +8918,7 @@ Northampton Signal RY1218,,106919,NMPT218,70113
 Northampton South Junction,,106907,NMPTNSJ,70105
 Northampton Terminal Complex,,106000,NMPTNTC,70104
 Northampton Terminal Complex Up Sidings,,106002,NMPTNUS,70104
-XNU,109000,,,
+Northampton Terminal Complex Up Sidings,XNU,109000,,
 Northampton Up Reception,,106005,NMPTUR,70108
 Northam Up Yard,,591500,NTHMUY,86503
 Northam Yard Cement Siding,,,NTHMCSD,
@@ -8966,7 +8970,7 @@ Northolt Park Junction,,147801,NTHOPKJ,62999
 Northolt Sidings,NOS,147811,NTHOLTS,73416
 Northorpe Signal Box,,646200,NTHPSB,26006
 North Pole International Depot,XNP,512704,NPLEINT,72239
-72240,XNP,,,
+North Pole International Depot,XNP,512704,NPLEINT,72240
 North Pole Junction,NPJ,145734,NPOLEJ,72238
 North Pole Signal VC813,,512705,NPLE813,72238
 North Pole Signal VC816,,512708,NPLE816,72238
@@ -8997,11 +9001,11 @@ Northwich Carriage Servicing Depot,,,NTHWCSD,
 Northwich Civil Engineer's Sidings,,37201,,37201
 Northwich East Junction,,232608,NTHWCEJ,37127
 Northwich Lostock Works,,232612,NTHWLW,37133
-37134,,,,
+Northwich Lostock Works,,232612,NTHWLW,37134
 Northwich Oakleigh Sidings,,232602,NTHWOS,37122
 Northwich Oakleigh Sidings Freightliner Heavy Haul,,232604,NTHWFHH,37119
 Northwich Oakleigh Sidings Vale Royal,,232601,NTHWOVR,37120
-NTHWVR,,,,
+Northwich Oakleigh Sidings Vale Royal,,232601,NTHWVR,
 Northwich Sidings,,,,37204
 Northwich South Junction,,232603,NTHWCSJ,37125
 Northwich Terminal Complex,,232607,NTHWCSG,37130
@@ -9010,12 +9014,12 @@ Northwich West Junction,,232606,NTHWCWJ,37126
 Northwick Park LT,ZNK,066000,,
 Northwood Hills LT,ZNS,066200,,
 Northwood LT,ZND,192265,NTWD,
-066100,ZND,,,
-,,NWODLT,,
+Northwood LT,ZND,066100,,
+Northwood LT,,,NWODLT,
 North Woolwich,NWW,692900,NWOLWCH,52270
 Norton Bridge,NTB,135600,NTNB,42312
 Norton Bridge Ballast Siding,,,,42331
-42311,,,,
+Norton Bridge Ballast Siding,,,,42311
 Norton Bridge Great Bridgeford,,135604,NTNBGB,42313
 Norton Bridge Standon Bridge,,135603,NTNBSB,42310
 Norton Bridge Station Drive,NBS,985800,NTNBSD,
@@ -9048,29 +9052,29 @@ Norwood Fork Junction,NFJ,530266,NORWDFJ,87640
 Norwood Junction,NWD,537600,NORWDJ,87643
 Norwood Junction,,774420,NRWDJN,13526
 Nottingham,NOT,182600,NTNG,55247
-55240,NOT,,,
+Nottingham,NOT,182600,NTNG,55240
 Nottingham (Anglia Area),,,,56570
 Nottingham Eastcroft Carriage Sidings,XNT,182603,NTNGMCS,55248
-,182615,NTNGECS,55250,
+Nottingham Eastcroft Carriage Sidings,,182615,NTNGECS,55250
 Nottingham East Junction,,182602,NTNGMEJ,55243
 Nottingham Freightliner Terminal,,,NTNGMFT,
 Nottingham Goods Yard,,,NTNGMGY,
 Nottingham Holding Sidings,,182611,NTNGMHS,55246
 Nottingham Mansfield Junction,NMJ,182614,NTNGMJN,55221
-172703,NMJ,,,
+Nottingham Mansfield Junction,NMJ,172703,,
 Nottingham Parcels Sidings,,182604,NTNGPCS,55249
 Nottingham Phoenix Park,NPP,303500,NTNGPKK,
 Nottingham Sneinton Level Crossing,,182608,NTNGSLC,55252
 Nottingham [unknown features],,,,55950
-56990,,,,
+Nottingham [unknown features],,,,56990
 Nottingham Wilford Road Up Goods Loop,,,NTNGWR,
 Nottingham Woollaton,,176306,NTNGWOL,56552
 Notting Hill Gate LT,ZNG,066300,,
 Novara,,087206,NOVARA,00328
 Nuneaton,NUN,107700,NNTN,69021
 Nuneaton Abbey Junction,,107708,NNTNABJ,66190
-"NNTNAJN
-(not certain)",,,,
+Nuneaton Abbey Junction,,107708,"NNTNAJN
+(not certain)",
 Nuneaton Ashby Junction,,107715,NNTNASJ,69013
 "Nuneaton Canal Farm Junction
 originally to be Abbey North Junction?",,107729,NNTNANJ,69033
@@ -9080,8 +9084,8 @@ Nuneaton Civil Engineers,,107709,NNTNCVE,69022
 Nuneaton Holding Sidings/'A' Sidings,,107702,NNTNHS,69019
 Nuneaton Midland Yard Junction,,107730,NNTNMYJ,69034
 Nuneaton Midland Junction,,107703,NNTNMID,69015
-"NNTNMJN
-(not certain)",,,,
+Nuneaton Midland Junction,,107703,"NNTNMJN
+(not certain)",
 Nuneaton Signal 511,,107707,NNTN511,69017
 Nuneaton Signal NL1266,,107724,NNTN266,69005
 Nuneaton Signal NL3427,,107718,NNTN427,69012
@@ -9126,7 +9130,7 @@ Offord,,610900,OFORD,45305
 Offord Superior Int,,610912,OFORDSI,45302
 Ogmore Vale Central Washery,,,OGMOREV,
 Oignies,,,,00762
-STANOX believed listed in error,00763,,,
+Oignies,STANOX believed listed in error,,,00763
 Okehampton,OKE,578600,OKHMPTN,83311
 Okehampton Fore Street,,578665,OKHMPFS,
 Okehampton Going Places,XCG,578610,OKHMGOP,
@@ -9164,7 +9168,7 @@ Old Oak Common Signal OO222,,,OLDO222,
 Old Oak Common Staff Halt,,,OLDOKSH,
 Old Oak Common Tamper Siding,,309605,OLDOTS,
 Old Oak Common Traction Maintenance Depot,XOL,309659,OLDOTMD,73220
-OOT,,,,
+Old Oak Common Traction Maintenance Depot,OOT,,,
 Old Oak Common West,,309657,OLDOKCW,73224
 Old Oak Common Yard,,,OLDOKCY,
 Old Roan,ORN,225800,OLDROAN,36015
@@ -9259,7 +9263,7 @@ Oxford Up Carriage Sidings,OXU,311558,OXFDUCS,74445
 Oxford West Midlands Sidings,,311522,OXFDWMS,74427
 Oxheys Goods Loop,,275313,OXHYSGL,30108
 Oxley Carriage Maintenance Depot,XOY,462911,OXLEYCS,65036
-OXC,,,,
+Oxley Carriage Maintenance Depot,OXC,,,
 Oxley Carriage Sidings,,,OXLEYS,65036
 Oxley Down Goods Loop,,462905,OXLEDGL,65040
 Oxley Junction,,,OXLEYJ,
@@ -9313,7 +9317,7 @@ Padstow Old Station,,,PDSTHBT,
 Paignton,PGN,342700,PAIGNTN,83631
 Paignton Crossover Ground Frame Paignton & Dartmouth Steam Railway,,342705,PAIGXGF,83635
 Paignton (Queens Park),,342711,PAIGDVL,83632
-342767,,PAIGTQP,-,
+Paignton (Queens Park),,342767,PAIGTQP,
 Paisley Canal,PCN,965700,PSLYCAN,07115
 Paisley Down Goods Loop,,968378,PSLYDGL,07145
 Paisley Gallowhill Sidings,,968305,PSLYGSD,07146
@@ -9352,9 +9356,9 @@ Parkandillack Kernick ECC Siding,,350307,PRKAKER,85418
 Parkandillack Treviscoe ECC Siding,,350306,PRKATRE,85416
 Parkandillack Treviscoe Ground Frame,,,,85415
 Parkeston Carless Curve Headshunt,,,PRKSCVH,
-,690220,PRKSCRV,49398,
+Parkeston Carless Curve Headshunt,,690220,PRKSCRV,49398
 Parkeston Carless Refinery Headshunt,,,PRKSCRH,
-,690221,PRKSCLH,49397,
+Parkeston Carless Refinery Headshunt,,690221,PRKSCLH,49397
 Parkeston Carless Sidings,,690211,PRKSCLS,49402
 Parkeston Container Terminal,PKC,690000,PRKSTCT,49405
 Parkeston Down Through Siding,PDS,690219,PRKSDTS,49412
@@ -9493,7 +9497,7 @@ Pentre-Bach,PTB,394400,PNTRBCH,78140
 Penwithers Junction,,354059,PNWTHRJ,85505
 Pen-y-Bont,PNY,425400,PYBONT,79092
 Penychain (Butlins),BPC,440900,PENYCHN,64504
-PNC,,,,
+Penychain (Butlins),PNC,,,
 Penyffordd,PNF,243300,PNYF,41022
 Penyffordd Cement Sidings,,243311,PNYFDCS,41021
 Penyffordd Cement Sidings Ground Frame,,243312,PNYFCGF,41020
@@ -9607,7 +9611,7 @@ Philips Park West (No 1) Junction,,288005,PHILPK1,32121
 Piacenza,,087211,PIACNZA,00332
 Gare Picarde,,089600,PICARDE,00751
 Piccadilly Circus LT,ZPC,013800,PICDYCR,72352
-067400,ZPC,,,
+Piccadilly Circus LT,ZPC,067400,PICDYCR,
 Pickering,XPK,815512,PICKRNG,15520
 "Pickering Levisham
 see also Levisham",,815513,PICKLEV,15527
@@ -9637,7 +9641,7 @@ Pitsea Down Siding,,745202,PITSEAD,51015
 Pitsea Up Siding,,745201,PITSEAU,51017
 Plaistow,,747406,PLAISTW,52714
 Plaistow LT,ZPL,067600,PLASTOW,52713
-ZPS,,,,
+Plaistow LT,ZPS,,,
 Plean,,988666,PLEAN,05002
 Plean Junction,,,PLEANJ,
 Pleasington,PLS,275200,PLSNGTN,29163
@@ -9731,7 +9735,7 @@ Pontypool & New Inn,PPL,374400,PONTYPL,76245
 Pontypridd,PPD,390400,PTYPRID,78215
 Poole,POO,588300,POOLE,86935
 Poole Ferry Terminal,PFT,589100,POLEFT,86935
-035300,PFT,,,
+Poole Ferry Terminal,PFT,035300,POLEFT,
 Poole Signal P17,,588304,POOL17,86934
 Poole Signal Box,,588303,POOLESB,86937
 Poole Storage Sidings,XFT,588301,POOLESS,86936
@@ -9804,12 +9808,12 @@ Port Talbot East,,418104,PTALEA,79704
 Port Talbot East RL,,,PTLBERL,
 Port Talbot Grange Sidings,,418311,PTLBGSC,79741
 Port Talbot Grange Sidings British Steel,PGS,418312,PTLBGSD,79742
-,,,79737,
-79738,,,,
-79739,,,,
-79740,,,,
+Port Talbot Grange Sidings British Steel,,,,79737
+Port Talbot Grange Sidings British Steel,,,,79738
+Port Talbot Grange Sidings British Steel,,,,79739
+Port Talbot Grange Sidings British Steel,,,,79740
 Port Talbot Grange Sidings Freightliner Heavy Haul,,418105,PTLBFHH,79744
-418310,,PTLBGBF,,
+Port Talbot Grange Sidings Freightliner Heavy Haul,,418310,PTLBGBF,
 Port Talbot Grange Sidings Tarmac,,418313,PTLBTAR,79743
 Port Talbot New Iron Ore Harbour,,,PTLBNIH,
 Port Talbot Parkway,PTA,418100,PTALBOT,79701
@@ -9819,7 +9823,7 @@ Port Talbot Siding P Field,,418315,PTLBPFS,79735
 Port Talbot Steel Works Corus,,418110,PTALCOR,79736
 Port Talbot Steel Works Marcroft,,,,79720
 Port Talbot [unknown features],,,,79990
-91900,,,,
+Port Talbot [unknown features],,,,91900
 Port Talbot Up Sidings,,418103,PTALUSD,79703
 Possilpark & Parkhouse,PPK,995800,POSILPK,06242
 Potland Burn DB Schenker,,762703,PTBNDBS,12207
@@ -9843,7 +9847,7 @@ Prescot BICC,,,,36612
 Prestatyn,PRT,252100,PSTA,40101
 Prestbury,PRB,287500,PSBY,32573
 Preston,PRE,275300,PRST,30120
-30950,PRE,,,
+Preston,PRE,275300,PRST,30950
 Preston BHSE,,,,30123
 Preston Carriage Sidings,XPT,275379,PRSTNCS,30118
 Preston Deepdale,,270700,PRSTNDP,30112
@@ -9863,7 +9867,7 @@ Prestonpans Signal EA831,,936610,PPAN831,04810
 Prestonpans Up Passenger Loop,,936605,PPANUPL,04812
 Preston Park,PRP,528500,PRSP,87975
 Preston Park (London Road),,528550,PRSPBUS,
-PPR,094600,,,
+Preston Park (London Road),PPR,094600,,
 Preston Park Sidings,,528501,PRSPSDG,87974
 Preston PCD,XPR,275384,PRSTPCD,30120
 Preston Pitt Street Virgin Trains,,275315,PRST999,
@@ -9984,7 +9988,7 @@ Railtrack Head Quarters Training Location Belfast Rail Freight Depot,,,,89853
 Railtrack Head Quarters Training Location Bellville,,,,89772
 Railtrack Head Quarters Training Location Beta,ZTB,,,89754
 Railtrack Head Quarters Training Location Blacklock,ZTO,090618,RTHQIAN,89782
-89781,ZTO,,,
+Railtrack Head Quarters Training Location Blacklock,ZTO,090618,RTHQIAN,89781
 Railtrack Head Quarters Training Location Bob,ZTP,,,89780
 Railtrack Head Quarters Training Location Bremer HVN,,,,89855
 Railtrack Head Quarters Training Location Brian,ZTR,091620,RTHQBRI,89792
@@ -10049,7 +10053,7 @@ Ramsgate Depot Exit Minster End,,502317,RAMMIEX,89460
 Ramsgate Depot Reception West,,502318,RAMSDRW,89459
 Ramsgate Depot Washer Spur,,502319,RAMSDWS,89458
 Ramsgate Harbour,RMG,501300,RAMSHBR,
-RMZ,,,,
+Ramsgate Harbour,RMZ,,,
 Ramsgate New Sidings,,502371,RAMSNEW,89476
 Ramsgate Sidings,XRM,502311,RAMSSDG,89471
 Ramsgate Shunt Signal 12,,502373,RAMS12,89468
@@ -10062,7 +10066,7 @@ Ramsgate Signal EK5145,,502321,RAM5145,89456
 Ramsgate Traction Maintenance Depot,XRE,502368,RAMSGTD,89472
 Ramsgate Up Siding West,,502320,RAMSUSW,89457
 Ramsgreave & Wilpshire,RGW,273400,RMSWILP,29146
-RMW,,,,
+Ramsgreave & Wilpshire,RMW,,,
 Rannoch,RAN,883400,RANNOCH,06035
 Rannoch Civil Engineer,,883461,RANNOCE,06034
 Ranskill Bawtry Crossover,,650777,RANSBAW,23487
@@ -10144,7 +10148,7 @@ Reading Train Care Depot Entry C,,314266,RDNGTCC,74252
 Reading Traction Maintenance Depot,,314916,RDNGTMD,74259
 Reading Train Care Depot,,314227,RDNGTCD,74247
 Reading Triangle Sidings,,314971,,74248
-,314203,RDNGTRS,,
+Reading Triangle Sidings,,314203,RDNGTRS,
 Reading [unknown feature],,,,74950
 Reading Upper Triangle Depot,,314980,,74258
 Reading West,RDW,316000,REDGWST,74249
@@ -10211,7 +10215,7 @@ Reepham,,731700,REEPHAM,
 Reepham Signal Box,,,REEPSB,
 Regent's Park LT,ZRP,068500,,
 Regents Road Level Crossing,,216201,RGNTSRX,36103
-216200,,,,
+Regents Road Level Crossing,,216200,RGNTSRX,
 Reigate,REI,548000,REIGATE,87089
 Reigate Carriage Holding Sidings,,548013,REIGCHS,87089
 Reigate Shunt Signal R17,,548001,REIG17,87091
@@ -10264,7 +10268,7 @@ Richmond For The Games,RMX,660400,CATZ052,
 Richmond Signal F398,,557005,RICH398,87124
 Rickerscote,,126803,RCKRSCT,43325
 Rickmansworth LT,RIC,068700,RCKMNSW,70371
-ZRI,,,,
+Rickmansworth LT,ZRI,,,
 Riddlesdown,RDD,543200,RDLSDWN,87744
 Ridgmont,RID,153800,RIDGMNT,62049
 Ridham Dock,RHK,518800,RIDHAMD,89119
@@ -10403,7 +10407,7 @@ Rotherham Holmes Curve Signal S750,,667105,ROTH750,25050
 Rotherham Holmes Junction,,667100,ROTHHJN,25016
 Rotherham Ickles,,,,25104
 Rotherham Masborough,RTM,667300,RTHRHMM,
-,667304,ROTHCAF,24504,
+Rotherham Masborough,,667304,ROTHCAF,24504
 Rotherham Signal S41,,667311,ROTHS41,
 Rotherham Signal S410/2,,667316,ROTH410,
 Rotherham Signal S417/9,,667322,ROTH417,
@@ -10412,7 +10416,8 @@ Rotherham Signal S748,,667615,ROTH748,
 Rotherham Thrybergh Corus,,671233,ROTHTRY,24511
 "Rotherhithe
 (second code set used after East London Line operated as part of national network)",ZRO,068900,RTHERHI,87566
-ROE,103900,,,
+"Rotherhithe
+(second code set used after East London Line operated as part of national network)",ROE,103900,,
 Rothesay,RTY,904900,RSAY,
 Rothiemay,,892520,RTHIMAY,02020
 Rothley,,191862,RTHL,
@@ -10555,7 +10560,7 @@ Rylstone Tarmac,,,,09540
 Rylstone Tilcon,,827700,RYLSTON,09541
 Rylstone Tilcon GB Railfreight,,827701,RYLSGBF,09542
 St Agnes,XPX,354004,,
-SAG,336000,,,
+St Agnes,SAG,336000,,
 St Albans Abbey,SAA,156200,STALBNA,71030
 St Albans Centre Sidings,SCC,154803,STALBCS,63202
 St Albans City,SAC,154800,STALBCY,63201
@@ -10619,7 +10624,7 @@ St James Street,SJS,697300,STJMSST,52734
 St Johns,SAJ,505900,STJOHNS,88411
 St Johns Wood LT,ZSJ,069600,,
 St Keyne,SKN,357200,STKEYNE,84416
-SKY,,,,
+St Keyne,SKY,,,
 St Leonards Controlled Emission Toilet Point,,521267,STLNCET,88276
 St Leonards Railway Engineering GB Railfreight,,521203,STLNGBR,88280
 St Leonards Railway Engineering Ltd,XSM,521201,STLNDEM,88282
@@ -10649,8 +10654,8 @@ St Neots Tesco,XEI,611003,STNVBUS,
 St Neots Up Siding,,611009,STNEUSD,45404
 St Nicholas (Carlisle) Civil Engineer's Sidings,,211700,STNICE,09177
 St Pancras [domestic station],STP,155500,STPX,63630
-"SRP
-believed recorded in error",,,,
+St Pancras [domestic station],"SRP
+believed recorded in error",,,
 St Pancras Aptis,,925400,,
 St Pancras Camley Street Junction,,155507,STPXCSJ,63622
 St Pancras Churchyard Sidings,XYR,155501,STPXCYS,63626
@@ -10664,7 +10669,7 @@ St Pancras [low level station],SPL,993300,STPXBOX,63629
 St Pancras Maintenance Siding,,154001,STPAMCS,63619
 St Pancras Maintenance Siding Connection,,154009,STPAMSC,63627
 St Pancras Regents Canal Junction,,154006,STPARCJ,
-155506,,STPXRCJ,63628,
+St Pancras Regents Canal Junction,,155506,STPXRCJ,63628
 St Pancras Sportis,,348100,,
 St Pancras Up Slow Line Holding Sidings,,,STPXUSL,
 St Pauls LT,ZSP,069700,,
@@ -10855,7 +10860,7 @@ Seaton-On-Tees Able UK,,800815,SETNABL,14251
 Seaton Sea Front,SSF,035600,SEATNSF,
 Seaton Snook Junction,,800814,SETNSJN,14244
 Seer Green & Jordans,SRG,306100,SEERGRN,73501
-GRE,,,,
+Seer Green & Jordans,GRE,,,
 Selby,SBY,820100,SELBY,16523
 Selby Barlby Loops,,820185,SELBAR,16525
 Selby Barlby North Junction,,820101,SELBBNJ,16528
@@ -10943,7 +10948,8 @@ Shacklegate Junction Signal F414,,560757,SHCK414,87180
 Shacklegate Junction Signal F416,,560759,SHCK416,
 "Shadwell
 (second code set used after East London Line operated as part of national network)",ZSW,069900,SHADWEL,52088
-SDE,108200,,,
+"Shadwell
+(second code set used after East London Line operated as part of national network)",SDE,108200,,
 Shadwell Crossover,,108201,SHADXO,52086
 Shadwell DLR,ZSW,086000,,
 Shaftesbury Town Hall,SWH,035700,SHAFTTH,
@@ -10977,7 +10983,7 @@ Sharpness Docks Coopers Metal,,476812,SHRPCMT,68148
 Shaw And Crompton,SHA,292500,SHCRPTN,31055
 Shawfair,,696300,SHWFAIR,
 Shawfield,,978796,SHFD,07284
-07279,,,,
+Shawfield,,978796,SHFD,07279
 Shawford,SHW,592900,SHAWFD,86084
 Shawford Junction,,592462,SHAWFDJ,86051
 Shawlands,SHL,982300,SHWLNDS,07585
@@ -11156,7 +11162,7 @@ Sinderland Crossing,,,SDLDX,
 Sinfin Central,SFC,184500,SINFINC,57456
 Sinfin International Combustion Ltd,,,,57452
 Sinfin North,SIR,184900,SINFINN,57455
-SFH,Second CRS code uncertain: conflicting raw data,,,
+Sinfin North,SFH,Second CRS code uncertain: conflicting raw data,,
 Sinfin Peartree Sidings,,168716,SINFFHH,57457
 Sinfin Sidings,,168715,SINFINS,57454
 Sinfin Sidings,,,,57453
@@ -11255,7 +11261,7 @@ Smeeth Signal AD719,,502205,SMEE719,89746
 Smethwick Rolfe Street,SMR,115000,SMTHKRS,65824
 Smethwick West/Junction,SMW,453400,SMTHWKW,65908
 Smitham,SMI,538200,SMITHAM,87705
-Renamed Coulsdon Town,,,,
+Smitham,Renamed Coulsdon Town,,,
 Smithfield Carriage Holding Sidings,SFI,512112,SFLDCHS,87241
 Smithy Bridge,SMB,266000,SMBG,31035
 Snailwell Advenza Freight,,703815,SNLWADV,46286
@@ -11310,7 +11316,7 @@ Southampton Down Bay Siding,,593204,SOTONBS,86520
 Southampton Down Loop,XFW,591560,SOTODGL,86524
 Southampton Down Yard,,591729,SOTONDY,86506
 Southampton Eastern Docks,XSN,597961,SOTDED,86516
-SEK,036000,,,
+Southampton Eastern Docks,SEK,036000,,
 Southampton Eastern Docks STVA UK,,,,86517
 Southampton Hoverport,,591900,SOTNHVP,86515
 Southampton International,,199800,,
@@ -11330,11 +11336,11 @@ Southampton Signal E955,,593235,SOTO955,
 Southampton Signal E957,,593236,SOTO957,
 Southampton Station Forecourt,,593201,SOTONSF,86520
 Southampton Town Quay,SDK,597900,SOTNTNQ,
-STQ,SOTNTQ,197900,-,
-SMP,SOTNTQ,,,
+Southampton Town Quay,STQ,SOTNTQ,197900,
+Southampton Town Quay,SMP,,,
 Southampton Up Goods Loop,XFX,593202,SOTOUGL,86522
 Southampton Western Docks,XSK,597962,SOTDWD,86602
-SPW,036100,,,
+Southampton Western Docks,SPW,036100,,
 Southampton Western Docks GB Railfreight,,597968,SOTDWGB,86607
 Southampton Western Docks National Logistics Unit,,597914,SOTDNLU,86601
 Southampton Western Docks Shed 107,,597966,SOTD107,86604
@@ -11366,7 +11372,7 @@ South Drove,,638805,SPALSDR,46019
 South Ealing LT,ZSE,070400,,
 Southease,SEE,533900,SESARDM,88226
 Southease Church,,533950,SESABUS,
-SEZ,799400,,,
+Southease Church,SEZ,799400,,
 South Elmsall,SES,835500,SELMSAL,18077
 South Elmsall Junction,,835505,SELMJN,
 Southend Airport,,688511,STHEAIR,50315
@@ -11385,7 +11391,7 @@ Southerham Junction,XRH,532969,STHRHMJ,88224
 Southfields,SDS,551200,STHFLDS,87254
 Southfleet Crossover,XXP,511412,SFLTX,89542
 Southfleet Junction,XXO,511411,SFLTJN,89540
-,,,88498,
+Southfleet Junction,,,,88498
 Southgate LT,ZSA,070600,,
 South Gosforth,SGH,759100,SGOS,12411
 South Greenford,SGN,313800,SGFORD,73273
@@ -11398,7 +11404,7 @@ South Kenton,SOK,145300,SKENTON,72009
 South Kirkby Junction,,835514,SKIRBYJ,18076
 South Lambeth Junction,,528803,SLMBTHJ,
 South Lambeth Signalling & Telecommunications Engineer's Sidings,,,SLAMBTH,04104
-STANOX code looks dubious.  It may be intended that this refers to the First Engineering signalling school at Slateford,,,,
+South Lambeth Signalling & Telecommunications Engineer's Sidings,STANOX code looks dubious.  It may be intended that this refers to the First Engineering signalling school at Slateford,,,
 South Lynn,,712300,SLYNN,46248
 South Lynn Banks Grain,,,,46247
 South Lynn British Sugar,,,,46249
@@ -11532,14 +11538,14 @@ Stansfield Hall,,255001,STNSFLH,29003
 Stansted,,683300,STANSTD,47342
 Stansted Airport,SSD,683400,STANAIR,47344
 Stansted Airport Bus Stop,XTH,980300,STANBUS,
-XSI,683404,,,
+Stansted Airport Bus Stop,XSI,683404,,
 Stansted Airport Signal L1201,,683405,STAN201,47348
 Stansted Airport Signal L1366,,683406,STAN366,47349
 Stansted Coopers Lane Junction,,683370,STANCLJ,47347
 Stansted Down Goods Loop,,683365,STANDGL,47343
 Stansted East Junction,,683366,STANEJN,47346
 Stansted Mountfitchet,SST,683300,STANSTD,47342
-,683371,STANMFC,47342*,
+Stansted Mountfitchet,,683371,STANMFC,47342
 Stansted North Junction,,683367,STANNJN,47339
 Stansted Oil Siding,,683364,STANSOS,47341
 Stansted South Junction,,683368,STANSJN,47345
@@ -11655,7 +11661,7 @@ Stockton,STK,797500,STOCTON,15223
 Stockton Cut Junction,,797516,STOCCJN,15229
 Stockton Signal 907,,797505,STOC907,15226
 Stockton T J Thomson,,796118,STOCTMS,15224
-,,,15225,
+Stockton T J Thomson,,,,15225
 Stockton T J Thomson Advenza Railfreight,,796119,STOCTAD,15222
 Stockton T J Thompson Devon & Cornwall Railways,,796117,STOCDC,15221
 Stockton T J Thomson GB Railfreight,,796120,STOCGBF,
@@ -11688,7 +11694,7 @@ Stoke Milton,,131409,STOKMIL,43415
 Stoke Newcastle Junction,,131410,STOKNEW,43212
 Stoke Newington,SKW,693400,STKNWNG,51963
 Stoke North West Yard,,131462,STOKNWY,43205
-43223,,,,
+Stoke North West Yard,,131462,STOKNWY,43223
 Stoke North West Yard Reversing Point,,131463,STOKYRV,43224
 Stoke Oakamoor,,128704,STOKOAK,43424
 Stoke Oakamoor British Industrial Sand,,131011,,43425
@@ -11704,7 +11710,7 @@ Stoke Signal 527,,131427,STOK527,43219
 Stoke Signal 534,,131415,STOK534,43213
 Stoke Signal 540,,131418,STOK540,43214
 Stoke Works Junction,SWJ,471513,STKWKSJ,67008
-67066,SWJ,,,
+Stoke Works Junction,SWJ,471513,STKWKSJ,67066
 Stoke Viaduct Sidings,,131407,STOKVS,43225
 Stone,SNE,131600,STONE,43308
 Stone Ashton,,131603,STONASH,43309
@@ -11721,14 +11727,14 @@ Stone Crossing-Horns Cross,,524810,STCRHCR,
 Stone Crown Street,XIS,985901,STONECS,
 Stonegate,SOG,524000,SNGT,89393
 Stone Granville Square,SGQ,925400,STONEGS,
-985900,SGQ,,,
+Stone Granville Square,SGQ,985900,,
 Stonehaven,STN,896400,SHVN,02113
 Stonehaven South,,896461,SHVNS,02114
 Stonehenge Bus,SHG,565300,,
 Stonehouse,SHU,477000,STNHSE,68159
 Stonehouse Post Office,,477001,STNHPO,
 Stone Junction,,131601,STONJN,43307
-,,STONEJ,,
+Stone Junction,,,STONEJ,
 Stoneleigh,SNL,560600,STLEIGH,87303
 Stone Meaford Sidings,,131602,STONEMS,43303
 Stone Sandon,,131604,STONSAN,43310
@@ -11742,7 +11748,7 @@ Stormy Up Goods Loop,,380957,STORUGL,79788
 Stornoway,SOY,905600,STWY,
 Stourbridge Junction,SBJ,464600,STRBDGJ,65933
 Stourbridge Junction Carriage Sidings,,464601,STRBCS,65931
-,,STRBJCS,,
+Stourbridge Junction Carriage Sidings,,,STRBJCS,
 Stourbridge Junction Goods Loop,XSF,464668,STRBJGL,65930
 Stourbridge Junction Light Maintenance Depot,,464603,STRBDEP,65920
 Stourbridge Junction Light Maintenance Depot Headshunt,,464604,STRBHDS,65921
@@ -11819,14 +11825,14 @@ Stratford-Upon-Avon,SAV,455800,SOAV,66451
 Stratford-Upon-Avon East,,455802,SOAVEST,66450
 Stratford-Upon-Avon Leisure Centre,XZE,455803,SOAVBUS,
 Stratford Wabtec,,,,52221
-52233,,,,
+Stratford Wabtec,,,,52233
 Strathcarron,STC,867300,STCN,01077
 Strathcarron Civil Engineer's Sidings,,867361,STCNCE,01085
 Strathcarron Level Crossing,,867310,STCNLC,01077
 Strawberry Hill,STW,560700,STRWBYH,87134
 Strawberry Hill Carriage Servicing Depot,XSX,560712,STRWBHD,87151
 Strawberry Hill Signal F419,,560702,STRW419,87173
-(originally 87165),,,,
+Strawberry Hill Signal F419,,560702,STRW419,87165
 Strawberry Hill Tunnel,,523067,STWHTNL,89376
 Streatham,STE,538300,STRETHM,87613
 Streatham Common,SRC,538400,STRHCOM,87631
@@ -11904,10 +11910,11 @@ Surbiton Signal WK534,,557104,SURB534,87175
 Surbiton Signal WK1104,,557105,SURB104,87174
 Surbiton Signal WK1106,,557106,SURB106,87176
 Surrey Canal Road,,515020,SURCNRD,87576
-SCE,775600,,,
+Surrey Canal Road,SCE,775600,,
 "Surrey Quays
 (second code set used after East London Line operated as part of national network)",SQE,515040,SURREYQ,87572
-108300,SQE,,,
+"Surrey Quays
+(second code set used after East London Line operated as part of national network)",SQE,108300,,
 Surrey Quays LT,ZSU,072200,,
 Surrey Quays Silwood Junction,,108301,SURRQSJ,87574
 Surrey Quays Silwood Stabling Sidings,,108302,SURRQSS,
@@ -11979,7 +11986,7 @@ Swindon Bus Station,XDK,333307,SDONBUS,
 Swindon CCT Forwardings,,333310,,75016
 Swindon Cocklebury Yard,SCO,333311,SDONCBY,75002
 Swindon Control,,,,75900
-75990,,,,
+Swindon Control,,,,75990
 Swindon East Loop,,333363,SDONEL,75015
 Swindon European Metals Recycling Disposals,,333357,SDONEMR,75007
 Swindon European Metals Recycling Forwarding,,333314,,75004
@@ -12030,7 +12037,7 @@ Syston North Junction,,190002,SYSTNNJ,59020
 Syston South Junction,,190003,SYSTNSJ,59022
 Tadworth,TAD,538600,TADWTH,87708
 Tadworth The Avenue (By Bus),,538650,TADWBUS,
-TTA,912800,,,
+Tadworth The Avenue (By Bus),TTA,912800,,
 Taff Merthyr Colliery,,,TAFFMCL,78312
 Taffs Well,TAF,388000,TAFFSWL,78220
 Tain,TAI,867600,TAIN,01044
@@ -12072,7 +12079,7 @@ Taunton Cider Siding,TCS,346512,TAUNCSD,83012
 Taunton Civil Engineer's Sidings,,347176,TAUNCE,83005
 Taunton Concrete Works,,,,83003
 Taunton East Junction,,347103,TAUNEJN,83007
-,,TAUNTEJ,,
+Taunton East Junction,,,TAUNTEJ,
 Taunton Fairwater Pre-Assembly Depot,,347179,,83008
 Taunton Freight Depot,,347113,,83001
 Taunton Goods Reception,TAG,347114,TAUNGDS,83000
@@ -12150,7 +12157,7 @@ Terminus Curve Signal G606,,979769,TERM606,07211
 Terminus Junction,,979768,TERMJGW,07210
 Terrace Carriage Holding Sidings [Lincoln],XTT,634011,TERCESL,44049
 Test Location Ainderby Steeple,,886100,TESTAIN,15901
-Now disbanded: NLC and STANOX codes used for Wensleydale,,,,
+Test Location Ainderby Steeple,Now disbanded: NLC and STANOX codes used for Wensleydale,,,
 Test Location Bedale,,886400,TESTBED,15904
 Test Location Leeming Bar,,886300,TESTLEE,15903
 Test Location Redmire,,886600,TESTRED,15906
@@ -12165,23 +12172,23 @@ Thames Haven Coryton Mobil Oil,,745913,THMSMOB,51102
 Thames Haven DB Schenker,,745910,THMSDBS,51126
 Thames Haven English Welsh & Scottish Railway,THV,745900,THMSHVN,51103
 Thames Haven Freightliner,,745906,THMSFLI,51127
-,,THLGFLI,,
+Thames Haven Freightliner,,,THLGFLI,
 Thames Haven Junction,,745920,THMSHVJ,51121
 "Thames Haven London Gateway Port ""AL""",,,THLGPAL,51126
 Thames Haven London Gateway Port Arrival,,745908,THMSLGA,51125
-,,THLGPAR,,
+Thames Haven London Gateway Port Arrival,,,THLGPAR,
 Thames Haven London Gateway Port Departure,,745904,THMSLGD,51129
-,,THLGPDL,,
+Thames Haven London Gateway Port Departure,,,THLGPDL,
 Thames Haven London Gateway Port GB Railfreight,,745911,THMSLGB,
 Thames Haven Marcroft,,745917,,51104
 Thames Haven Signal LG11,,745905,THMSL11,51128
-,,THLG11,,
+Thames Haven Signal LG11,,,THLG11,
 Thames Haven Signal LG14,,745708,THMSL14,51131
 Thames Haven Signal LG15/Stop Board,,745702,THMSL15,51124
 Thames Haven Signal UR882,,745704,THMS882,51122
 Thames Haven Signal UR888,,745703,THMS888,51123
-,,THUR888,,
-,,THJU888,51122,
+Thames Haven Signal UR888,,,THUR888,
+Thames Haven Signal UR888,,,THJU888,51122
 Thames Matex,,745317,THMSMTX,51331
 Thames Wharf DLR,ZTA,088500,,
 Thatcham,THA,315200,THATCHM,74723
@@ -12382,7 +12389,7 @@ Tipton,TIP,115900,TIPTON,65809
 Tiree,TEE,907300,TIREE,
 Tir-Phil,TIR,402500,TIRPHIL,78346
 Tisbury,TIS,579800,TISBURY,82335
-,,TISBRY,,
+Tisbury,,,TISBRY,
 Tisbury Loop,,579862,TISBRYL,82334
 Tiverton Bus Station,XDA,347410,TIVIBUS,
 Tiverton Cullompton,,347201,TIVICMT,83111
@@ -12407,33 +12414,33 @@ Tonbridge Down Main Siding,TOS,522904,TONBDMS,89361
 Tonbridge East Yard,,524300,,89362
 Tonbridge Engineers Siding,,522983,TONBES,89357
 Tonbridge Jubilee Siding 1,TJS,522908,TONBJB1,89359
-See also note 1,,,,
+Tonbridge Jubilee Siding 1,See also note 1,,,
 Tonbridge Jubilee Siding 2,TJT,522909,TONBJB2,89359
-See also note 1,,,,
+Tonbridge Jubilee Siding 2,See also note 1,,,
 Tonbridge Jubilee Siding 3,TJU,522910,TONBJB3,89359
-See also note 1,,,,
+Tonbridge Jubilee Siding 3,See also note 1,,,
 Tonbridge Jubilee Siding 4,TJV,522913,TONBJB4,89359
-See also note 1,,,,
+Tonbridge Jubilee Siding 4,See also note 1,,,
 Tonbridge Jubilee Sidings,XJU,522914,TONBJUB,89359
 Tonbridge Loco Holding Siding,,522972,TONBLHS,89358
 Tonbridge PMY,,522924,TONBPMY,89359
 Tonbridge Post Office Junction,,522922,TONBPOJ,89354
 Tonbridge Post Office Sidings,,522903,TONBPOS,89364
 Tonbridge Signal AD139,,522926,TONB139,89355
-See also note 2,,,,
+Tonbridge Signal AD139,See also note 2,,,
 Tonbridge Signal AD160,,522925,TONB160,89357
-See also note 2,,,,
+Tonbridge Signal AD160,See also note 2,,,
 Tonbridge Signal AD163,,522920,TONB163,89357
-See also note 2,,,,
+Tonbridge Signal AD163,See also note 2,,,
 Tonbridge Signal AD164,,522921,TONB164,89357
-See also note 2,,,,
+Tonbridge Signal AD164,See also note 2,,,
 Tonbridge Signal AD523,,522923,TONB523,89355
-See also note 2,,,,
+Tonbridge Signal AD523,See also note 2,,,
 Tonbridge Signal AD525,,522912,TONB525,89368
-See also note 2,,,,
+Tonbridge Signal AD525,See also note 2,,,
 Tonbridge Signal AD2032,,522928,TONB032,89371
 Tonbridge Signal AD2038,,522927,TONB038,89365
-See also note 2,,,,
+Tonbridge Signal AD2038,See also note 2,,,
 Tonbridge Up Loop,,522902,TONBULP,89370
 Tonbridge Up Redhill Branch Carriage Holding Sidings,XTN,522911,TONBRBC,89360
 Tonbridge West Yard,XTW,524400,TONBDWY,89360
@@ -12454,32 +12461,32 @@ Topley Pike Freightliner Heavy Haul,,283112,TOPLFHH,34104
 Topley Pike Sidings,,283113,TOPLEYP,34103
 Topsham,TOP,575800,TOPSHAM,83471
 TOPS Head Quarters,,,,99960
-99961,,,,
-99962,,,,
-99963,,,,
-99964,,,,
-99965,,,,
-99966,,,,
-99967,,,,
-99968,,,,
-99969,,,,
-99970,,,,
-99971,,,,
-99972,,,,
-99973,,,,
-99974,,,,
-99975,,,,
-99976,,,,
-99977,,,,
-99978,,,,
-99979,,,,
-99980,,,,
-99990,,,,
-99994,,,,
-99995,,,,
-99996,,,,
-99997,,,,
-99998,,,,
+TOPS Head Quarters,,,,99961
+TOPS Head Quarters,,,,99962
+TOPS Head Quarters,,,,99963
+TOPS Head Quarters,,,,99964
+TOPS Head Quarters,,,,99965
+TOPS Head Quarters,,,,99966
+TOPS Head Quarters,,,,99967
+TOPS Head Quarters,,,,99968
+TOPS Head Quarters,,,,99969
+TOPS Head Quarters,,,,99970
+TOPS Head Quarters,,,,99971
+TOPS Head Quarters,,,,99972
+TOPS Head Quarters,,,,99973
+TOPS Head Quarters,,,,99974
+TOPS Head Quarters,,,,99975
+TOPS Head Quarters,,,,99976
+TOPS Head Quarters,,,,99977
+TOPS Head Quarters,,,,99978
+TOPS Head Quarters,,,,99979
+TOPS Head Quarters,,,,99980
+TOPS Head Quarters,,,,99990
+TOPS Head Quarters,,,,99994
+TOPS Head Quarters,,,,99995
+TOPS Head Quarters,,,,99996
+TOPS Head Quarters,,,,99997
+TOPS Head Quarters,,,,99998
 Torino Orbassano,,087207,TORIORB,00323
 Torness Ground Switch Panel,,940512,TORNGSP,04845
 Torness Power Station,TOR,940511,TORNESS,04832
@@ -12570,7 +12577,7 @@ Treeton Junction,,673226,TREETNJ,25853
 Treeton North Junction,,,TREENJN,
 Trefforest,TRF,388700,TREFRST,78216
 Trefforest Estate,TRE,388600,TRFRSTE,78218
-TREFEST,TRE,,,
+Trefforest Estate,TRE,388600,TREFEST,
 Trehafod,TRH,388800,TREHAFD,78017
 Treherbert,TRB,388900,TREHRBT,78001
 Treherbert Siding,,388905,TREHSDS,78003
@@ -12600,9 +12607,9 @@ Tring Tunnel Cement,,,,70401
 Troed-y-Rhiw,TRD,427600,TRDYRHW,78142
 Troon,TRN,956200,TROON,08519
 Troon Harbour,TRX,207400,TROONHR,
-956210,TRX,TROONHB,,
+Troon Harbour,TRX,956210,TROONHB,
 Trostre Works,TSW,413513,TROSTRW,79051
-,413514,TRSTRBS,,
+Trostre Works,,413514,TRSTRBS,
 Trostre Works Exchange Siding,,413514,TROSEXC,79053
 Trostre Works Junction,,413515,TROSWKJ,79052
 Trowbridge,TRO,334800,TRWBRDG,82085
@@ -12750,7 +12757,7 @@ Uttoxeter,UTT,134200,UTOXETR,43605
 Uttoxeter Bramshall Level Crossing,,134203,UTOXBLC,43515
 Uttoxeter Dovefields Level Crossing,,134204,UTOXDLC,57476
 Uttoxeter Down Goods Loop,,134202,UTOXDGL,43606
-43608,,,,
+Uttoxeter Down Goods Loop,,134202,UTOXDGL,43608
 Uttoxeter Engineer's Sidings,,134206,UTOXENG,43604
 Uttoxeter Signal Box,,134205,UTOXSB,43607
 Uxbridge LT,ZUX,074000,,
@@ -12760,17 +12767,17 @@ Valley,VAL,244000,VALLEY,40012
 Valley Nuclear Electric,,244001,VALLYNE,40011
 Vane Tempest,,,,14145
 Various,,,,91500
-91700,,,,
-91700,,,,
-92000,,,,
-92100,,,,
-92400,,,,
-92500,,,,
-92700,,,,
-92800,,,,
-93000,,,,
-93200,,,,
-94000,,,,
+Various,,,,91700
+Various,,,,91700
+Various,,,,92000
+Various,,,,92100
+Various,,,,92400
+Various,,,,92500
+Various,,,,92700
+Various,,,,92800
+Various,,,,93000
+Various,,,,93200
+Various,,,,94000
 Vauxhall,VXH,559700,VAUXHAL,87214
 Vauxhall For The Games,VXX,660900,CATZ056,
 Vauxhall Junction (West Midlands),,104001,VXHLJN,65640
@@ -12805,13 +12812,13 @@ Victoria Platform 17,,542628,VICT17,87201
 Victoria Platform 18,,542637,VICT18,87201
 Victoria Platform 19,,542640,VICT19,87201
 Victoria Signal VS35,,542632,VICT35,87195
-,,VICTS35,,
+Victoria Signal VS35,,,VICTS35,
 Victoria Signal VS45,,542649,VICT45,87191
 Victoria Signal VS47,,542648,VICT47,87190
 Victoria Signal VS808,,542633,VICT808,87194
 Victoria Street Travel Centre,,6127,,
 Victoria [unknown features],,,,91100
-91300,,,,
+Victoria [unknown features],,,,91300
 Vienna Nordwestbahnhof,,,,00135
 Virginia Water,VIR,567600,VRGNWTR,87106
 Virginia Water Signal F491,,567601,VRGN491,87112
@@ -12833,7 +12840,7 @@ Wadhurst Signal PE425,,523103,WADH425,89382
 Wadhurst Tunnel South,,523104,WADHTLS,
 Wadhurst Up Sidings,,523101,WADHUSD,
 Wadsley Bridge Reception Sidings,WBG,673100,WADSLYB,25371
-WYR,,,,
+Wadsley Bridge Reception Sidings,WYR,,,
 Wainfleet,WFL,626800,WAINFLT,44225
 Wakefield East Junction,,858418,WKFLDEJ,18061
 Wakefield Kirkgate,WKK,858400,WKFLDKG,18058
@@ -12904,7 +12911,8 @@ Wantage Market Place,XDC,302510,WANTMPL,
 Wantage Road,,302500,WANTRD,74327
 "Wapping
 (second code set used after East London Line operated as part of national network)",ZWP,074400,WAPPING,
-WPE,108500,52090,,
+"Wapping
+(second code set used after East London Line operated as part of national network)",WPE,108500,WAPPING,52090
 Warblington,WBL,526400,WRBLNGT,86342
 Warcop,,206400,WARCOP,09428
 Wardley Exchange Sidings,,,WRDLYES,
@@ -12957,7 +12965,7 @@ Warwick,WRW,460000,WARWICK,66437
 Warwick Avenue LT,ZWV,074600,WRKALT,
 Warwick Parkway,WRP,853000,WARWPWY,69315
 Warwick Road for Old Trafford Metrolink (formerly Old Trafford),WOT,296500,WRWCKRD,
-OFD,OLDTRFD,,,
+Warwick Road for Old Trafford Metrolink (formerly Old Trafford),OFD,296500,OLDTRFD,
 Warwick University,XWU,460003,WARWUNI,
 Washford,,347500,WASHFRD,
 Washwood Heath Chief Civil Engineer's Sidings,,110317,WSHWDHC,66319
@@ -12999,9 +13007,9 @@ Waterloo Signal W912,,559866,WATR912,
 Waterloo Signal W1030,,559865,WATR030,87226
 Waterloo Suburban,,559802,WATR,
 Waterloo [unknown features],,,,88900
-88901,,,,
+Waterloo [unknown features],,,,88901
 Waterlooville Precinct Bus Stop,WVP,818200,WVLEBUS,
-Water Orton,WTO,112100,WTRORTN,66291
+Waterlooville Precinct Bus Stop,Water Orton,WTO,112100,
 Water Orton West Junction,,112102,WTRORWJ,66292
 Waterside (Dunaskin),,946315,WAESIDE,08633
 Waterston Sidings,WAG,409516,WSTNSD,80104
@@ -13037,7 +13045,7 @@ Wavertree Technology Park,WAV,858900,WVRTTEC,36599
 Wearmouth Colliery,,,WRMTHBC,14021
 Weaste,,291201,WEASTEJ,31737
 Weaver Junction,XYJ,228701,WEAVERJ,35591
-Also has STANOX 59259 assigned in error,,,,
+Weaver Junction,Also has STANOX 59259 assigned in error,,,
 Weaver Junction Up Passenger Loop,,228702,WEAVUPL,35592
 Weaver Viaduct,,209807,WIGTWAV,09224
 Wedgwood,WED,135700,WEDGWD,43305
@@ -13244,7 +13252,7 @@ Westerton Signal YH530,WSN,999815,WEST530,06221
 Westerton Signal YH533,,999816,WEST533,06308
 Westerton Signal YH534,,999819,WEST534,06309
 Westerton Signal YH536,WEJ,999817,WEST536,06307
-,999818,,,
+Westerton Signal YH536,,999818,,
 Westferry DLR,ZWF,086500,,
 Westfield Kinglassie Loading Pad,,899305,WSTFKLG,03245
 Westfield Opencast,,899300,WSTFELD,03246
@@ -13302,7 +13310,7 @@ West Ruislip LUL Depot,WRD,305912,WRUILUL,73424
 West Ruislip LUL Depot GB Railfreight,,305914,WRUIGBR,73423
 West Ruislip Signal ME579,,305902,WRUI579,73428
 West Ruislip Signal ME594,,305901,WRUI594,73427
-,,WRME594,,
+West Ruislip Signal ME594,,,WRME594,
 West Runton,WRN,732900,WRUNTON,48006
 West St Leonards,WLD,524200,WSLE,88279
 West Silvertown DLR,ZAI,055900,,
@@ -13375,8 +13383,8 @@ White City LT,ZWC,076400,,
 White City Reversing Sidings,,154005,WCITYSD,
 Whitechapel,"ZWL
 (as used by NRES)",515071,WCHAPEL,52084
-"WCA
-(as used by operational research software)",076300,,,
+Whitechapel,"WCA
+(as used by operational research software)",076300,,
 Whitechapel LT,ZWL,493500,,
 Whitecraigs,WCR,977700,WTCR,07563
 Whitefield,WTF,288500,WHFD,
@@ -13399,20 +13407,20 @@ Whitemoor Local Distribution Centre,,716613,WHTMLDC,46200
 Whitemoor Local Distribution Centre GB Railfreight,,,WHTMGBF,
 Whitemoor New Yard,XWC,716638,WHTMRNY,46200
 Whitemoor Repair Point GB Railfreight,,716615,WHTMGRP,46203
-,,WHTMGBR,,
+Whitemoor Repair Point GB Railfreight,,,WHTMGBR,
 Whitemoor Yard English Welsh & Scottish Railway,,,,46198
 White Notley,WNY,684600,WNOTLEY,50208
-684900,WNY,,,
+White Notley,WNY,684900,,
 Whites Crossing Siding (Merehead),WCS,329460,WHTSXSG,82242
 Whitfield,,130507,WFLD,
 Whitland,WTL,411100,WHLAND,80303
-WTD,,,,
+Whitland,WTD,,,
 Whitland Down Sidings,,411101,WHLADS,80302
 Whitland Signal W34,,411102,WHLA34,80304
 Whitley Bay,WHB,037200,,
 Whitley Bridge,WBD,813000,WHTBDGE,18008
 Whitley Bridge Junction,,813003,WHTBJCN,17999
-18007,,,,
+Whitley Bridge Junction,,813003,WHTBJCN,18007
 Whitley Bridge Sidings,,813002,WHTBSDG,18002
 Whitlingham Junction,XWH,732400,WHTLNGJ,48218
 Whitlocks End,WTE,453900,WHLE,66444
@@ -13567,7 +13575,7 @@ Williamwood,WLM,978100,WMWD,07565
 Willingdon Junction,XIL,545061,WILDJN,88249
 Willington,WIL,190500,WLNTNON,57604
 Willington Power Station,,,WLNTNGB,57602
-57601,,,,
+Willington Power Station,,,WLNTNGB,57601
 Willington Power Station Carriage & Wagon,,,WLNTCW,
 Willington [unknown feature],,,,94300
 Williton,,347800,WILITON,
@@ -13588,7 +13596,7 @@ Wilton Power Station Freightliner Heavy Haul,,795345,WLTNFHH,15650
 Wilton Power Station GB Railfreight,,795346,WLTNGBF,
 Wilton South,,550603,WILTSTH,86132
 Wimbledon,WIM,557800,WIMBLDN,87261
-557802,WIM,WDON,87261*,
+Wimbledon,WIM,557802,WDON,87261
 Wimbledon Carriage Holding Sidings,XWD,557814,WDONCHS,87261
 Wimbledon Chase,WBO,561200,WIMLCHS,87323
 Wimbledon Depot Earlsfield Exit,,551312,WDONDEX,
@@ -13616,7 +13624,7 @@ Winchburgh Junction,WGJ,941564,WNCBROJ,05125
 Winchburgh Junction Signal EW947,,941566,WNCB947,
 Winchelsea,WSE,504200,WINCHLS,88297
 Winchelsea New Inn,,504210,WINCNEW,
-WNI,094700,,,
+Winchelsea New Inn,WNI,094700,,
 Winchelsea Sea Road,,504211,WINCSEA,
 Winchester,WIN,592400,WNCHSTR,86083
 Winchester Baltic Siding,XGC,592401,WNCHRBS,86079
@@ -13648,7 +13656,7 @@ Winsford Up & Down Passenger Loop,,226904,WNSFPL,37010
 Winsford Up Goods Loop,,,WNSFUGL,
 Winwick Junction,,238404,WINWCKJ,35505
 Wirksworth,ZWK,,WRKW,57121
-WIR,170200,CATZ007,,
+Wirksworth,WIR,170200,CATZ007,
 Wirksworth Derwent Iron Works,,,WRKNDIW,
 Wirksworth Quarry,,,WRKWRTT,
 Wirksworth Tarmac,,170211,,57122
@@ -13707,7 +13715,7 @@ Woking Signal WK1212,,568552,WOKI212,86026
 Woking Signal WK1214,,568548,WOKI214,86031
 Woking Signal WK1218,,568551,WOKI218,86039
 Woking Signal WK1220,,568541,WOK1220,86025
-568554,,WOKI220,,
+Woking Signal WK1220,,568554,WOKI220,
 Woking Signal WV57/WK376,,568549,WOKIV57,86031
 Woking Signal WV84,,567904,WOKIV84,86031
 Woking Signal WV85,,567905,WOKIV85,86028
@@ -13801,7 +13809,7 @@ Wootton Bassett Junction,WBT,333711,WTNBSTJ,75242
 Wootton Wawen,WWW,454000,WOTONWN,66456
 Worcester Back Road,,489108,WORCBRD,67126
 Worcester Civil Engineer's Sidings,,489186,WORCCE,67119
-WORCSCE,,,,
+Worcester Civil Engineer's Sidings,,489186,WORCSCE,
 Worcester Foregate Street,WOF,489300,WORCSFS,67195
 Worcester Hereford Sidings,,489114,WORCHER,67129
 Worcester Light Maintenance Depot,XWR,489195,WORCSCS,67115
@@ -13856,7 +13864,7 @@ Worksop Signal WP621,,657204,WORK621,26237
 Worksop Sorting Sidings,WKS,657416,WORKSPS,26230
 Worksop Up Reception,,657203,WORKSUR,26236
 Worksop Up Yard,,657201,WORKSUY,26235
-,,,26229,
+Worksop Up Yard,,,,26229
 Worksop Wagon Repair Depot,,657463,WORKWRD,26228
 Worksop West Signal Box,,657419,WORKSPW,
 Worle,WOR,339000,WORLE,81906
@@ -13985,8 +13993,8 @@ York Signal Y246,,826421,YORK246,16444
 York Strensall Signal Box,,826334,YORKSTB,16235
 York Thrall Europa/BRML Head Quarters,YCW,826200,YORKCRW,16429
 York [unknown features],,,,16950
-16980,,,,
-16990,,,,
+York [unknown features],,,,16980
+York [unknown features],,,,16990
 York Up Arrivals Freightliner Heavy Haul,,826829,YORKUPA,
 York Up Reception Sidings,,826815,YORKURS,16442
 York Warehouse NRM Annexe,,826317,YORKNRA,16424
