@@ -55,14 +55,11 @@ var startListener = function (callback) {
             }, function (err, arrivals) {
                 arrivals.forEach(function (arrival) {
                     var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
-                    if (arrival.loc_tiploc.toUpperCase() === 'EUSTON') utils.log('*** arrived key ' + trainKey);
                     if (monitoredTrains[trainKey]) {
-                        monitoredTrains[trainKey].callbacks.forEach(function (f) {
-                            f({
-                                aimedArrivalTime: arrival.gbtt_timestamp,
-                                actualArrivalTime: arrival.actual_timestamp,
-                            });
-                        });   
+                        monitoredTrains[trainKey]({
+                            aimedArrivalTime: arrival.gbtt_timestamp,
+                            actualArrivalTime: arrival.actual_timestamp,
+                        });
                         delete monitoredTrains[trainKey];
                         if (_.keys(monitoredTrains).length === 0) {
                             listener.disconnect(function () { });
@@ -101,11 +98,7 @@ var TrainMonitor = function (fromStationCrs, toStationCrs, aimedDepartureTime, c
                     toStationTiploc = _.intersection(toStationTiplocs, result.stops.map(function (s) { return s.tiploc_code; }))[0],
                     trainKey = toStationTiploc + '_' + result.service + '_' + _.last(result.stops).arrival.getTime();
                 utils.log("Identified schedule for train from " + fromStationCrs + " at " + prettyPrint(result.stops.filter(function (s) { return fromStationTiploc === s.tiploc_code; })[0].departure) + " to " + toStationCrs + " due at " + prettyPrint(result.stops.filter(function (s) { return toStationTiploc === s.tiploc_code; })[0].arrival) + ", service " + result.service + ".");
-                if (!monitoredTrains[trainKey]) monitoredTrains[trainKey] = {
-                    callbacks: [ ],
-                };
-                monitoredTrains[trainKey].callbacks.push(callback);
-                utils.log('*** monitoring for key ' + trainKey);
+                monitoredTrains[trainKey] = callback;
             });
         });
     });

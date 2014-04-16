@@ -22,7 +22,7 @@ var initialise = function (callback) {
 
 exports.listen = function (callback) {
     initialise(function (err) {
-        twitterClient.stream('statuses/filter', { track: [ "@railspon" ] }, function (stream) {
+        twitterClient.stream('statuses/filter', { track: [ "@railspo" ] }, function (stream) {
             stream.on('error', function(error, code) {
                 console.log("Error " + error + ": " + code);
             }),
