@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo {"docs":[
-gunzip -c ../schedule.gz | grep JsonScheduleV1 | grep Create 
-echo ]}
