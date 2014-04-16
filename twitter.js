@@ -3,7 +3,7 @@ var fs = require('fs'),
     path = require('path'),
     twitterClient = null;
 
-var SECRET_FILENAME = path.join(__dirname, "TWITTER_API_SECRET.json");
+var SECRET_FILENAME = path.join(__dirname, "TWITTER_SECRET.json");
 
 var initialise = function (callback) {
     if (twitterClient) {
