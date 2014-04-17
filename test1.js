@@ -1,6 +1,5 @@
-var fs = require('fs'),
-	trainMonitor = require('./NROD_trainsMonitor');
+var scheduleReader = new require('./scheduleReader')({ 'couchDb': 'http://localhost:5984' });
 
-trainMonitor.create('HRW', 'EUS', new Date('2014-04-16 15:17'), function (trainInfo) {
-	console.log("The train has arrived: " + JSON.stringify(trainInfo));
+scheduleReader.getSchedule('HROW', 'EUSTON', new Date(), function (err, results) {
+	console.log(JSON.stringify(results));
 });
