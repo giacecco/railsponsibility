@@ -1,9 +1,8 @@
 var argv = require("optimist")
-		.usage("Usage: $0 --in <input gzip'ed file> --conn <Couch DB connection string> --dateFrom <date in YYYY-MM-DD format> [--dateTo <date in YYYY-MM-DD format>]")
+		.usage("Usage: $0 --in <input gzip'ed file> --couchdb <Couch DB connection string> --dateFrom <date in YYYY-MM-DD format> [--dateTo <date in YYYY-MM-DD format>]")
 		.demand([ 'in', 'conn', 'dateFrom' ])
-		.alias('conn', 'c')
 		.alias('in', 'i')
-		.default('conn', 'http://localhost:5984')
+		.default('couchdb', 'http://localhost:5984')
 		.argv,
 	async = require('async'),
 	fs = require('fs'),
