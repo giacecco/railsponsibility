@@ -1,9 +1,5 @@
-var fs = require('fs'),
-    ntwitter = require('ntwitter'),
-    path = require('path'),
+var ntwitter = require('ntwitter'),
     utils = require('./utils');
-
-var SECRET_FILENAME = path.join(__dirname, "TWITTER_SECRET.json");
 
 module.exports = function (options) {
 
@@ -13,12 +9,13 @@ module.exports = function (options) {
         if (twitterClient) {
             callback(null);
         } else {
-            var SECRET = JSON.parse(fs.readFileSync(SECRET_FILENAME));
+            var SECRET = null;
+            if (process.env.NODE_ENV !== "production") SECRET = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, "TWITTER_SECRET.json")));
             twitterClient = new ntwitter({
-                    consumer_key: SECRET.api_key,
-                    consumer_secret: SECRET.api_secret,
-                    access_token_key: SECRET.access_token,
-                    access_token_secret: SECRET.access_token_secret 
+                    consumer_key: process.env.TWITTER_API_KEY || SECRET.api_key,
+                    consumer_secret: process.env.TWITTER_API_SECRET || SECRET.api_secret,
+                    access_token_key: process.env.TWITTER_ACCESS_TOKEN || SECRET.access_token,
+                    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || SECRET.access_token_secret 
                 });
             callback(null);
         }
