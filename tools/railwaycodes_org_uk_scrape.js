@@ -5,14 +5,15 @@
  * ************************************************************************** */ 
 
 var argv = require("optimist")
-		.usage("Usage: $0 --out <output filename>")
-		.demand([ 'out' ])
-		.alias('out', 'o')
+		.usage("Usage: $0 [--couchdb <CouchDB connection string if not >]")
+		.demand([ 'couchdb' ])
+		.default('couchdb', 'http://localhost:5984')
 		.argv,
 	async = require('async'),
 	cheerio = require('cheerio'),
-	csv = require('csv'),
 	fs = require('fs'),
+	log = require('../utils').log,
+	nano = require('nano')(argv.couchdb)
 	request = require('request'),
 	_ = require('underscore'),
 	_str = require('underscore.string');
@@ -37,7 +38,7 @@ getLetters(function (err, letters) {
 	async.reduce(letters, [ ], function (memo, letter, callback) {
 		request(letter.url, function (err, response, body) {
 			if (err) {
-				console.log("Letter " + letter + " is missing or some other kind of error.");
+				log("Letter " + letter + " is missing or some other kind of error.");
 				callback(null, memo);
 			} else {
 				var $ = cheerio.load(body);
@@ -66,17 +67,18 @@ getLetters(function (err, letters) {
 			}
 		});
 	}, function (err, results) {
-		csv()
-			.from.array(results)
-			.to.stream(fs.createWriteStream(argv.out), {
-					header: true,
-					columns: _.keys(results[0] || [ ]),
-				})
-			.on('close', function (count) {
-				// nothing to do here
-			})
-			.on('error', function (err) {
-				log(err.message);
+		var DB_NAME = "railwaycodes_org_uk";
+		nano.db.destroy(DB_NAME, function(err) {
+			nano.db.create(DB_NAME, function(err) {
+			    var db = nano.use(DB_NAME);
+		    	async.eachSeries(results, function (result, callback) {
+		    		db.insert(result, function (err) {
+		    			callback(err);	
+		    		});
+		    	}, function (err) {
+		    		// nothing to callback
+		    	});
 			});
+		});
 	});
 });
