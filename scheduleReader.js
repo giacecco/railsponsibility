@@ -5,6 +5,7 @@
 var async = require('async'),
 	AsyncCache = require('async-cache'),
 	es = require('event-stream'),
+	utils = require('./utils'),
 	_ = require('underscore');
 
 module.exports = function (options) { 
@@ -56,7 +57,7 @@ module.exports = function (options) {
 			},
 	});
 
-	var getSchedule = function (fromTiplocCodes, toTiplocCodes, options, callback) {
+	var getScheduleByTiploc = function (fromTiplocCodes, toTiplocCodes, options, callback) {
 		fromTiplocCodes = [ ].concat(fromTiplocCodes).sort();
 		toTiplocCodes = [ ].concat(toTiplocCodes).sort();
 		if (_.isDate(options)) options = { 'dateTime': options };
@@ -65,8 +66,22 @@ module.exports = function (options) {
 		getScheduleCached.get(fromTiplocCodes.join('-') + '_' + toTiplocCodes.join('-') + '_' + options.dateTime.getTime() + '_' + options.limitTo, callback);
 	};
 
+    // This is nice for testing, but is it useful? In the end, the 'stops' array
+    // will keep referencing the tiploc, not the CRS
+	var getScheduleByCrs = function (fromCrsCode, toCrsCode, options, callback) {
+		var fromTiplocCodes = null,
+			toTiplocCodes = null;
+		async.parallel([
+			function (callback) { utils.crs2tiploc(fromCrsCode, function (err, results) { fromTiplocCodes = results; callback(err); }); },
+			function (callback) { utils.crs2tiploc(toCrsCode, function (err, results) { toTiplocCodes = results; callback(err); }); },
+		], function (err) {
+			getScheduleByTiploc(fromTiplocCodes, toTiplocCodes, options, callback);
+		});
+	};
+
 	return {
-		"getSchedule": getSchedule,
+		"getScheduleByTiploc": getScheduleByTiploc,
+		"getScheduleByCrs": getScheduleByCrs,
 	};
 
 }
