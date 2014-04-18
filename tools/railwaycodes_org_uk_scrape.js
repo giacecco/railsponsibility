@@ -1,7 +1,8 @@
 /* ************************************************************************** *
-   This is a scraper for http://www.railwaycodes.org.uk/CRS/CRS0.shtm until
-   I find a more authoritative source. Licensing for the data at the above
-   url is being assessed. 
+   This script is a scraper for http://www.railwaycodes.org.uk/CRS/CRS0.shtm 
+   until I find a more authoritative source. Licensing for the data at the 
+   above url is being assessed. The codes are uploaded straight into the
+   CouchDB database. 
  * ************************************************************************** */ 
 
 var argv = require("optimist")
@@ -11,7 +12,6 @@ var argv = require("optimist")
 		.argv,
 	async = require('async'),
 	cheerio = require('cheerio'),
-	fs = require('fs'),
 	log = require('../utils').log,
 	nano = require('nano')(argv.couchdb)
 	request = require('request'),
