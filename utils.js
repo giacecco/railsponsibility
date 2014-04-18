@@ -10,7 +10,7 @@ exports.dateToCSVDate = function (d) {
 }
 
 exports.log = function (s) {
-	console.log(exports.dateToCSVDate(new Date()) + " - " + s);
+	if (process.env.NODEJITSU !=== "TRUE") console.log(exports.dateToCSVDate(new Date()) + " - " + s);
 }
 
 var stationCodesInitialiseCached = new AsyncCache({ 

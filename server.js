@@ -1,6 +1,11 @@
-var log = require('./utils').log,
+var argv = require("optimist")
+		.usage("Usage: $0 [--couchdb <CouchDB connection string if not specified in the COUCH_DB environment variable nor http://localhost:5984>]")
+		.demand([ 'couchdb' ])
+		.default('couchdb', process.env.COUCH_DB || 'http://localhost:5984')
+		.argv,
+	log = require('./utils').log,
 	twitter = require('./twitter'),
-	trainsMonitor = require('./trainsMonitor')({ 'couchDb': 'http://localhost:5984' }),
+	trainsMonitor = require('./trainsMonitor')({ 'couchDb': argv.couchdb }),
 	_ = require('underscore');
 
 var monitoredTrains = { };
