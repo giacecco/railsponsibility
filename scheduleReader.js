@@ -29,6 +29,7 @@ module.exports = function (options) {
 					});
 				}, function (err, results) {
 					results = results.map(function (r) { return r.value; });
+					// I drop results that do not match the query
 					results = results.reduce(function (memo, result) {
 						var tiplocCodes = result.stops.map(function (stop) { return stop.tiploc_code; }),
 							fromTiplocCode = _.intersection(tiplocCodes, fromTiplocCodes)[0],
@@ -37,9 +38,14 @@ module.exports = function (options) {
 						// at both required stations or go the opposite 
 						// direction to the specified one 
 						if (!(!fromTiplocCode || !toTiplocCode || (tiplocCodes.indexOf(fromTiplocCode) > tiplocCodes.indexOf(toTiplocCode)))) {
+							// I convert all dates to JavaScript dates
+							result.stops.forEach(function (stop) {
+								if (stop.departure) stop.departure = new Date(stop.departure);
+								if (stop.arrival) stop.arrival = new Date(stop.arrival);
+							});
 							// I discard the services that do not leave from 
 							// fromTiplocCode in the specified time window
-							var fromDeparture = new Date(result.stops.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0].departure);
+							var fromDeparture = result.stops.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0].departure;
 						    if (!((fromDeparture.getTime() < dateTime.getTime()) || (fromDeparture.getTime() >= dateTime.getTime() + limitTo * 3600000))) {
 								memo.push(result);								    	
 							}
@@ -50,14 +56,14 @@ module.exports = function (options) {
 					// commonly, for human users, services are instead ordered 
 					// by arrival at toTiplocCodes
 					results.sort(function (a, b) {
-						return (new Date(a.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure)).getTime() - (new Date(b.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure)).getTime();
+						return (a.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure).getTime() - (b.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure).getTime();
 					});
 					callback(null, results);
 				})
 			},
 	});
 
-	var getScheduleByTiploc = function (fromTiplocCodes, toTiplocCodes, options, callback) {
+	var getScheduleByTiplocs = function (fromTiplocCodes, toTiplocCodes, options, callback) {
 		fromTiplocCodes = [ ].concat(fromTiplocCodes).sort();
 		toTiplocCodes = [ ].concat(toTiplocCodes).sort();
 		if (_.isDate(options)) options = { 'dateTime': options };
@@ -75,12 +81,12 @@ module.exports = function (options) {
 			function (callback) { utils.crs2tiploc(fromCrsCode, function (err, results) { fromTiplocCodes = results; callback(err); }); },
 			function (callback) { utils.crs2tiploc(toCrsCode, function (err, results) { toTiplocCodes = results; callback(err); }); },
 		], function (err) {
-			getScheduleByTiploc(fromTiplocCodes, toTiplocCodes, options, callback);
+			getScheduleByTiplocs(fromTiplocCodes, toTiplocCodes, options, callback);
 		});
 	};
 
 	return {
-		"getScheduleByTiploc": getScheduleByTiploc,
+		"getScheduleByTiplocs": getScheduleByTiplocs,
 		"getScheduleByCrs": getScheduleByCrs,
 	};
 
