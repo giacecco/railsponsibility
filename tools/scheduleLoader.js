@@ -3,7 +3,7 @@ var argv = require("optimist")
 		.demand([ 'in', 'conn', 'dateFrom' ])
 		.alias('conn', 'c')
 		.alias('in', 'i')
-		.alias('out', 'o')
+		.default('conn', 'http://localhost:5984')
 		.argv,
 	async = require('async'),
 	fs = require('fs'),
