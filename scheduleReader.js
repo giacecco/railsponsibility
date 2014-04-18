@@ -22,21 +22,32 @@ module.exports = function (options) {
 					csvDate = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate(),
 					db = nano.use('schedule_' + dateTime.getFullYear() + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate());
 				async.reduce(fromTiplocCodes, [ ], function (memo, tiplocCode, callback) {
-					db.view('items_by_stop', 'items_by_stop', { 'limit': 10, 'startkey': tiplocCode + '_' + dateTime.getTime(), 'endkey': tiplocCode + '_86399999' }, function (err, results) {
+					db.view('schedule_reader', 'items_by_departure_tiploc', { 'startkey': tiplocCode + '_' + dateTime.getTime(), 'endkey': tiplocCode + '_86399999' }, function (err, results) {
 						memo = memo.concat(results.rows);
 						callback(null, memo);
 					});
 				}, function (err, results) {
 					results = results.map(function (r) { return r.value; });
 					results = results.reduce(function (memo, result) {
-						// I drop information about trains that go the opposite direction to
-						// the specified one or stop at just one of the stations
 						var tiplocCodes = result.stops.map(function (stop) { return stop.tiploc_code; }),
 							fromTiplocCode = _.intersection(tiplocCodes, fromTiplocCodes)[0],
 							toTiplocCode = _.intersection(tiplocCodes, toTiplocCodes)[0];
-						if (!((tiplocCodes.indexOf(fromTiplocCode) === -1) || (tiplocCodes.indexOf(toTiplocCode) === -1) || (tiplocCodes.indexOf(fromTiplocCode) > tiplocCodes.indexOf(toTiplocCode)))) memo.push(result);
+						// I drop information about trains that do not stop
+						// at both required stations or go the opposite 
+						// direction to the specified one 
+						if (!(!fromTiplocCode || !toTiplocCode || (tiplocCodes.indexOf(fromTiplocCode) > tiplocCodes.indexOf(toTiplocCode)))) {
+							// I discard the services that do not leave from 
+							// fromTiplocCode in the specified time window
+							var fromDeparture = new Date(result.stops.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0].departure);
+						    if (!((fromDeparture.getTime() < dateTime.getTime()) || (fromDeparture.getTime() >= dateTime.getTime() + limitTo * 3600000))) {
+								memo.push(result);								    	
+							}
+						}     				
 						return memo;
 					}, [ ]);
+					// I sort by departure from fromTiplocCodes; note that 
+					// commonly, for human users, services are instead ordered 
+					// by arrival at toTiplocCodes
 					results.sort(function (a, b) {
 						return (new Date(a.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure)).getTime() - (new Date(b.stops.filter(function (s) { return _.contains(fromTiplocCodes, s.tiploc_code); })[0].departure)).getTime();
 					});
@@ -44,14 +55,6 @@ module.exports = function (options) {
 				})
 			},
 	});
-/*
-
-						// I discard the services that do not leave from fromTiplocCode in
-						// the specified time window
-						var fromPublicDeparture = data.JsonScheduleV1.schedule_segment.schedule_location.filter(function (l) { return l.tiploc_code === fromTiplocCode; })[0];
-						if (fromPublicDeparture) fromPublicDeparture = fromPublicDeparture.departure;
-						if (!fromPublicDeparture || (fromPublicDeparture.getTime() < dateTime.getTime()) || (fromPublicDeparture.getTime() >= dateTime.getTime() + limitTo * 3600000)) return undefined;
-*/
 
 	var getSchedule = function (fromTiplocCodes, toTiplocCodes, options, callback) {
 		fromTiplocCodes = [ ].concat(fromTiplocCodes).sort();
