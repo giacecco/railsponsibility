@@ -1,6 +1,5 @@
 var async = require('async'),
     fs = require('fs'),
-    log = require('utils').log,
     Stomp = require('stomp-client'),
     path = require('path'),
     utils = require('./utils'),
@@ -10,7 +9,8 @@ var SECRET = JSON.parse(fs.readFileSync(path.join(__dirname, 'NROD_SECRET.json')
 
 module.exports = function (options) { 
 
-    var scheduleReader = require('./scheduleReader')({ 'couchDb': options.couchDb  }),
+    var codesReader = new require('./codesReader')(options),
+        scheduleReader = new require('./scheduleReader')(options),
         listener = new Stomp('datafeeds.networkrail.co.uk', 61618, SECRET.username, SECRET.password),
         listenerIsOn = false,
         monitoredTrains = { };
@@ -24,7 +24,7 @@ module.exports = function (options) {
                     if (!event.body.loc_stanox || (event.body.event_type !== 'ARRIVAL')) {
                         callback(null, memo);
                     } else {
-                        utils.stanox2tiploc(event.body.loc_stanox, function (err, tiploc) {
+                        codesReader.stanox2tiploc(event.body.loc_stanox, function (err, tiploc) {
                             if (tiploc) {
                                 event = event.body;
                                 event.loc_tiploc = tiploc;
@@ -59,14 +59,14 @@ module.exports = function (options) {
                     arrivals.forEach(function (arrival) {
                         var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
                         if (monitoredTrains[trainKey]) {
-                            log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
+                            utils.log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
                             monitoredTrains[trainKey]({
                                 aimedArrivalTime: arrival.gbtt_timestamp,
                                 actualArrivalTime: arrival.actual_timestamp,
                             });
                             delete monitoredTrains[trainKey];
                             if (_.keys(monitoredTrains).length === 0) {
-                                log("trainsMonitor: No more trains to monitor, disconnecting listener.");
+                                utils.log("trainsMonitor: No more trains to monitor, disconnecting listener.");
                                 listener.disconnect(function () { });
                                 listenerIsOn = false;
                             }
@@ -87,22 +87,22 @@ module.exports = function (options) {
             var fromStationTiplocs,
                 toStationTiplocs;
             async.parallel([
-                function (callback) { utils.crs2tiploc(fromStationCrs, function (err, tiplocs) {
+                function (callback) { codesReader.crs2tiploc(fromStationCrs, function (err, tiplocs) {
                     fromStationTiplocs = tiplocs;
                     callback(err);
                 }) },
-                function (callback) { utils.crs2tiploc(toStationCrs, function (err, tiplocs) {
+                function (callback) { codesReader.crs2tiploc(toStationCrs, function (err, tiplocs) {
                     toStationTiplocs = tiplocs;
                     callback(err);
                 }) },
             ], function (err) {
-                log("trainsMonitor: Looking for schedule for train from " + fromStationCrs + " to " + toStationCrs + " at " + prettyPrint(aimedDepartureTime) + "...");
+                utils.log("trainsMonitor: Looking for schedule for train from " + fromStationCrs + " to " + toStationCrs + " at " + prettyPrint(aimedDepartureTime) + "...");
                 scheduleReader.getScheduleByTiplocs(fromStationTiplocs, toStationTiplocs, { 'dateTime': aimedDepartureTime }, function (err, result) { 
                     var result = result[0],
                         fromStationTiploc = _.intersection(fromStationTiplocs, result.stops.map(function (s) { return s.tiploc_code; }))[0],
                         toStationTiploc = _.intersection(toStationTiplocs, result.stops.map(function (s) { return s.tiploc_code; }))[0],
                         trainKey = toStationTiploc + '_' + result.service + '_' + _.last(result.stops).arrival.getTime();
-                    log("trainsMonitor: Identified schedule for train from " + fromStationCrs + " at " + prettyPrint(result.stops.filter(function (s) { return fromStationTiploc === s.tiploc_code; })[0].departure) + " to " + toStationCrs + " due at " + prettyPrint(result.stops.filter(function (s) { return toStationTiploc === s.tiploc_code; })[0].arrival) + ", service " + result.service + ".");
+                    utils.log("trainsMonitor: Identified schedule for train from " + fromStationCrs + " at " + prettyPrint(result.stops.filter(function (s) { return fromStationTiploc === s.tiploc_code; })[0].departure) + " to " + toStationCrs + " due at " + prettyPrint(result.stops.filter(function (s) { return toStationTiploc === s.tiploc_code; })[0].arrival) + ", service " + result.service + ".");
                     monitoredTrains[trainKey] = callback;
                 });
             });
