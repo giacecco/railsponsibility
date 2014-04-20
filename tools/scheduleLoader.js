@@ -58,19 +58,6 @@ var generateScheduleByDate = function (fromFile, toFile, dateTime, returnCallbac
 			}, function (err) {
 				createInputStream(function (err, inStream) {
 					inStream.on('end', function () { 
-						// I trigger the generation of the indeces
-						async.eachSeries(COUCHDB_DESIGN_DOCUMENTS, function (designDocument, callback) {
-							async.eachSeries(_.keys(designDocument.doc.views), function (viewName, callback) {
-								utils.log("Initialising view '" + designDocument.name + '/' + viewName + "'...");
-								// note that the startkey/endkey filtering here is 
-								// just to limit the output to something manageable,
-								// I could get out of memory errors otherwise 
-								db.view(designDocument.name, viewName, { 'startkey': 'a', 'endkey': 'a', 'include_docs': false }, callback);
-							}, callback);
-						}, function (err) {
-							utils.log("Views initialisation completed.");
-							returnCallback(null);
-						});
 					});
 					utils.log("Processing input file...");
 					inStream.pipe(zlib.createUnzip())
@@ -123,18 +110,36 @@ var generateScheduleByDate = function (fromFile, toFile, dateTime, returnCallbac
 													delete l[propertyName];
 												});
 											});
-											data = { 
-												service: data.schedule_segment.CIF_train_service_code,
-												stops: data.schedule_segment.schedule_location, 
-											};
-											db.insert(data, (_.last(data.stops).tiploc_code + '_' + data.service + '_' + _.last(data.stops).arrival.getTime()).toLowerCase(), function(err, body, header) {
-												callback(null, data);
+											callback(null, { 
+												'_id': (_.last(data.schedule_segment.schedule_location).tiploc_code + '_' + data.schedule_segment.CIF_train_service_code + '_' + _.last(data.schedule_segment.schedule_location).arrival.getTime()).toLowerCase(),
+												'service': data.schedule_segment.CIF_train_service_code,
+												'stops': data.schedule_segment.schedule_location, 
 											});
 										}
 									}
 								}
 							}
-					}));
+						}))
+						.pipe(es.writeArray(function (err, array) {
+							utils.log("Writing to database...");
+							db.bulk({ 'docs': array }, function (err) {
+								if (err) throw err;
+								async.eachSeries(COUCHDB_DESIGN_DOCUMENTS, function (designDocument, callback) {
+									async.eachSeries(_.keys(designDocument.doc.views), function (viewName, callback) {
+										utils.log("Initialising view '" + designDocument.name + '/' + viewName + "'...");
+										// note that the startkey/endkey 
+										// filtering here is just to limit the 
+										// output to something manageable, I 
+										// could get out of memory errors 
+										// otherwise 
+										db.view(designDocument.name, viewName, { 'startkey': 'a', 'endkey': 'a', 'include_docs': false }, callback);
+									}, callback);
+								}, function (err) {
+									utils.log("Views initialisation completed.");
+									returnCallback(err);
+								});
+							});
+						}));
 				});
 			});
 		});
