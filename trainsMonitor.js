@@ -15,6 +15,7 @@ module.exports = function (options) {
 
     var startListener = function (callback) {
         if (listenerIsOn) { callback(); return; } 
+        utils.log("trainsMonitor: First train to monitor, connecting listener...");
         listenerIsOn = true;
         listener.connect(function (sessionId) {
             listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', function (events, headers) {
