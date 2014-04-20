@@ -77,15 +77,11 @@ getLetters(function (err, letters) {
 			nano.db.destroy(DB_NAME, function(err) {
 				nano.db.create(DB_NAME, function(err) {
 				    var db = nano.use(DB_NAME);
-			    	async.eachSeries(results, function (result, callback) {
-			    		db.insert(result, function (err) {
-			    			if (err) throw err;
-			    			callback(err);	
-			    		});
-			    	}, function (err) {
+				    db.bulk({ 'docs': results }, function (err) {
+		    			if (err) throw err;
 						log("Completed.");
 			    		// nothing to callback
-			    	});
+				    });
 				});
 			});
 		}
