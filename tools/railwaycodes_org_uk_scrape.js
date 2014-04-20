@@ -38,9 +38,10 @@ getLetters(function (err, letters) {
 	async.reduce(letters, [ ], function (memo, letter, callback) {
 		request(letter.url, function (err, response, body) {
 			if (err) {
-				log("Letter " + letter + " is missing or some other kind of error.");
+				log("Letter '" + letter.letter + "'' is missing or some other kind of error.");
 				callback(null, memo);
 			} else {
+				log("Scraping letter '" + letter.letter + "'...");
 				var $ = cheerio.load(body);
 				$('body table tr:nth-child(n+3)').each(function (index, element) {
 					memo.push({
@@ -67,18 +68,26 @@ getLetters(function (err, letters) {
 			}
 		});
 	}, function (err, results) {
-		var DB_NAME = "railwaycodes_org_uk";
-		nano.db.destroy(DB_NAME, function(err) {
-			nano.db.create(DB_NAME, function(err) {
-			    var db = nano.use(DB_NAME);
-		    	async.eachSeries(results, function (result, callback) {
-		    		db.insert(result, function (err) {
-		    			callback(err);	
-		    		});
-		    	}, function (err) {
-		    		// nothing to callback
-		    	});
+		if (err) {
+			log("Not writing to the database to avoid propagating any error scraping.");
+    		// nothing to callback
+		} else {
+			log("Writing to the database...");
+			var DB_NAME = "railwaycodes_org_uk";
+			nano.db.destroy(DB_NAME, function(err) {
+				nano.db.create(DB_NAME, function(err) {
+				    var db = nano.use(DB_NAME);
+			    	async.eachSeries(results, function (result, callback) {
+			    		db.insert(result, function (err) {
+			    			if (err) throw err;
+			    			callback(err);	
+			    		});
+			    	}, function (err) {
+						log("Completed.");
+			    		// nothing to callback
+			    	});
+				});
 			});
-		});
+		}
 	});
 });
