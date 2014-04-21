@@ -15,7 +15,7 @@ var prettyPrintTime = function (dateTime) {
 }
 
 var manageArrival = function (from, to, aimedDepartureTime, fullArrivalInfo) {
-	var monitoredTrainKey = from + '_' + to + '_' + aimedDepartureTime.getDate(),
+	var monitoredTrainKey = from + '_' + to + '_' + aimedDepartureTime.getTime(),
 		delay = Math.floor((fullArrivalInfo.actualArrivalTime - fullArrivalInfo.aimedArrivalTime) / 60000); 
 	if (true || delay > 0) {
 		_.each(monitoredTrains[monitoredTrainKey].users, function (user) {
@@ -27,7 +27,7 @@ var manageArrival = function (from, to, aimedDepartureTime, fullArrivalInfo) {
 }
 
 function addMonitor (from, to, aimedDepartureTime, user) {
-	var monitoredTrainKey = from + '_' + to + '_' + aimedDepartureTime.getDate();
+	var monitoredTrainKey = from + '_' + to + '_' + aimedDepartureTime.getTime();
 	if (!monitoredTrains[monitoredTrainKey]) {
 		monitoredTrains[monitoredTrainKey] = {
 			users: [ ],
