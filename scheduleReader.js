@@ -10,7 +10,7 @@ var async = require('async'),
 module.exports = function (options) { 
 
 	var codesReader = new require('./codesReader')(options),
-		nano = require('nano')(options.couchDb || 'http://localhost:5984'),
+		nano = require('nano')(options.couchDb),
 		utils = require('./utils');	
 
 	var getScheduleCached = new AsyncCache({ 
