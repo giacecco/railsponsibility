@@ -53,7 +53,7 @@ twitter.listen(function (err, tweet) {
 			aimedDepartureTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate() + ' ',
 			aimedDepartureTime = new Date(aimedDepartureTime + (input[5] ? input[4] : input[4].substring(0, input[4].length - 2) + ':' + input[4].substring(input[4].length - 2, input[4].length))); 
 		utils.log("server: Received tweet from @" + tweet.from + " requesting to monitor " + prettyPrintTime(aimedDepartureTime) + " from " + fromStation + " to " + toStation);
-		twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back the train from " + fromStation + " at " + prettyPrintTime(aimedDepartureTime) + " has arrived at " + toStation + " http://dico.im/railspo");	
+		twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back the train from " + fromStation + " at " + prettyPrintTime(aimedDepartureTime) + " has arrived at " + toStation);	
 		addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
 	};
 });
