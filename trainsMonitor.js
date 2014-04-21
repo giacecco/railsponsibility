@@ -3,13 +3,11 @@ var async = require('async'),
     utils = require('./utils'),
 	_ = require('underscore');
 
-var SECRET = (process.env.NODE_ENV !== 'production') ? JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'NROD_SECRET.json'))) : null;
-
 module.exports = function (options) { 
 
     var codesReader = new require('./codesReader')(options),
         scheduleReader = new require('./scheduleReader')(options),
-        listener = new Stomp('datafeeds.networkrail.co.uk', 61618, process.env.NROD_USERNAME || SECRET.username, process.env.NROD_PASSWORD || SECRET.password),
+        listener = new Stomp('datafeeds.networkrail.co.uk', 61618, process.env.NROD_USERNAME, process.env.NROD_PASSWORD),
         listenerIsOn = false,
         monitoredTrains = { };
 
