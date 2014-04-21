@@ -3,7 +3,7 @@ var argv = require("optimist")
 		.demand([ 'couchdb' ])
 		.default('couchdb', process.env.CLOUDANT_URL)
 		.argv,
-	trainsMonitor = new require('./trainsMonitor')({ 'couchDb': argv.couchdb }),
+	trainsMonitor = new require('./trainsMonitor')({ 'couchdb': argv.couchdb }),
 	twitter = new require('./twitter')(),
 	utils = require('./utils'),
 	_ = require('underscore');
