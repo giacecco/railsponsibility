@@ -10,20 +10,40 @@ var argv = require("optimist")
 		.argv,
 	async = require('async'),
 	es = require('event-stream'),
+	fs = require('fs'),
 	nano = require('nano')(argv.couchdb),
+	path = require('path'),
 	request = require('request'),
 	utils = require('../utils'),
 	zlib = require('zlib'),
-	_ = require('underscore');
+	_ = require('underscore'),
+	_str = require('underscore.string');
+_.mixin(_str.exports());
 
 var COUCHDB_DESIGN_DOCUMENTS = [ 
 	{ 'name': 'schedule_reader',
       'doc': {"language":"javascript","views":{"items_by_departure_tiploc":{"map":"function(doc) {\n    doc.stops.forEach(function (stop) {\n\t  emit(stop.tiploc_code + '_' + (new Date(stop.departure)).getTime(), doc);\n    });\n}"}}}, }, 
 ];
 
+var readSecret = function () {
+	var SECRET = { };
+    if (fs.existsSync(path.join(__dirname, "..", '.env'))) {
+    	// we are debugging locally
+    	fs.readFileSync(path.join(__dirname, "..", '.env'), { 'encoding': 'utf-8' }).split('\n').filter(function (line) {
+    		// TODO: there may be a better regular expression to eliminate
+    		// spaces rather than using _.trim afterwards
+    		line = line.match(/([^=]+)=(.+)$/);
+    		if (line) SECRET[_.trim(line[1].toLowerCase())] = _.trim(line[2]);
+    	});
+    } else {
+    	// we are likely in production
+    	SECRET = _.clone(process.env);
+    };
+    return SECRET;
+}
+
 var createInputStream = function (callback) {
-	var SECRET = null;
-    if (process.env.NODE_ENV !== "production") SECRET = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, "..", "NROD_SECRET.json")));
+	var SECRET = readSecret();
 	request({
 		'url': 'https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate',
 		'qs': {
@@ -31,8 +51,8 @@ var createInputStream = function (callback) {
 			'day': 'toc-full',
 		},
 		'auth': {
-			'user': process.env.NROD_USERNAME || SECRET.username,
-			'pass': process.env.NROD_PASSWORD || SECRET.password,
+			'user': SECRET.nrod_username,
+			'pass': SECRET.nrod_password,
 		},
 		'followRedirect': false,
 	}, function (err, response, body) {
