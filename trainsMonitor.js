@@ -55,7 +55,6 @@ module.exports = function (options) {
                 }, function (err, arrivals) {
                     arrivals.forEach(function (arrival) {
                         var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
-                        utils.log("*** arrival of " + arrival.train_service_code + " at " + arrival.train_service_code);
                         if (monitoredTrains[trainKey]) {
                             utils.log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
                             monitoredTrains[trainKey]({

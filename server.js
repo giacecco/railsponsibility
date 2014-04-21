@@ -43,12 +43,13 @@ twitter.listen(function (err, tweet) {
 		// TODO: the tweet does not match the expected format, should I tell
 		// the user or just ignore?
 	} else {
-		var fromStation = input[2],
-			toStation = input[3],
+		var fromStation = input[2].toUpperCase(),
+			toStation = input[3].toUpperCase(),
 			dateTime = new Date(), // TODO: what about train between days?
 			aimedDepartureTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate() + ' ',
 			aimedDepartureTime = new Date(aimedDepartureTime + (input[5] ? input[4] : input[4].substring(0, input[4].length - 2) + ':' + input[4].substring(input[4].length - 2, input[4].length))); 
 		utils.log("server: Received tweet from @" + tweet.from + " requesting to monitor " + aimedDepartureTime.getHours() + ":" + (aimedDepartureTime.getMinutes() < 10 ? '0' : '') + aimedDepartureTime.getMinutes() + " from " + fromStation + " to " + toStation);
+		twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back when your train has arrived at " + toStation + " http://dico.im/railspo");	
 		addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
 	}
 });
