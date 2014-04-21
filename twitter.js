@@ -9,13 +9,11 @@ module.exports = function (options) {
         if (twitterClient) {
             callback(null);
         } else {
-            var SECRET = null;
-            if (process.env.NODE_ENV !== "production") SECRET = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, "TWITTER_SECRET.json")));
             twitterClient = new ntwitter({
-                    consumer_key: process.env.TWITTER_API_KEY || SECRET.api_key,
-                    consumer_secret: process.env.TWITTER_API_SECRET || SECRET.api_secret,
-                    access_token_key: process.env.TWITTER_ACCESS_TOKEN || SECRET.access_token,
-                    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || SECRET.access_token_secret 
+                    consumer_key: process.env.TWITTER_API_KEY,
+                    consumer_secret: process.env.TWITTER_API_SECRET,
+                    access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+                    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET 
                 });
             callback(null);
         }
