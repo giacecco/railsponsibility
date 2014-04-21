@@ -6,7 +6,7 @@ var STATION_CODES_CONVERSION_CACHE_SIZE = 100, // TODO: does this number make se
 
 module.exports = function (options) {
 
-	var nano = require('nano')(options.couchdb || 'http://localhost:5984');
+	var nano = require('nano')(options.couchdb);
 
 	var stationCodesInitialiseCached = new AsyncCache({ 
 		'maxAge': 24 * 60 * 60000, // 1 day 
