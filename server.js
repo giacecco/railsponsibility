@@ -55,8 +55,9 @@ twitter.listen(function (err, tweet) {
 		utils.log("server: Received tweet from @" + tweet.from + " requesting to monitor " + prettyPrintTime(aimedDepartureTime) + " from " + fromStation + " to " + toStation);
 		setTimeout(function () {
 			// artificially adding some delay to make it look more real :-)
+			utils.log("server: Sending acknowledgement tweet to @" + tweet.from);
 			twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back when the train from " + fromStation + " at " + prettyPrintTime(aimedDepartureTime) + " has arrived at " + toStation);	
-		}, 30000);
+		}, 5000);
 		addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
 	};
 });
