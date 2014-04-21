@@ -15,7 +15,27 @@ As much as we accept that not all incidents can be avoided, we believe that the 
 
 The *Railsponsibility* project is aimed at building a system to monitor all train services being cancelled or delayed that match the criteria for compensation, to then remind the passengers who were affected of the disservice they were affected by and support them in filing the claim, automating as much as possible the process.
 
-##International Open Data Day 2014
+As of today, Raisponsibility can receive requests of monitoring delayed trains by using Twitter and by specifying the stations by using their three-letter codes, e.g. 'EUS' for London Euston (also called the CRS code). Railsponsibility will tweet back in any case at the train's arrival, whatever the delay, even if it is not sufficient to entitle you to compensation.
+
+To use Railsponsibility, tweet as in the following example. Imagine you are on the train from Berkhamsted (BKM) to London Euston (EUS), scheduled to leave Berkhamsted at 7:32. At some point, you realise that the train is delayed and you want Railsponsibility to monitor that for you. You will tweet: 
+    
+    @railspo from bkm to eus 732
+
+Almost immediately, you will receive an acknowledgement, saying:
+
+	@your_twitter_handle thank you for using Railsponsibility, we will tweet back when your train has arrived at EUS dico.im/railspo
+
+Sometime later, after the train arrival, you will receive another tweet, saying:
+
+	@your_twitter_handle your train leaving from BKM to EUS at 7:32 has arrived 5 minutes late, at 8:10
+
+###It's broken, what should I do?
+
+First check the known issues [on the project's GitHub page](https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues?state=open). If you can't find anything that applies to you, add a new issue, or, alternatively, write to railsponsibility@dico.im. 
+
+##A bit of history
+
+###International Open Data Day 2014
 
 ![Team photo by @raimondiand](images/raimondiand_photo.jpg)
 
@@ -30,19 +50,19 @@ Among the contributors were:
 
 ... and others who did not leave their contacts! :-( In the picture are, from left to right, giacecco, andylolz, mz2 and, standing, dasmoth. Sorry we don't have a better one.
 
-##Joint Open Data Hackathon
+###Joint Open Data Hackathon
 
 ![Team photo](images/joint_open_data_hackathon.jpg)
 
 Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/government/organisations/cabinet-office), [Stride](http://www.stride-project.com/) and [Network Rail](http://www.networkrail.co.uk/)'s "Joint Open Data hackathon" on 18 March 2014, as the best smart transport applications using data available from the sponsors' open data sources.
 
-##Today
+###Today
 
 The project awoke again on 31/3/14 for additional development by Giacecco focusing exclusively on gathering train arrival data (not only delayed trains). The software has been re-written from the ground-up to be production- rather than hackathon-quality. He also migrated from Stride to [Transport API](http://transportapi.com/) first and then directly to Network Rail's ["Data Feed" service](https://datafeeds.networkrail.co.uk/ntrod/login), as there is no reason to add more points of failure to the already long chain between the source data and the software. 
 
 ##Licence
 
-The *railwaycodes_org_uk.csv* file is a scrape of the "CRS, NLC, TIPLOC and STANOX Codes" section of the ["Railway Codes and other data"](http://www.railwaycodes.org.uk/) website by Phil Davies, obtained by running the [*tools/railwaycodes_org_uk_scrape.js*](tools/railwaycodes_org_uk_scrape.js) script. We have contacted him to verify the licensing for the data, that appears to be collated from OGL-ed sources. It was last scraped on 13 April 2014.
+The 'railwaycodes_org_uk' database is built by scraping the "CRS, NLC, TIPLOC and STANOX Codes" section of the ["Railway Codes and other data"](http://www.railwaycodes.org.uk/) website by Phil Davies. The data is created by running the [*tools/railwaycodes_org_uk_scrape.js*](tools/railwaycodes_org_uk_scrape.js) script. We have contacted him to verify the licensing for the data, that appears to be collated from OGL-ed sources. It was last scraped on 21 April 2014.
 
 ![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *Railsponsibility* is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
 
