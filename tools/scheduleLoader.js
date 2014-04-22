@@ -91,7 +91,6 @@ var generateScheduleByDate = function (fromFile, toFile, dateTime, returnCallbac
 							} else if (!data.JsonScheduleV1.schedule_segment.schedule_location) {
 								callback(null, undefined); 
 							} else {
-								console.log(data);
 								data = data.JsonScheduleV1;
 								// I convert all dates to JavaScript dates
 								data.schedule_start_date = new Date(data.schedule_start_date + ' 0:00');
@@ -133,6 +132,7 @@ var generateScheduleByDate = function (fromFile, toFile, dateTime, returnCallbac
 											});
 											callback(null, { 
 												'_id': (_.last(data.schedule_segment.schedule_location).tiploc_code + '_' + data.schedule_segment.CIF_train_service_code + '_' + _.last(data.schedule_segment.schedule_location).arrival.getTime()).toLowerCase(),
+												'atoc_code': data.atoc_code,
 												'service': data.schedule_segment.CIF_train_service_code,
 												'stops': data.schedule_segment.schedule_location, 
 											});
