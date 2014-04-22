@@ -15,7 +15,7 @@ As much as we accept that not all incidents can be avoided, we believe that the 
 
 The *Railsponsibility* project is aimed at building a system to monitor all train services being cancelled or delayed that match the criteria for compensation, to then remind the passengers who were affected of the disservice they were affected by and support them in filing the claim, automating as much as possible the process.
 
-As of today, Raisponsibility can receive requests of monitoring delayed trains by using Twitter and by specifying the stations by using their three-letter codes, e.g. 'EUS' for London Euston (also called the CRS code). Railsponsibility will tweet back in any case at the train's arrival, whatever the delay, even if it is not sufficient to entitle you to compensation.
+As of today, Raisponsibility can receive requests of monitoring delayed trains by using Twitter and by specifying the stations by using their three-letter codes, e.g. 'EUS' for London Euston (also called the CRS code). Railsponsibility will tweet back in any case at the train's arrival, whatever the delay, even if it is not sufficient to entitle you to compensation. Cancellations are not yet monitored.
 
 To use Railsponsibility, tweet as in the following example. Imagine you are on the train from Berkhamsted (BKM) to London Euston (EUS), scheduled to leave Berkhamsted at 7:32. At some point, you realise that the train is delayed and you want Railsponsibility to monitor that for you. You will tweet: 
     
@@ -29,9 +29,11 @@ Sometime later, after the train arrival, you will receive another tweet, saying:
 
 	@your_twitter_handle your train leaving from BKM to EUS at 7:32 has arrived 5 minutes late, at 8:10
 
+If you don't know your stations' CRS codes, look them up [here](http://www.railwaycodes.org.uk/CRS/CRSa.shtm). Sometime soon Railsponsibility will be able to interpret your tweets and understand the stations' full names if you use them.
+
 ###It's broken, what should I do?
 
-First check the known issues [on the project's GitHub page](https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues?state=open). If you can't find anything that applies to you, add a new issue, or, alternatively, write to railsponsibility@dico.im. 
+First check the known issues [on the project's GitHub page](https://github.com/Digital-Contraptions-Imaginarium/railsponsibility/issues?state=open). If you can't find anything that applies to you, add a new issue, or, alternatively, write to railspo@dico.im. 
 
 ##A bit of history
 
@@ -64,10 +66,10 @@ The project awoke again on 31/3/14 for additional development by Giacecco focusi
 
 The trains schedule and arrival data are sourced from the [Network Rail "Data Feeds" service](https://datafeeds.networkrail.co.uk). As a result, Railsponsibility _contains information of Network Rail Infrastructure Limited licensed under the following licence [http://www.networkrail.co.uk/data-feeds/terms-and-conditions/](http://www.networkrail.co.uk/data-feeds/terms-and-conditions/)_.
 
-The train operating companies' "business", "numeric" and ATOC codes are sourced from the documentation for the above: the [Network Rail Open Data wiki](http://nrodwiki.rockshore.net/index.php/Main_Page), whose content is licensed under [CC-BY 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0/).
+The train operating companies' "business", "numeric" and ATOC codes are sourced from the documentation for the above: the [Network Rail Open Data wiki](http://nrodwiki.rockshore.net/index.php/Main_Page), whose content is licensed under [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0/).
 
 The stations' CRS, NLC, TIPLOC and STANOX codes are sourced from the ["Railway Codes and other data"](http://www.railwaycodes.org.uk/) website by Phil Davies. We have contacted him to verify the licensing for the data, that appears to be collated from OGL-ed sources. 
 
-![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work and all the data collected in the context of *Railsponsibility*, but for what is specified to be licensed differently above, is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). By contributing software or data to the project you are subscribing to the terms of this licence.
+![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png "Creative Commons License") This work, but for what is specified differently above, is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0/). 
 
 The team picture at the International Open Data Day was taken by [@raimondiand](https://twitter.com/raimondiand/status/437232231367843840), the one at the Joint Open Data Hackathon was taken by [@eehcnas](https://twitter.com/eehcnas/status/445972723614117888). Both were enhanced a little by giacecco. 
