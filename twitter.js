@@ -21,8 +21,8 @@ module.exports = function (options) {
 
     var listen = function (callback) {
         initialise(function (err) {
-            utils.log("twitter: initialising listening for messages to @railspo...");
-            twitterClient.stream('statuses/filter', { track: [ "@railspo" ] }, function (stream) {
+            utils.log("twitter: initialising listening for messages to @" + process.env.TWITTER_USERNAME + "...");
+            twitterClient.stream('statuses/filter', { track: [ "@" + process.env.TWITTER_USERNAME ] }, function (stream) {
                 stream.on('error', function(error, code) {
                     utils.log("twitter: error listening: " + error + ", " + code);
                 }),

@@ -1,3 +1,5 @@
+var ARRIVAL_MISALIGNMENT_TOLERANCE = 2; //minutes
+
 var async = require('async'),
     Stomp = require('stomp-client'),
     utils = require('./utils'),
@@ -56,12 +58,21 @@ module.exports = function (options) {
                     }
                 }, function (err, arrivals) {
                     arrivals.forEach(function (arrival) {
-                        var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
                         // TODO: the feature below needs being done properly
                         // I archive info for all delayed arrivals, even if I 
                         // don't monitor them
                         // if (arrival.variation_status === 'LATE') { db.insert(arrival); }
-                        if (monitoredTrains[trainKey]) {
+                        var trainKey = function () {
+                            var found = false;
+                            [ 0 ].concat(_.range(-ARRIVAL_MISALIGNMENT_TOLERANCE, -1)).concat(_.range(1, ARRIVAL_MISALIGNMENT_TOLERANCE)).forEach(function (misalignment) {
+                                if (!trainKey) {
+                                    var tempTrainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + (arrival.gbtt_timestamp.getTime() + misalignment * 60000);
+                                    if (monitoredTrains[trainKey]) trainKey = tempTrainKey;
+                                }
+                            });
+                            return trainKey;
+                        }(); 
+                        if (trainKey) {
                             utils.log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
                             monitoredTrains[trainKey]({
                                 aimedArrivalTime: arrival.gbtt_timestamp,
