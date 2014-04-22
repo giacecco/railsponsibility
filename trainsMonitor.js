@@ -57,9 +57,10 @@ module.exports = function (options) {
                 }, function (err, arrivals) {
                     arrivals.forEach(function (arrival) {
                         var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
+                        // TODO: the feature below needs being done properly
                         // I archive info for all delayed arrivals, even if I 
                         // don't monitor them
-                        if (arrival.variation_status === 'LATE') { db.insert(arrival); }
+                        // if (arrival.variation_status === 'LATE') { db.insert(arrival); }
                         if (monitoredTrains[trainKey]) {
                             utils.log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
                             monitoredTrains[trainKey]({
