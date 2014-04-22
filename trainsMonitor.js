@@ -6,10 +6,12 @@ var async = require('async'),
 module.exports = function (options) { 
 
     var codesReader = new require('./codesReader')(options),
+        db = null,
         scheduleReader = new require('./scheduleReader')(options),
         listener = new Stomp('datafeeds.networkrail.co.uk', 61618, process.env.NROD_USERNAME, process.env.NROD_PASSWORD),
         listenerIsOn = false,
-        monitoredTrains = { };
+        monitoredTrains = { },
+        nano = require('nano')(options.couchdb);
 
     var startListener = function (callback) {
         if (listenerIsOn) { callback(); return; } 
@@ -55,6 +57,9 @@ module.exports = function (options) {
                 }, function (err, arrivals) {
                     arrivals.forEach(function (arrival) {
                         var trainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + arrival.gbtt_timestamp.getTime();
+                        // I archive info for all delayed arrivals, even if I 
+                        // don't monitor them
+                        if (arrival.variation_status === 'LATE') { db.insert(arrival); }
                         if (monitoredTrains[trainKey]) {
                             utils.log("trainsMonitor: Arrival of monitored train " + trainKey + ".");
                             monitoredTrains[trainKey]({
@@ -111,6 +116,18 @@ module.exports = function (options) {
         return new TrainMonitor(fromStationCrs, toStationCrs, aimedDepartureTime, callback);
     };
 
+    // I create the delayed arrivals database
+    nano.db.get('delayed_arrivals_archive', function (err, body) {
+        if (err) {
+            // if I get an error here it is likely because the database does
+            // not exist
+            nano.db.create('delayed_arrivals_archive', function(err) { 
+                db = nano.use('delayed_arrivals_archive');
+            });
+        } else {
+            db = nano.use('delayed_arrivals_archive');
+        }
+    });
     return {
         'create': create,
     };
