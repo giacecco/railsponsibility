@@ -86,11 +86,12 @@ var generateScheduleByDate = function (fromFile, toFile, dateTime, returnCallbac
 						.pipe(es.map(function (data, callback) {
 							if (!data.JsonScheduleV1) {
 								callback(null, undefined); 
-							} else if (!data.JsonScheduleV1.schedule_segment && (data.JsonScheduleV1.transaction_type !== 'Create')) {
+							} else if (!data.JsonScheduleV1.schedule_segment || (data.JsonScheduleV1.transaction_type !== 'Create') || (data.JsonScheduleV1.applicable_timetable !== 'Y')) {
 								callback(null, undefined); 
 							} else if (!data.JsonScheduleV1.schedule_segment.schedule_location) {
 								callback(null, undefined); 
 							} else {
+								console.log(data);
 								data = data.JsonScheduleV1;
 								// I convert all dates to JavaScript dates
 								data.schedule_start_date = new Date(data.schedule_start_date + ' 0:00');
