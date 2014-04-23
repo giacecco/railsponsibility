@@ -64,10 +64,12 @@ module.exports = function (options) {
                         // if (arrival.variation_status === 'LATE') { db.insert(arrival); }
                         var trainKey = function () {
                             var found = false;
-                            [ 0 ].concat(_.range(-ARRIVAL_MISALIGNMENT_TOLERANCE, -1)).concat(_.range(1, ARRIVAL_MISALIGNMENT_TOLERANCE)).forEach(function (misalignment) {
+                            [ 0 ].concat(_.range(-ARRIVAL_MISALIGNMENT_TOLERANCE, 0)).concat(_.range(1, ARRIVAL_MISALIGNMENT_TOLERANCE + 1)).forEach(function (misalignment) {
                                 if (!trainKey) {
                                     var tempTrainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + (arrival.gbtt_timestamp.getTime() + misalignment * 60000);
-                                    if (monitoredTrains[trainKey]) trainKey = tempTrainKey;
+                                // *** DEBUG ONLY
+                                //    utils.log("*** testing " + tempTrainKey + " vs " + _.keys(monitoredTrains));                                    
+                                    if (monitoredTrains[tempTrainKey]) trainKey = tempTrainKey;
                                 }
                             });
                             return trainKey;
