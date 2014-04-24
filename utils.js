@@ -4,5 +4,4 @@ exports.dateToCSVDate = function (d) {
 
 exports.log = function (s) {
 	console.log(s);
-	// console.log(exports.dateToCSVDate(new Date()) + " - " + s);
 }
