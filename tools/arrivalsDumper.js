@@ -1,6 +1,7 @@
 var NO_EVENTS_WARNING = 5; // minutes
 
-var csv = require('csv'),
+var csvstringify = require('csv-stringify'),
+	es = require('event-stream'),
 	fs = require('fs'),
 	Stomp = require('stomp-client'),
 	utils = require('../utils'),
@@ -22,32 +23,34 @@ setInterval(function () {
 listener.connect(
     // success callback
     function (sessionId) { 
-    	var firstMessages = true;
+    	var csvstringifier = csvstringify({ 'header': true }),
+    		outStream = fs.createWriteStream('foo.csv', { 'flags': 'w', 'encoding': 'utf-8' }),
+    		inStream = es.through(function write(data) {
+				this.emit('data', data);
+			},
+			function end () { //optional
+				this.emit('end')
+			});
+    	inStream.pipe(outStream);
     	console.log("Listener started.");
         listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', function (events, headers) {
         	process.stdout.write('.');
     		latestEventsTimestamp = new Date();
-    		events = JSON.parse(events).map(function (e) { return _.extend(e.body, e.header); });
-			csv()
-				.from.array(events)
-				.to.stream(fs.createWriteStream('foo.csv', { 'flags': firstMessages ? 'w' : 'a', 'encoding': 'utf-8' }), {
-					'columns': Object.keys(events[0]),
-					'header': firstMessages,
-				})
-				.transform(function (event) {
-					if ((event.event_type !== 'ARRIVAL') || (parseInt(event.actual_timestamp) <= parseInt(event.gbtt_timestamp || event.planned_timestamp))) {
-						event = undefined;
-					} else {
-						[ 'gbtt_timestamp', 'planned_timestamp', 'actual_timestamp', 'msg_queue_timestamp' ].forEach(function (propertyName) {
-							if (event[propertyName]) event[propertyName] = dateToCSVDate(new Date(parseInt(event[propertyName]))); 
-						});
-					}
-					return event;
-				})
-				.on('close', function(count){
-					firstMessages = false;
-					fs.createWriteStream('foo.csv', { 'flags': 'a', 'encoding': 'utf-8' }).write('\n');
-				})
+    		events = JSON.parse(events)
+    			// .filter(function (e) { return (e.body.event_type === 'ARRIVAL') && (parseInt(e.body.actual_timestamp) > parseInt(e.body.gbtt_timestamp || e.body.planned_timestamp)); })
+    			.map(function (e) {
+    				var newE = { };
+    				[ 'header', 'body' ].forEach(function (firstLevel) {
+    					Object.keys(e[firstLevel]).forEach(function (secondLevel) {
+    						newE[firstLevel + '_' + secondLevel] = e[firstLevel][secondLevel];
+    					});
+    				});
+    				return newE;
+    			});
+    		es.readArray(events)
+    			// .pipe(csvstringifier)
+    			.pipe(es.stringify())
+    			.pipe(inStream);
         }); 
     },
     // error callback
