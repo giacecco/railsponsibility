@@ -62,4 +62,4 @@ setTimeout(function () {
 			addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
 		};
 	});
-, 60000);
+}, 60000);
