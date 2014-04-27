@@ -1,4 +1,4 @@
-var argv = require("yarg")
+var argv = require("yargs")
 		.usage("Usage: $0 [--couchdb <CouchDB connection string if not specified in the COUCH_DB environment variable nor http://localhost:5984>]")
 		.demand([ 'couchdb' ])
 		.default('couchdb', process.env.CLOUDANT_URL)
