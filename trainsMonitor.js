@@ -1,64 +1,31 @@
 var ARRIVAL_MISALIGNMENT_TOLERANCE = 5; //minutes
 
 var async = require('async'),
-    Stomp = require('stomp-client'), // https://github.com/easternbloc/node-stomp-client
     utils = require('./utils'),
 	_ = require('underscore');
 
-var codesReader = null,
+var arrivalsMonitor = null,
+    codesReader = null,
     db = null,
-    listener = null,
     monitoredTrains = { },
     nano = null;
 
 var initialise = function (options, callback) {
-    if (listener) {
+    if (arrivalsMonitor) {
         if (callback) callback(null);
     } else {
         codesReader = new require('./codesReader')(options),
         scheduleReader = new require('./scheduleReader')(options),
         nano = require('nano')(options.couchdb);
-        async.parallel([
-            function (callback) {
-                // I create the delayed arrivals database
-                utils.log("trainsMonitor: Initialising the arrivals archive...");
-                nano.db.get('delayed_arrivals_archive', function (err, body) {
-                    if (err) {
-                        // if I get an error here it is likely because the 
-                        // database does not exist
-                        nano.db.create('delayed_arrivals_archive', function(err) { 
-                            db = nano.use('delayed_arrivals_archive');
-                            callback(null);
-                        });
-                    } else {
-                        db = nano.use('delayed_arrivals_archive');
-                        callback(null);
-                    }
-                });
-            },
-            function (callback) {
-                utils.log("trainsMonitor: Connecting listener...");
-                listener = new Stomp('datafeeds.networkrail.co.uk', 61618, process.env.NROD_USERNAME, process.env.NROD_PASSWORD);
-                listener.connect(
-                    // success callback
-                    function (sessionId) { 
-                        utils.log("trainsMonitor: Listener connection successful.");
-                        listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', processIncomingEvents); 
-                        if (callback) callback(null);
-                    },
-                    // error callback
-                    // TODO: perhaps I could make this more resilient rather than just exiting
-                    function (err) { throw err; }
-                );        
-            },
-        ], function (err) {
-            if (callback) callback(err);
-        });
+        arrivalsMonitor = new require('./arrivalsMonitor')({ 
+            'arrivalsCallback': processIncomingEvents, 
+        }); 
+        if (callback) callback(null);
     }
 }
 
-var processIncomingEvents = function (events, headers) {
-    events = async.reduce(JSON.parse(events), [ ], function (memo, event, callback) { 
+var processIncomingEvents = function (events) {
+    events = async.reduce(events, [ ], function (memo, event, callback) { 
         if (!event.body.loc_stanox || (event.body.event_type !== 'ARRIVAL')) {
             callback(null, memo);
         } else {
