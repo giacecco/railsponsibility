@@ -1,7 +1,6 @@
 var NO_EVENTS_WARNING = 5; // minutes
 
-var es = require('event-stream'),
-    Stomp = require('stomp-client'),
+var Stomp = require('stomp-client'),
     Uploader = require('s3-upload-stream').Uploader,
     utils = require('./utils'),
     _ = require('underscore');
@@ -28,8 +27,8 @@ module.exports = function (options) {
             // success callback
             function (sessionId) { 
             	var filename = null,
-                    inStream = null,
                     uploadStream = null,
+                    firstBatch = null,
                     latestWrittenEventsTimestamp = null;
             	utils.log("arrivalsMonitor: listener started.");
                 listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', function (events, headers) {
@@ -39,6 +38,7 @@ module.exports = function (options) {
                             // if a file was being written, I write the closing 
                             // bracket
                             uploadStream.write(']');
+                            uploadStream.end();
                             utils.log("arrivalsMonitor: completed archive file " + filename + ".");
                         }
                         filename = generateFilename();
@@ -60,16 +60,9 @@ module.exports = function (options) {
                                     } else {
                                         uploadStream = newUploadStream;
                                         uploadStream.on('uploaded', function (data) {
-                                            utils.log("arrivalsMonitor: uploading archive file " + filename + " ...");
+                                            utils.log("arrivalsMonitor: starting archive file " + filename + " ...");
                                         });
-                                        inStream = es.through(function write(data) {
-                                                this.emit('data', data);
-                                            },
-                                            function end () { 
-                                                this.emit('end')
-                                            });
-                                        uploadStream.write('[');
-                                        inStream.pipe(uploadStream);
+                                        firstBatch = true;
                                         callback(null);
                                     }
                                 }
@@ -80,11 +73,14 @@ module.exports = function (options) {
                         // I call the arrivals callback
                         if (options.arrivalsCallback) options.arrivalsCallback(events);
                         // I write the archive logs to Amazon S3          
-                        latestWrittenEventsTimestamp = new Date();    
-                        es.readArray(events)
-                            .pipe(es.stringify())
-                            .pipe(es.join(','))
-                            .pipe(inStream);
+                        latestWrittenEventsTimestamp = new Date();  
+                        if (firstBatch) {
+                            uploadStream.write("[");
+                            firstBatch = false;
+                        } else {
+                            uploadStream.write(",\n");
+                        }
+                        uploadStream.write(events.map(function (e) { return JSON.stringify(e); }).join(',\n'));
                     }
 
                     latestEventsTimestamp = new Date();                
