@@ -1,10 +1,10 @@
 var NO_EVENTS_WARNING = 5; // minutes
 
-var argv = require('minimist')(process.argv.slice(2), {
-        'default': {
-            'out': '.',
-        },
-    }),
+var argv = require('yargs')
+        .demand([ 'out' ])
+        .alias('out', 'o')
+        .default('out', '.')
+        .argv,
     csvstringify = require('csv-stringify'),
 	es = require('event-stream'),
 	fs = require('fs'),
