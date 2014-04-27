@@ -30,14 +30,15 @@ listener.connect(
 			},
 			function end () { //optional
 				this.emit('end')
-			});
+			}),
+            header = true;
     	inStream.pipe(outStream);
     	console.log("Listener started.");
         listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', function (events, headers) {
         	process.stdout.write('.');
     		latestEventsTimestamp = new Date();
     		events = JSON.parse(events)
-    			// .filter(function (e) { return (e.body.event_type === 'ARRIVAL') && (parseInt(e.body.actual_timestamp) > parseInt(e.body.gbtt_timestamp || e.body.planned_timestamp)); })
+    			.filter(function (e) { return (e.body.event_type === 'ARRIVAL') && (parseInt(e.body.actual_timestamp) > parseInt(e.body.gbtt_timestamp || e.body.planned_timestamp)); })
     			.map(function (e) {
     				var newE = { };
     				[ 'header', 'body' ].forEach(function (firstLevel) {
@@ -49,7 +50,20 @@ listener.connect(
     			});
     		es.readArray(events)
     			// .pipe(csvstringifier)
-    			.pipe(es.stringify())
+                // TODO: the code below is an ugly replacement for 
+                // csv-stringify, awaiting response to 
+                // https://github.com/wdavidw/node-csv-stringify/issues/2
+                .pipe(es.mapSync(function (data) {
+                    var output = "";
+                    if (header) {
+                        output += Object.keys(data).sort().map(function (propertyName) { return '"' + propertyName + '"'; }).join(",") + "\n";
+                        header = false;
+                    }
+                    output += Object.keys(data).sort().map(function (propertyName) {
+                        return data[propertyName] ? JSON.stringify(data[propertyName]) : '""';
+                    }).join(",") + "\n";
+                    return output;
+                }))
     			.pipe(inStream);
         }); 
     },
