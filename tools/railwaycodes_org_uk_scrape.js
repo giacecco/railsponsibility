@@ -5,7 +5,7 @@
    CouchDB database. 
  * ************************************************************************** */ 
 
-var argv = require("optimist")
+var argv = require("yarg")
 		.usage("Usage: $0 [--couchdb <CouchDB connection string if not >]")
 		.demand([ 'couchdb' ])
 		.default('couchdb', 'http://localhost:5984')

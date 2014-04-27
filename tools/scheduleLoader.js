@@ -3,7 +3,7 @@
    dates into the CouchDB database.
    ************************************************************************** */
 
-var argv = require("optimist")
+var argv = require("yarg")
 		.usage("Usage: $0 --couchdb <Couch DB connection string> --dateFrom <date in YYYY-MM-DD format> [--dateTo <date in YYYY-MM-DD format>]")
 		.demand([ 'couchdb', 'dateFrom' ])
 		.default('couchdb', 'http://localhost:5984')
