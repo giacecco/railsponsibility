@@ -40,25 +40,26 @@ function addMonitor (from, to, aimedDepartureTime, user) {
 /* example tweet:
  *     @railspo from eus to bkm 934
  */
-twitter.listen(function (err, tweet) {
-	var input = tweet.message.toUpperCase().match(/^(@[A-Z\d]+) *FROM *([A-Z]{3}) *TO* ([A-Z]{3}) *((\d{1,2}:)?\d{0,4})$/);
-	if (!input) {
-		utils.log("server: Received invalid tweet: '" + tweet.message + "'");
-		// TODO: the tweet does not match the expected format, should I tell
-		// the user or just ignore?
-	} else {
-		var fromStation = input[2].toUpperCase(),
-			toStation = input[3].toUpperCase(),
-			dateTime = new Date(), // TODO: what about train between days?
-			aimedDepartureTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate() + ' ',
-			aimedDepartureTime = new Date(aimedDepartureTime + (input[5] ? input[4] : input[4].substring(0, input[4].length - 2) + ':' + input[4].substring(input[4].length - 2, input[4].length))); 
-		utils.log("server: Received tweet from @" + tweet.from + " requesting to monitor " + prettyPrintTime(aimedDepartureTime) + " from " + fromStation + " to " + toStation);
-		setTimeout(function () {
-			// artificially adding some delay to make it look more real :-)
-			utils.log("server: Sending acknowledgement tweet to @" + tweet.from);
-			twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back when the train from " + fromStation + " at " + prettyPrintTime(aimedDepartureTime) + " has arrived at " + toStation);	
-		}, 5000);
-		addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
-	};
-});
-
+setTimeout(function () {
+	twitter.listen(function (err, tweet) {
+		var input = tweet.message.toUpperCase().match(/^(@[A-Z\d]+) *FROM *([A-Z]{3}) *TO* ([A-Z]{3}) *((\d{1,2}:)?\d{0,4})$/);
+		if (!input) {
+			utils.log("server: Received invalid tweet: '" + tweet.message + "'");
+			// TODO: the tweet does not match the expected format, should I tell
+			// the user or just ignore?
+		} else {
+			var fromStation = input[2].toUpperCase(),
+				toStation = input[3].toUpperCase(),
+				dateTime = new Date(), // TODO: what about train between days?
+				aimedDepartureTime = dateTime.getFullYear() + "-" + (dateTime.getMonth() < 9 ? '0' : '') + (dateTime.getMonth() + 1) + "-" + (dateTime.getDate() < 10 ? '0' : '') + dateTime.getDate() + ' ',
+				aimedDepartureTime = new Date(aimedDepartureTime + (input[5] ? input[4] : input[4].substring(0, input[4].length - 2) + ':' + input[4].substring(input[4].length - 2, input[4].length))); 
+			utils.log("server: Received tweet from @" + tweet.from + " requesting to monitor " + prettyPrintTime(aimedDepartureTime) + " from " + fromStation + " to " + toStation);
+			setTimeout(function () {
+				// artificially adding some delay to make it look more real :-)
+				utils.log("server: Sending acknowledgement tweet to @" + tweet.from);
+				twitter.updateStatus("@" + tweet.from + " thank you for using Railsponsibility, we will tweet back when the train from " + fromStation + " at " + prettyPrintTime(aimedDepartureTime) + " has arrived at " + toStation);	
+			}, 5000);
+			addMonitor(fromStation, toStation, aimedDepartureTime, tweet.from);
+		};
+	});
+, 60000);
