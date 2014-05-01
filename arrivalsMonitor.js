@@ -1,5 +1,5 @@
 var NO_EVENTS_WARNING = 5; // minutes
-
+ 
 var Stomp = require('stomp-client'),
     Uploader = require('s3-upload-stream').Uploader,
     utils = require('./utils'),
