@@ -89,7 +89,7 @@ module.exports = function (options) {
             }
             latestWrittenEventsTimestamp = new Date();
             uploadStream.write(columnNames.map(function (columnName) { 
-                return '"' + columnName + '":' + (newEvent[columnName] ? JSON.stringify(newEvent[columnName]) : "");
+                return newEvent[columnName] ? JSON.stringify(newEvent[columnName]) : "";
             }).join(","));
             callback();
         }
