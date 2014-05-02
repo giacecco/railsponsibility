@@ -35,43 +35,42 @@ module.exports = function (options) {
         latestEventsTimestamp = null,
         latestWrittenEventsTimestamp = null;
 
-    var createUploadStreamObject = function (callback) {
-        if (filename) {
-            // if a file was being written, I write the closing 
-            // bracket
-            uploadStream.write(']');
-            uploadStream.end();
-            utils.log("arrivalsMonitor: completed archive file " + filename + ".");
-        }
-        filename = generateFilename();
-        var UploadStreamObject = new Uploader(
-                { 
-                    "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
-                    "secretAccessKey": process.env.AWS_SECURE_ACCESS_KEY,
-                },
-                {
-                    "Bucket": process.env.AWS_ARRIVALS_ARCHIVE_BUCKET_NAME,
-                    "Key": filename,
-                    "ACL": 'public-read',
-                    "StorageClass": 'REDUCED_REDUNDANCY',
-                },
-                function (err, newUploadStream) {
-                    if (err) {
-                        utils.log("arrivalsMonitor: *** ERROR creating uploading stream to Amazon S3 - " + JSON.stringify(err));
-                        throw err;
-                    } else {
-                        uploadStream = newUploadStream;
-                        uploadStream.on('uploaded', function (data) {
-                            utils.log("arrivalsMonitor: starting archive file " + filename + " ...");
-                        });
-                        firstBatch = true;
-                        callback(null);
-                    }
-                }
-            );
-    };
-
     var arrivalsProcessingQueue = async.queue(function (event, callback) {
+
+        var createUploadStreamObject = function (callback) {
+            if (filename) {
+                // if a file was being written, I write the closing bracket
+                uploadStream.write(']');
+                uploadStream.end();
+                utils.log("arrivalsMonitor: completed archive file " + filename + ".");
+            }
+            filename = generateFilename();
+            var UploadStreamObject = new Uploader(
+                    { 
+                        "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+                        "secretAccessKey": process.env.AWS_SECURE_ACCESS_KEY,
+                    },
+                    {
+                        "Bucket": process.env.AWS_ARRIVALS_ARCHIVE_BUCKET_NAME,
+                        "Key": filename,
+                        "ACL": 'public-read',
+                        "StorageClass": 'REDUCED_REDUNDANCY',
+                    },
+                    function (err, newUploadStream) {
+                        if (err) {
+                            utils.log("arrivalsMonitor: *** ERROR creating uploading stream to Amazon S3 - " + JSON.stringify(err));
+                            throw err;
+                        } else {
+                            uploadStream = newUploadStream;
+                            uploadStream.on('uploaded', function (data) {
+                                utils.log("arrivalsMonitor: starting archive file " + filename + " ...");
+                            });
+                            firstBatch = true;
+                            callback(null);
+                        }
+                    }
+                );
+        };
 
         var write = function() {
             latestWrittenEventsTimestamp = new Date();
