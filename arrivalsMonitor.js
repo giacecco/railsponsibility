@@ -13,13 +13,13 @@ var CONNECTION_PARAMETERS = {
                 'host': '/',
                 'login': process.env.NROD_USERNAME,
                 'passcode': process.env.NROD_PASSWORD,
-                'client-id': ((process.env.DEBUG !== 'true') ? process.env.NROD_USERNAME : undefined),
+                // 'client-id': ((process.env.DEBUG !== 'true') ? process.env.NROD_USERNAME : undefined),
             }
         },
     SUBSCRIPTION_PARAMETERS = {
             'destination': '/topic/TRAIN_MVT_ALL_TOC',
             'ack': 'client-individual',
-            'activemq.subscriptionName': ((process.env.DEBUG !== 'true') ? 'prod-' + process.env.NROD_USERNAME : undefined),
+            // 'activemq.subscriptionName': ((process.env.DEBUG !== 'true') ? 'prod-' + process.env.NROD_USERNAME : undefined),
         };
 
 var generateFilename = function () {
