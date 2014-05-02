@@ -13,18 +13,18 @@ var CONNECTION_PARAMETERS = {
                 'host': '/',
                 'login': process.env.NROD_USERNAME,
                 'passcode': process.env.NROD_PASSWORD,
-                'client-id': process.env.NROD_USERNAME,
+                'client-id': ((process.env.DEBUG !== 'true') ? process.env.NROD_USERNAME : undefined),
             }
         },
     SUBSCRIPTION_PARAMETERS = {
             'destination': '/topic/TRAIN_MVT_ALL_TOC',
             'ack': 'client-individual',
-            'activemq.subscriptionName': ((process.env.DEBUG === 'TRUE') ? 'debug' : 'prod') + '-' + process.env.NROD_USERNAME,
+            'activemq.subscriptionName': ((process.env.DEBUG !== 'true') ? 'prod-' + process.env.NROD_USERNAME : undefined),
         };
 
 var generateFilename = function () {
     var d = new Date();
-    return 'arrivals_' + d.getFullYear() + (d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) + (d.getDate() < 10 ? '0' : '') + d.getDate() + (d.getHours() < 10 ? '0' : '') + d.getHours() + '.json';
+    return 'arrivals_' + d.getFullYear() + (d.getMonth() < 9 ? '0' : '') + (d.getMonth() + 1) + (d.getDate() < 10 ? '0' : '') + d.getDate() + (d.getHours() < 10 ? '0' : '') + d.getHours() + '.csv';
 };
 
 module.exports = function (options) {
@@ -73,14 +73,24 @@ module.exports = function (options) {
         };
 
         var write = function() {
-            latestWrittenEventsTimestamp = new Date();
+            var newEvent = { },
+                columnNames = Object.keys(event).reduce(function (memo, firstLevel) {
+                    return memo.concat(Object.keys(event[firstLevel]).map(function (secondLevel) {
+                        var newColumnName = firstLevel + "_" + secondLevel;
+                        newEvent[newColumnName] = event[firstLevel][secondLevel];
+                        return newColumnName;
+                    }));
+                }, [ ]).sort(); 
             if (firstBatch) {
-                uploadStream.write("[");
+                uploadStream.write(columnNames.join(",") + "\n");
                 firstBatch = false;
             } else {
                 uploadStream.write(",\n");
             }
-            uploadStream.write(JSON.stringify(event));
+            latestWrittenEventsTimestamp = new Date();
+            uploadStream.write(columnNames.map(function (columnName) { 
+                return '"' + columnName + '":' + (newEvent[columnName] ? JSON.stringify(newEvent[columnName]) : "");
+            }).join(","));
             callback();
         }
 
