@@ -1,9 +1,26 @@
 var NO_EVENTS_WARNING = 5; // minutes
  
-var Stomp = require('stomp-client'),
+var async = require('async'),
+    stompit = require('stompit'),
     Uploader = require('s3-upload-stream').Uploader,
     utils = require('./utils'),
     _ = require('underscore');
+
+var CONNECTION_PARAMETERS = {
+            'host': 'datafeeds.networkrail.co.uk', 
+            'port': 61618, 
+            'connectHeaders': {
+                'host': '/',
+                'login': process.env.NROD_USERNAME,
+                'passcode': process.env.NROD_PASSWORD,
+                'client-id': process.env.NROD_USERNAME,
+            }
+        },
+    SUBSCRIPTION_PARAMETERS = {
+            'destination': '/topic/TRAIN_MVT_ALL_TOC',
+            'ack': 'client-individual',
+            'activemq.subscriptionName': ((process.env.DEBUG === 'TRUE') ? 'debug' : 'prod') + '-' + process.env.NROD_USERNAME,
+        };
 
 var generateFilename = function () {
     var d = new Date();
@@ -12,8 +29,69 @@ var generateFilename = function () {
 
 module.exports = function (options) {
 
-    var listener = new Stomp('datafeeds.networkrail.co.uk', 61618, process.env.NROD_USERNAME, process.env.NROD_PASSWORD),
-        latestEventsTimestamp = null;
+    var filename = null,
+        uploadStream = null,
+        firstBatch = null,
+        latestEventsTimestamp = null,
+        latestWrittenEventsTimestamp = null;
+
+    var createUploadStreamObject = function (callback) {
+        if (filename) {
+            // if a file was being written, I write the closing 
+            // bracket
+            uploadStream.write(']');
+            uploadStream.end();
+            utils.log("arrivalsMonitor: completed archive file " + filename + ".");
+        }
+        filename = generateFilename();
+        var UploadStreamObject = new Uploader(
+                { 
+                    "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+                    "secretAccessKey": process.env.AWS_SECURE_ACCESS_KEY,
+                },
+                {
+                    "Bucket": process.env.AWS_ARRIVALS_ARCHIVE_BUCKET_NAME,
+                    "Key": filename,
+                    "ACL": 'public-read',
+                    "StorageClass": 'REDUCED_REDUNDANCY',
+                },
+                function (err, newUploadStream) {
+                    if (err) {
+                        utils.log("arrivalsMonitor: *** ERROR creating uploading stream to Amazon S3 - " + JSON.stringify(err));
+                        throw err;
+                    } else {
+                        uploadStream = newUploadStream;
+                        uploadStream.on('uploaded', function (data) {
+                            utils.log("arrivalsMonitor: starting archive file " + filename + " ...");
+                        });
+                        firstBatch = true;
+                        callback(null);
+                    }
+                }
+            );
+    };
+
+    var arrivalsProcessingQueue = async.queue(function (event, callback) {
+
+        var write = function() {
+            latestWrittenEventsTimestamp = new Date();
+            if (firstBatch) {
+                uploadStream.write("[");
+                firstBatch = false;
+            } else {
+                uploadStream.write(",\n");
+            }
+            uploadStream.write(JSON.stringify(event));
+            callback();
+        }
+
+        if (!latestWrittenEventsTimestamp || (latestWrittenEventsTimestamp.getHours() !== (new Date()).getHours())) {
+            createUploadStreamObject(write);
+        }  else {
+            write();
+        }
+
+    }, 1);
 
     var initialise = function () {
 
@@ -23,83 +101,31 @@ module.exports = function (options) {
         	}
         }, 60000);
 
-        listener.connect(
-            // success callback
-            function (sessionId) { 
-            	var filename = null,
-                    uploadStream = null,
-                    firstBatch = null,
-                    latestWrittenEventsTimestamp = null;
-            	utils.log("arrivalsMonitor: listener started.");
-                listener.subscribe('/topic/TRAIN_MVT_ALL_TOC', function (events, headers) {
-
-                    var createUploadStreamObject = function (callback) {
-                        if (filename) {
-                            // if a file was being written, I write the closing 
-                            // bracket
-                            uploadStream.write(']');
-                            uploadStream.end();
-                            utils.log("arrivalsMonitor: completed archive file " + filename + ".");
+        stompit.connect(CONNECTION_PARAMETERS, function (err, client) {
+            if (err) {
+                utils.log('arrivalsMonitor: unable to connect listener to National Rail server - ' + err.message);
+                return;
+            }
+            utils.log("arrivalsMonitor: listener started.");
+            client.subscribe(SUBSCRIPTION_PARAMETERS, function (err, message) {
+                if (err) {
+                    utils.log('arrivalsMonitor: error receiving message - ' + err.message);
+                    return;
+                }
+                var content = '',
+                    chunk;
+                message.on('readable', function () {
+                        while (null !== (chunk = message.read())) {
+                            content += chunk;
                         }
-                        filename = generateFilename();
-                        var UploadStreamObject = new Uploader(
-                                { 
-                                    "accessKeyId": process.env.AWS_ACCESS_KEY_ID,
-                                    "secretAccessKey": process.env.AWS_SECURE_ACCESS_KEY,
-                                },
-                                {
-                                    "Bucket": process.env.AWS_ARRIVALS_ARCHIVE_BUCKET_NAME,
-                                    "Key": filename,
-                                    "ACL": 'public-read',
-                                    "StorageClass": 'REDUCED_REDUNDANCY',
-                                },
-                                function (err, newUploadStream) {
-                                    if (err) {
-                                        utils.log("arrivalsMonitor: *** ERROR creating uploading stream to Amazon S3 - " + JSON.stringify(err));
-                                        throw err;
-                                    } else {
-                                        uploadStream = newUploadStream;
-                                        uploadStream.on('uploaded', function (data) {
-                                            utils.log("arrivalsMonitor: starting archive file " + filename + " ...");
-                                        });
-                                        firstBatch = true;
-                                        callback(null);
-                                    }
-                                }
-                            );
-                    };
-
-                    var processArrivals = function () {
-                        // I call the arrivals callback
-                        if (options.arrivalsCallback) options.arrivalsCallback(events);
-                        // I write the archive logs to Amazon S3          
-                        latestWrittenEventsTimestamp = new Date();  
-                        if (firstBatch) {
-                            uploadStream.write("[");
-                            firstBatch = false;
-                        } else {
-                            uploadStream.write(",\n");
-                        }
-                        uploadStream.write(events.map(function (e) { return JSON.stringify(e); }).join(',\n'));
-                    }
-
-                    latestEventsTimestamp = new Date();                
-            		events = JSON.parse(events)
-                        .filter(function (e) { return (e.body.event_type === 'ARRIVAL'); });
-                    if (events.length > 0) {
-                        if (!latestWrittenEventsTimestamp || (latestWrittenEventsTimestamp.getHours() !== (new Date()).getHours())) {
-                            createUploadStreamObject(processArrivals);
-                        }  else {
-                            processArrivals();
-                        }
-                    }                
-                }); 
-            },
-            // error callback
-            // TODO: perhaps I could make this more resilient rather than just exiting
-            function (err) { throw err; }
-        );        
-
+                    });
+                message.on('end', function () {
+                        message.ack();
+                        latestEventsTimestamp = new Date();
+                        arrivalsProcessingQueue.push(JSON.parse(content).filter(function (e) { return e.body.event_type === 'ARRIVAL'; }), function (err) { });
+                    });
+            });
+        });
     };
 
     initialise();
