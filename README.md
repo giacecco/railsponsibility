@@ -62,6 +62,11 @@ Railsponsibility went on to win the [UK Cabinet Office](https://www.gov.uk/gover
 
 The project awoke again on 31/3/14 for additional development by Giacecco focusing exclusively on gathering train arrival data (not only delayed trains). The software has been re-written from the ground-up to be production- rather than hackathon-quality. He also migrated from Stride to [Transport API](http://transportapi.com/) first and then directly to Network Rail's ["Data Feed" service](https://datafeeds.networkrail.co.uk/ntrod/login), as there is no reason to add more points of failure to the already long chain between the source data and the software. 
 
+Active contributors to the project are:
+
+- Gianfranco Cecconi ([giacecco](https://github.com/giacecco))
+- Ulrich Atz ([statshero](https://github.com/statshero))
+
 ##Licence
 
 The trains schedule and arrival data are sourced from the [Network Rail "Data Feeds" service](https://datafeeds.networkrail.co.uk). As a result, Railsponsibility _contains information of Network Rail Infrastructure Limited licensed under the following licence [http://www.networkrail.co.uk/data-feeds/terms-and-conditions/](http://www.networkrail.co.uk/data-feeds/terms-and-conditions/)_.
