@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script src="jquery-1.11.1.min.js"></script>
+		<script src="underscore-1.6.0.min.js"></script>
+		<script src="index.js"></script>
+		<title>railsponsibility logs</title>
+	</head>
+	<body>
+		<h1>railsponsibility logs</h1>
+		<p>Please note that the fact that a file is listed below does not mean that the file actually exists!</p>
+		<div id="filesList"></div>
+
+		<script>
+			var d = new Date((new Date()).getTime() - 1 * 60 * 60 * 1000);
+			console.log(generateFilename(d));
+		</script>
+	<body>
+</html>
