@@ -5,7 +5,7 @@ Railsponsibility
 
 Most UK train users are unaware of their rights, e.g. to compensation after cancellations or delays. This was raised as an issues by the [Office for Rail Regulation](http://orr.gov.uk) in its ["Rail passenger compensation and refund rights" report](http://orr.gov.uk/publications/reports/rail-passenger-compensation-and-refund-rights), published on 20/2/2014.
 
-Athough the situation is improving and [the amount of money paid out in compensation rose by £3m](http://www.bbc.co.uk/news/business-26275394) during last surveyed year, more can be done to make Network Rail and the rail operating companies accountable for the disservice they are responsible of. 
+Athough the situation is improving, [the amount of money paid out in compensation during the last surveyed year was of just by £3m](http://www.bbc.co.uk/news/business-26275394). Our early calculations estimate that **the total value of the disservice to UK passengers, calculated as the total value of the compensations they are entitled to, is in the order of £500m every year**. More can be done to make Network Rail and the rail operating companies accountable for the disservice they are responsible of. 
 
 As much as we accept that not all incidents can be avoided, we believe that the huge amount of compensations that passengers are **not** claiming is allowing Network Rail and the operating companies to sleep over the problem, minimising intervention while keeping patting each others' backs and [awarding their directors 6-digit bonuses](http://www.bbc.co.uk/news/business-23367781).
 
