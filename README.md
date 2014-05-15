@@ -66,6 +66,7 @@ The project awoke again on 31/3/14 for additional development by Giacecco focusi
 
 Active contributors to the project are:
 
+- Benjamin Simatos ([bensim](https://github.com/BenSim))
 - Gianfranco Cecconi ([giacecco](https://github.com/giacecco))
 - Ulrich Atz ([statshero](https://github.com/statshero))
 
