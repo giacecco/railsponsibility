@@ -68,18 +68,12 @@ var processIncomingEvents = function (events) {
             // if (arrival.variation_status === 'LATE') { db.insert(arrival); }
             var trainKey = function () {
                 var trainKey = null;
-            // *** DEBUG ONLY
-                if ((process.env.DEBUG === 'true') && (arrival.loc_tiploc.toUpperCase() === 'EUSTON')) utils.log('*** arrival at ' + arrival.loc_tiploc.toUpperCase() + ' at ' + arrival.gbtt_timestamp + "(" + arrival.gbtt_timestamp.getTime() + ")");
                 [ 0 ].concat(_.range(-ARRIVAL_MISALIGNMENT_TOLERANCE, 0)).concat(_.range(1, ARRIVAL_MISALIGNMENT_TOLERANCE + 1)).forEach(function (misalignment) {
                     if (!trainKey) {
                         var tempTrainKey = arrival.loc_tiploc.toUpperCase() + '_' + arrival.train_service_code + '_' + (arrival.gbtt_timestamp.getTime() + misalignment * 60000);
-                    // *** DEBUG ONLY
-                        if ((process.env.DEBUG === 'true') && (arrival.loc_tiploc.toUpperCase() === 'EUSTON')) utils.log("    testing " + tempTrainKey + " vs " + _.keys(monitoredTrains));                                    
                         if (monitoredTrains[tempTrainKey]) trainKey = tempTrainKey;
                     }
                 });
-            // *** DEBUG ONLY
-                if ((process.env.DEBUG === 'true') && (arrival.loc_tiploc.toUpperCase() === 'EUSTON')) utils.log("    " + (!trainKey ? "NO " : "") + "MATCH");
                 return trainKey;
             }(); 
             if (trainKey) {
