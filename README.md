@@ -1,8 +1,6 @@
 Railsponsibility
 ================
 
-##Early functionality is live, put @railspo to the test at [http://railsponsibility.co.uk](http://railsponsibility.co.uk).
-
 ##Introduction
 
 Most UK train users are unaware of their rights, e.g. to compensation after cancellations or delays. This was raised as an issues by the [Office for Rail Regulation](http://orr.gov.uk) in its ["Rail passenger compensation and refund rights" report](http://orr.gov.uk/publications/reports/rail-passenger-compensation-and-refund-rights), published on 20/2/2014.
